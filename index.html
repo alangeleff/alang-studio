@@ -129,12 +129,8 @@
     position: relative;
   }
   .hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 60px;
-    align-items: center;
+    max-width: 920px;
   }
-  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
 
   .hero-byline {
     display: inline-flex; align-items: center; gap: 10px;
@@ -228,24 +224,7 @@
   }
   @keyframes float { 0%,100%{transform:translate(-50%,0)} 50%{transform:translate(-50%,8px)} }
 
-  /* hero side art */
-  .hero-art {
-    aspect-ratio: 4/5;
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6), 0 0 0 1px var(--rule-2);
-  }
-  .hero-art-stack {
-    position: absolute; inset: 0;
-  }
-  .hero-art-card {
-    position: absolute; inset: 0;
-    opacity: 0; transition: opacity 1s var(--ease);
-  }
-  .hero-art-card.active { opacity: 1; }
-
-  /* artworks (CSS-art placeholders) */
+  /* artworks (CSS-art placeholders — kept for chaos cloud glitch tiles + legacy refs) */
   .art {
     width: 100%; height: 100%;
     position: relative;
@@ -421,6 +400,60 @@
   .about-body em { color: var(--gold); font-style: italic; }
   .about-body p { color: inherit; margin: 0 0 1em 0; }
   .about-body p:last-child { margin-bottom: 0; }
+
+  /* about — pulsing rings */
+  .about-rings {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1;
+    margin: 28px 0 0;
+    /* allow rings to bloom slightly past container at peak */
+    overflow: visible;
+  }
+  .about-rings .dot {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    transform: translate(-50%, -50%);
+    box-shadow:
+      0 0 0 2px rgba(224,178,64,0.18),
+      0 0 14px rgba(224,178,64,0.55);
+    z-index: 2;
+  }
+  .about-rings .ring {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    animation-name: ringPulse;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+  }
+  /* phase-offset each ring so they never sync up */
+  .about-rings .ring.r1 { animation-duration: 6.4s; animation-delay:  0s;    }
+  .about-rings .ring.r2 { animation-duration: 6.9s; animation-delay: -1.6s;  }
+  .about-rings .ring.r3 { animation-duration: 6.1s; animation-delay: -3.1s;  }
+  .about-rings .ring.r4 { animation-duration: 7.2s; animation-delay: -4.7s;  }
+  @keyframes ringPulse {
+    0%   { transform: translate(-50%, -50%) scale(0);    opacity: 0;    border-width: 1.5px; }
+    10%  {                                                 opacity: 0.6; }
+    100% { transform: translate(-50%, -50%) scale(1.08); opacity: 0;    border-width: 0.5px; }
+  }
+  @media (max-width: 900px) {
+    /* hide rings on mobile — at <140px they read meager next to the body copy */
+    .about-rings { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .about-rings .ring { animation: none; opacity: 0.3; transform: translate(-50%, -50%) scale(0.7); }
+  }
 
   /* ---------------- the work — floating canvas chaos ---------------- */
   .work-header {
@@ -1034,31 +1067,6 @@
         </div>
       </div>
 
-      <div class="hero-art" aria-hidden="true">
-        <div class="hero-art-stack" id="heroArt">
-          <div class="hero-art-card active">
-            <div class="art abstr-3 art-grain"></div>
-          </div>
-          <div class="hero-art-card">
-            <div class="art illus-2">
-              <div class="illus-moon"></div>
-              <div class="illus-hill"></div>
-              <div class="illus-hill h2"></div>
-              <div class="illus-bird" style="top:32%; left:24%;"></div>
-              <div class="illus-bird" style="top:38%; left:42%; transform:rotate(8deg) scale(0.7);"></div>
-            </div>
-          </div>
-          <div class="hero-art-card">
-            <div class="art glitch">
-              <div class="glyph" data-text="AG">AG</div>
-              <div class="tear"></div>
-            </div>
-          </div>
-          <div class="hero-art-card">
-            <div class="art abstr-5 art-grain"></div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -1073,13 +1081,20 @@
     <div class="about-grid">
       <div class="reveal">
         <span class="eyebrow">About</span>
+        <div class="about-rings" aria-hidden="true">
+          <span class="ring r1"></span>
+          <span class="ring r2"></span>
+          <span class="ring r3"></span>
+          <span class="ring r4"></span>
+          <span class="dot"></span>
+        </div>
       </div>
       <div class="about-body reveal">
         <p>
           I'm a creator at heart. Whether art, games, words, communities - creation is the crux of it all. Along the way, I'm always aiming to help those around me by any means possible.
         </p>
         <p>
-          I bring value to this world. Through tools that help people think, art that helps them feel, and games that pull them together.
+          I bring value to this world. Through tools that help people <em>think</em>, art that helps them <em>feel</em>, and games that pull them <em>together</em>.
         </p>
         <p>
           We all have a story to tell and a talent to share. If you value the growth and the grind, this is your place.
@@ -1273,18 +1288,6 @@
         }, 720);
       }
     }, 2500);
-  })();
-
-  // ----------------- hero art rotator -----------------
-  (function () {
-    const cards = document.querySelectorAll('#heroArt .hero-art-card');
-    if (!cards.length) return;
-    let i = 0;
-    setInterval(() => {
-      cards[i].classList.remove('active');
-      i = (i + 1) % cards.length;
-      cards[i].classList.add('active');
-    }, 4500);
   })();
 
   // ----------------- gallery: floating canvas chaos -----------------
