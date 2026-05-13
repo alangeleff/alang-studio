@@ -1010,9 +1010,9 @@
           </div>
         </div>
         <div class="anchor-meta" id="anchorMeta">
-          <div class="tag" id="anchorTag">2026 · Illustration</div>
-          <h3 id="anchorTitle">Coyote at dusk</h3>
-          <p class="lore" id="anchorLore">First piece in a series about traveling alone and finding warmth where you don't expect it.</p>
+          <div class="tag" id="anchorTag">2023 · Surreal</div>
+          <h3 id="anchorTitle">Futile Dynamism</h3>
+          <p class="lore" id="anchorLore"></p>
 
           <div class="filter-pills" role="tablist" aria-label="Filter by style">
             <button class="pill active" data-filter="all">All</button>
@@ -1343,7 +1343,10 @@
     });
 
     // seed the anchor with piece #1
-    anchorCard.innerHTML = renderArt(PIECE_BY_ID[1]);
+    // Default anchor on initial load: Futile Dynamism (id 31, Surreal, 2023).
+    // The HTML markup above hardcodes the matching title/year/style tag so
+    // there's no flash of placeholder content before this line executes.
+    anchorCard.innerHTML = renderArt(PIECE_BY_ID[31]);
 
     const wraps = Array.from(chaos.querySelectorAll('.canvas-wrap'));
 
