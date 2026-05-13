@@ -11,6 +11,11 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/manifest.json" />
+<!-- Preload the two xl/fg gallery heroes so they're in cache by the time the
+     chaos-cloud script appends their <img> tags. Eliminates the first-paint
+     gap on landing for the most prominent pieces. -->
+<link rel="preload" as="image" href="/art/dingbatz-28-2024.jpg" />
+<link rel="preload" as="image" href="/art/dead-2024.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,30..100&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -1312,9 +1317,9 @@
     <div class="proj-row reveal">
       <!-- content: tagline + CTA (mirrored — LEFT column on desktop) -->
       <div class="proj-content">
-        <span class="eyebrow">Project — Soon</span>
+        <span class="eyebrow">Project — Live</span>
         <p class="proj-tagline">The online card game that ruins friendships in the best possible way.</p>
-        <p class="proj-sub">Built for the group chat. Loud, fast, a little mean. Five Fiends instead of one wildcard.</p>
+        <p class="proj-sub">Built for the group chat. Loud, fast, a little mean. Become a worse person, one card at a time.</p>
         <a href="https://badpeople.cards" target="_blank" rel="noopener" class="proj-cta">
           Visit Bad People
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
@@ -1384,7 +1389,7 @@
         <span>@alang.studio</span>
       </a>
       <a class="social" href="https://threads.net/@alang.studio" target="_blank" rel="noopener">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 10c0-2 1.7-3.5 4-3.5s4 1.5 4 3.5c0 4-8 3-8 6 0 1.4 1.4 2.5 3.5 2.5 2 0 3.5-1 4-3"/></svg>
+        <img class="ic" src="art/threads-logo.png" alt="" width="14" height="14" />
         <span>@alang.studio</span>
       </a>
       <a class="social" href="https://drip.haus/alangstudio" target="_blank" rel="noopener">
@@ -1493,7 +1498,7 @@
     function renderArt(p) {
       if (p.src) {
         const alt = (p.title || '').replace(/"/g, '&quot;');
-        return '<div class="art"><img class="real" src="' + p.src + '" alt="' + alt + '" loading="eager" decoding="async" fetchpriority="auto"></div>';
+        return '<div class="art"><img class="real" src="' + p.src + '" alt="' + alt + '" loading="eager"></div>';
       }
       if (p.variant === 'illus-1') {
         return '<div class="art illus-1">' +
@@ -1564,6 +1569,25 @@
       drift.appendChild(cv);
       wrap.appendChild(drift);
       chaos.appendChild(wrap);
+
+      // Force synchronous decode so the image is paint-ready *before* the
+      // next composite. Without this, Chrome's lazy-decode path on transformed
+      // + animated + will-change parents defers the image's first paint until
+      // a forced repaint (hover, scroll, click). decode() returns a promise;
+      // we swallow rejection because partial loads still display fine.
+      const renderedImg = cv.querySelector('img.real');
+      if (renderedImg && renderedImg.decode) {
+        renderedImg.decode().catch(() => {});
+      }
+    });
+
+    // Force one composite flush after every canvas is in the DOM. Toggling
+    // a non-visual property on the container nudges the browser to invalidate
+    // the layer tree, so all decoded images paint on the very next frame
+    // instead of waiting for user interaction.
+    requestAnimationFrame(() => {
+      chaos.style.willChange = 'contents';
+      requestAnimationFrame(() => { chaos.style.willChange = ''; });
     });
 
     // seed the anchor with piece #1
