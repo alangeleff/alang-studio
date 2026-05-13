@@ -145,7 +145,22 @@
   .hero-byline .gold-dot {
     width: 6px; height: 6px; border-radius: 50%;
     background: var(--gold); opacity: 0.85;
+    position: relative;
   }
+  /* static concentric rings — quiet halo around the dot, echo of the
+     About-section pulsing rings. Pseudo-elements so layout is unaffected. */
+  .hero-byline .gold-dot::before,
+  .hero-byline .gold-dot::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .hero-byline .gold-dot::before { width: 14px; height: 14px; opacity: 0.40; }
+  .hero-byline .gold-dot::after  { width: 22px; height: 22px; opacity: 0.18; }
   .hero-byline em { color: var(--ink-2); font-style: normal; }
 
   .hero-name {
@@ -1363,7 +1378,7 @@
     function renderArt(p) {
       if (p.src) {
         const alt = (p.title || '').replace(/"/g, '&quot;');
-        return '<div class="art"><img class="real" src="' + p.src + '" alt="' + alt + '" loading="lazy" decoding="async"></div>';
+        return '<div class="art"><img class="real" src="' + p.src + '" alt="' + alt + '" loading="eager" decoding="async" fetchpriority="auto"></div>';
       }
       if (p.variant === 'illus-1') {
         return '<div class="art illus-1">' +
