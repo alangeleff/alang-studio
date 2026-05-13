@@ -437,6 +437,10 @@
     gap: 56px;
     align-items: start;
   }
+  /* min-width:0 lets grid items shrink below their content min-content.
+     Without this, the nowrap pill row's intrinsic width on mobile
+     forces the column wider than viewport, dragging .anchor-piece off-screen. */
+  .gallery-anchor, .gallery-chaos { min-width: 0; }
   @media (max-width: 900px) {
     .gallery-grid { grid-template-columns: 1fr; gap: 36px; }
   }
@@ -447,6 +451,7 @@
 
   .anchor-piece {
     aspect-ratio: 4/5;
+    max-width: 100%;
     border-radius: 4px;
     border: 6px solid rgba(245,240,230,0.94);
     background: var(--canvas-3);
@@ -476,6 +481,7 @@
     margin: 0 0 12px 0;
     font-variation-settings: "SOFT" 50;
     transition: opacity 0.3s var(--ease);
+    overflow-wrap: anywhere;
   }
   .anchor-meta .lore {
     font-family: var(--serif); font-style: italic;
