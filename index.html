@@ -485,36 +485,38 @@
     10%  {                                                 opacity: 0.6; }
     100% { transform: translate(-50%, -50%) scale(1.08); opacity: 0;    border-width: 0.5px; }
   }
-  /* Mobile ring pulse: bigger expansion (to span the section), lower peak
-     opacity (felt-not-seen background heartbeat). Same cadence as desktop. */
+  /* Mobile ring pulse: bigger expansion (to span the section), tuned-up peak
+     opacity (felt-and-faintly-seen background heartbeat). Same cadence as
+     desktop. Peak 0.35 sits inside the 0.30-0.40 range Alan asked for —
+     visible enough to register as ambient rhythm while text remains crisp. */
   @keyframes ringPulseMobile {
     0%   { transform: translate(-50%, -50%) scale(0);    opacity: 0;    border-width: 1.5px; }
-    12%  {                                                 opacity: 0.18; }
+    12%  {                                                 opacity: 0.35; }
     100% { transform: translate(-50%, -50%) scale(2.6);  opacity: 0;    border-width: 0.3px; }
   }
   @media (max-width: 900px) {
     /* Free the rings' parent .reveal from the transform / opacity that
-       would otherwise establish a containing block, so the absolute-
-       positioned .about-rings anchors to the section rather than to the
-       left column. We also skip the scroll-reveal animation here — on
-       mobile we want the heartbeat present from the moment the section
-       enters viewport. */
+       would otherwise establish a containing block. Crucially we do NOT
+       set position:relative here — doing so would re-trap the rings
+       inside the .reveal's tiny eyebrow-row bounds (the bug Alan saw,
+       where rings centered on the 'About' label instead of the body). */
     #about .about-grid > .reveal:first-child {
       opacity: 1 !important;
       transform: none !important;
       transition: none;
-      position: relative;
-      z-index: 1;
     }
     /* Section becomes the positioning + clipping context for the rings. */
     #about { overflow: hidden; }
-    /* Rings: shown, centered behind text, softened, full opacity wrapper
-       (the ring keyframe carries the 0.18 peak). */
+    /* Rings: centered on the BODY's vertical midpoint (not the section's).
+       On the stacked mobile layout the eyebrow + grid-gap sit ~58 px above
+       the body block, so the body center is ~30 px below section center.
+       calc(-50% + 30 px) on the Y axis lands the heartbeat in the middle
+       of paragraph 2. The keyframe carries the 0.35 peak opacity. */
     .about-rings {
       display: block;
       position: absolute;
       top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, calc(-50% + 30px));
       width: min(420px, 90%);
       aspect-ratio: 1;
       max-width: none;
@@ -533,7 +535,8 @@
       opacity: 0.30;
       box-shadow: none;
     }
-    /* Bring all text content above the rings layer. */
+    /* Bring all text content above the rings layer. eyebrow + body each
+       get their own stacking context above z-index:0 rings. */
     #about .eyebrow      { position: relative; z-index: 2; }
     #about .about-body   { position: relative; z-index: 1; }
   }
