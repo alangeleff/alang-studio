@@ -115,6 +115,34 @@
     width: 8px; height: 8px; border-radius: 50%;
     background: var(--gold);
     box-shadow: 0 0 16px rgba(224,178,64,0.6);
+    position: relative;
+    flex-shrink: 0;
+  }
+  /* animated nav-dot rings — small-scale echo of the About-section
+     rings concept, tuned faster (2.6s cycle) and tighter (max ~18 px).
+     Three rings phase-offset so the flow never syncs. Absolutely
+     positioned inside the dot so the nav-bar layout is unaffected. */
+  .nav-mark .dot .r {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    animation: navDotPulse 2.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+  .nav-mark .dot .r1 { animation-delay:  0s;   }
+  .nav-mark .dot .r2 { animation-delay: -0.9s; }
+  .nav-mark .dot .r3 { animation-delay: -1.8s; }
+  @keyframes navDotPulse {
+    0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0;    }
+    15%  {                                                 opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0;    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-mark .dot .r { animation: none; opacity: 0; }
   }
   .nav-links { display: flex; gap: 28px; }
   .nav-links a {
@@ -145,22 +173,7 @@
   .hero-byline .gold-dot {
     width: 6px; height: 6px; border-radius: 50%;
     background: var(--gold); opacity: 0.85;
-    position: relative;
   }
-  /* static concentric rings — quiet halo around the dot, echo of the
-     About-section pulsing rings. Pseudo-elements so layout is unaffected. */
-  .hero-byline .gold-dot::before,
-  .hero-byline .gold-dot::after {
-    content: "";
-    position: absolute;
-    top: 50%; left: 50%;
-    border-radius: 50%;
-    border: 1px solid var(--gold);
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-  .hero-byline .gold-dot::before { width: 14px; height: 14px; opacity: 0.40; }
-  .hero-byline .gold-dot::after  { width: 22px; height: 22px; opacity: 0.18; }
   .hero-byline em { color: var(--ink-2); font-style: normal; }
 
   .hero-name {
@@ -1039,7 +1052,11 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="#top" class="nav-mark">
-      <span class="dot"></span>
+      <span class="dot" aria-hidden="true">
+        <span class="r r1"></span>
+        <span class="r r2"></span>
+        <span class="r r3"></span>
+      </span>
       <span>Alan Geleff</span>
     </a>
     <div class="nav-links">
