@@ -649,6 +649,16 @@
     transform-origin: center;
   }
 
+  /* real artwork inside frames */
+  .art img.real {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .anchor-meta .lore:empty { display: none; }
+
   /* mobile — declutter sparks */
   @media (max-width: 720px) {
     .canvas-wrap.mobile-hide { display: none; }
@@ -1184,18 +1194,18 @@
     const PIECES = [
       // HERO (xl) — 2 anchors
       { id: 1,  x: 28, y: 24, size: 'xl', rot: -7,  z: 'fg',  drift: 'A', dur: 7.4, style: 'illustration', variant: 'illus-1', title: 'Coyote at dusk',     year: '2026', lore: "First piece in a series about traveling alone and finding warmth where you don't expect it." },
-      { id: 2,  x: 70, y: 68, size: 'xl', rot:  5,  z: 'fg',  drift: 'B', dur: 8.2, style: 'abstract',     variant: 'abstr-3', title: 'Field of gold',      year: '2026', lore: 'A long study about color. The gold kept asking for more gold.' },
+      { id: 2,  x: 70, y: 68, size: 'xl', rot:  5,  z: 'fg',  drift: 'B', dur: 8.2, style: 'abstract',     src: 'art/aura-2024.jpg',         title: 'Aura',        year: '2024', lore: '' },
 
       // LARGE — 5 supports
-      { id: 3,  x: 52, y: 14, size: 'lg', rot:  3,  z: 'mid', drift: 'C', dur: 7.8, style: 'abstract',     variant: 'abstr-1', title: 'Untitled, in the warm', year: '2025', lore: 'A field of color that started as something else and refused to go back.' },
+      { id: 3,  x: 52, y: 14, size: 'lg', rot:  3,  z: 'mid', drift: 'C', dur: 7.8, style: 'abstract',     src: 'art/fragmenting-2026.jpg',  title: 'Fragmenting', year: '2026', lore: '' },
       { id: 4,  x: 14, y: 60, size: 'lg', rot: -4,  z: 'fg',  drift: 'D', dur: 6.9, style: 'glitch',       variant: 'glitch',  glitchText: 'SIGNAL', title: 'Signal / no signal', year: '2026', lore: 'Made the morning a fiber line went down and everything got quiet.' },
       { id: 5,  x: 84, y: 26, size: 'lg', rot: -6,  z: 'mid', drift: 'A', dur: 8.6, style: 'illustration', variant: 'illus-2', title: 'Two-bird country',   year: '2026', lore: 'Moonlight, distance, a long way still to go. Drawn in one sitting at 2am.' },
-      { id: 6,  x: 46, y: 80, size: 'lg', rot:  5,  z: 'mid', drift: 'B', dur: 7.2, style: 'abstract',     variant: 'abstr-5', title: 'Slow ember',         year: '2025', lore: 'Painted listening to the same song for three hours.' },
-      { id: 7,  x: 86, y: 50, size: 'lg', rot:  9,  z: 'mid', drift: 'C', dur: 8.0, style: 'abstract',     variant: 'abstr-6', title: 'Walked into a wall', year: '2025', lore: 'A piece I started by accident and refused to delete.' },
+      { id: 6,  x: 46, y: 80, size: 'lg', rot:  5,  z: 'mid', drift: 'B', dur: 7.2, style: 'abstract',     src: 'art/dead-2024.jpg',         title: 'Dead',        year: '2024', lore: '' },
+      { id: 7,  x: 86, y: 50, size: 'lg', rot:  9,  z: 'mid', drift: 'C', dur: 8.0, style: 'abstract',     src: 'art/rejuvenate-2024.jpg',   title: 'Rejuvenate',  year: '2024', lore: '' },
 
       // MEDIUM — 10 connective
       { id: 8,  x: 34, y:  8, size: 'md', rot: -11, z: 'bg',  drift: 'D', dur: 9.3, style: 'illustration', variant: 'illus-3', title: 'Heat haze',          year: '2025', lore: 'The kind of afternoon that bends the air.', mobileHide: true },
-      { id: 9,  x: 64, y:  6, size: 'md', rot:  13, z: 'bg',  drift: 'A', dur: 8.5, style: 'abstract',     variant: 'abstr-4', title: 'Quiet room',         year: '2024', lore: 'White noise, made visible.' },
+      { id: 9,  x: 64, y:  6, size: 'md', rot:  13, z: 'bg',  drift: 'A', dur: 8.5, style: 'abstract',     src: 'art/pressure-2024.jpg',     title: 'Pressure',    year: '2024', lore: '' },
       { id: 10, x: 84, y:  8, size: 'md', rot: -3,  z: 'bg',  drift: 'B', dur: 7.6, style: 'glitch',       variant: 'glitch',  glitchText: '404', title: '404 Found', year: '2026', lore: 'An error message that wanted to be art.' },
       { id: 11, x:  7, y: 36, size: 'md', rot:  7,  z: 'bg',  drift: 'C', dur: 9.0, style: 'abstract',     variant: 'abstr-2', title: 'Saltwater',          year: '2025', lore: 'Made the week of a long swim.', mobileHide: true },
       { id: 12, x: 34, y: 42, size: 'md', rot: -2,  z: 'mid', drift: 'D', dur: 7.4, style: 'illustration', variant: 'illus-4', title: 'Violet hour',        year: '2026', lore: "When the sky picks a color you don't have a name for yet." },
@@ -1222,6 +1232,10 @@
     function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
     function renderArt(p) {
+      if (p.src) {
+        const alt = (p.title || '').replace(/"/g, '&quot;');
+        return '<div class="art"><img class="real" src="' + p.src + '" alt="' + alt + '" loading="lazy" decoding="async"></div>';
+      }
       if (p.variant === 'illus-1') {
         return '<div class="art illus-1">' +
           '<div class="illus-sun"></div>' +
