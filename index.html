@@ -1000,6 +1000,7 @@
             <button class="pill" data-filter="illustration">Illustration</button>
             <button class="pill" data-filter="abstract">Abstract</button>
             <button class="pill" data-filter="glitch">Glitch</button>
+            <button class="pill" data-filter="dark">Dark</button>
           </div>
 
           <a href="https://drip.haus" target="_blank" rel="noopener" class="anchor-more">
@@ -1193,13 +1194,13 @@
     // hand-tuned composition — clusters with breathing room, never random
     const PIECES = [
       // HERO (xl) — 2 anchors
-      { id: 1,  x: 28, y: 24, size: 'xl', rot: -7,  z: 'fg',  drift: 'A', dur: 7.4, style: 'illustration', variant: 'illus-1', title: 'Coyote at dusk',     year: '2026', lore: "First piece in a series about traveling alone and finding warmth where you don't expect it." },
+      { id: 1,  x: 28, y: 24, size: 'xl', rot: -7,  z: 'fg',  drift: 'A', dur: 7.4, style: 'illustration', src: 'art/dingbatz-28-2024.jpg',    title: 'DingbatZ #28',    year: '2024', lore: '' },
       { id: 2,  x: 70, y: 68, size: 'xl', rot:  5,  z: 'fg',  drift: 'B', dur: 8.2, style: 'abstract',     src: 'art/aura-2024.jpg',         title: 'Aura',        year: '2024', lore: '' },
 
       // LARGE — 5 supports
       { id: 3,  x: 52, y: 14, size: 'lg', rot:  3,  z: 'mid', drift: 'C', dur: 7.8, style: 'abstract',     src: 'art/fragmenting-2026.jpg',  title: 'Fragmenting', year: '2026', lore: '' },
       { id: 4,  x: 14, y: 60, size: 'lg', rot: -4,  z: 'fg',  drift: 'D', dur: 6.9, style: 'glitch',       variant: 'glitch',  glitchText: 'SIGNAL', title: 'Signal / no signal', year: '2026', lore: 'Made the morning a fiber line went down and everything got quiet.' },
-      { id: 5,  x: 84, y: 26, size: 'lg', rot: -6,  z: 'mid', drift: 'A', dur: 8.6, style: 'illustration', variant: 'illus-2', title: 'Two-bird country',   year: '2026', lore: 'Moonlight, distance, a long way still to go. Drawn in one sitting at 2am.' },
+      { id: 5,  x: 84, y: 26, size: 'lg', rot: -6,  z: 'mid', drift: 'A', dur: 8.6, style: 'illustration', src: 'art/creapy-painter-2024.jpg', title: 'cReapY Painter',  year: '2024', lore: '' },
       { id: 6,  x: 46, y: 80, size: 'lg', rot:  5,  z: 'mid', drift: 'B', dur: 7.2, style: 'abstract',     src: 'art/dead-2024.jpg',         title: 'Dead',        year: '2024', lore: '' },
       { id: 7,  x: 86, y: 50, size: 'lg', rot:  9,  z: 'mid', drift: 'C', dur: 8.0, style: 'abstract',     src: 'art/rejuvenate-2024.jpg',   title: 'Rejuvenate',  year: '2024', lore: '' },
 
@@ -1208,11 +1209,11 @@
       { id: 9,  x: 64, y:  6, size: 'md', rot:  13, z: 'bg',  drift: 'A', dur: 8.5, style: 'abstract',     src: 'art/pressure-2024.jpg',     title: 'Pressure',    year: '2024', lore: '' },
       { id: 10, x: 84, y:  8, size: 'md', rot: -3,  z: 'bg',  drift: 'B', dur: 7.6, style: 'glitch',       variant: 'glitch',  glitchText: '404', title: '404 Found', year: '2026', lore: 'An error message that wanted to be art.' },
       { id: 11, x:  7, y: 36, size: 'md', rot:  7,  z: 'bg',  drift: 'C', dur: 9.0, style: 'abstract',     variant: 'abstr-2', title: 'Saltwater',          year: '2025', lore: 'Made the week of a long swim.', mobileHide: true },
-      { id: 12, x: 34, y: 42, size: 'md', rot: -2,  z: 'mid', drift: 'D', dur: 7.4, style: 'illustration', variant: 'illus-4', title: 'Violet hour',        year: '2026', lore: "When the sky picks a color you don't have a name for yet." },
+      { id: 12, x: 34, y: 42, size: 'md', rot: -2,  z: 'mid', drift: 'D', dur: 7.4, style: 'illustration', src: 'art/creapy-eclipse-2025.jpg', title: 'cReapY Eclipse',  year: '2025', lore: '' },
       { id: 13, x: 60, y: 38, size: 'md', rot:  4,  z: 'bg',  drift: 'A', dur: 8.4, style: 'glitch',       variant: 'glitch',  glitchText: 'NULL', title: 'Null state', year: '2025', lore: 'A meditation on empty.' },
       { id: 14, x: 90, y: 36, size: 'md', rot: -10, z: 'bg',  drift: 'B', dur: 9.7, style: 'abstract',     variant: 'abstr-1', title: 'Warm front',         year: '2024', lore: 'A weather report, painted.', mobileHide: true },
       { id: 15, x: 10, y: 88, size: 'md', rot: -8,  z: 'bg',  drift: 'C', dur: 8.2, style: 'abstract',     variant: 'abstr-3', title: 'Late shift',         year: '2025', lore: 'Started at midnight, finished at dawn.', mobileHide: true },
-      { id: 16, x: 32, y: 92, size: 'md', rot:  9,  z: 'bg',  drift: 'D', dur: 7.8, style: 'illustration', variant: 'illus-1', title: 'Red rock, no road',  year: '2026', lore: 'A small study about being lost on purpose.' },
+      { id: 16, x: 32, y: 92, size: 'md', rot:  9,  z: 'bg',  drift: 'D', dur: 7.8, style: 'illustration', src: 'art/creapz-016-2025.jpg',     title: 'cReapZ 016',      year: '2025', lore: '' },
       { id: 17, x: 88, y: 88, size: 'md', rot:  3,  z: 'bg',  drift: 'A', dur: 8.9, style: 'abstract',     variant: 'abstr-5', title: 'Embers, after',      year: '2024', lore: 'The piece that taught me to leave things alone.', mobileHide: true },
 
       // SMALL — 8 sparks
@@ -1223,7 +1224,14 @@
       { id: 22, x: 95, y: 14, size: 'sm', rot: -13, z: 'bg',  drift: 'B', dur: 6.6, style: 'glitch',       variant: 'glitch',  glitchText: 'ERR', title: 'Error, kindly', year: '2026', lore: 'Polite failure.', mobileHide: true },
       { id: 23, x: 93, y: 74, size: 'sm', rot: -6,  z: 'mid', drift: 'C', dur: 7.9, style: 'illustration', variant: 'illus-3', title: 'Sleeping desert', year: '2025', lore: 'A nap, animated.', mobileHide: true },
       { id: 24, x: 56, y: 96, size: 'sm', rot: -9,  z: 'bg',  drift: 'D', dur: 6.5, style: 'abstract',     variant: 'abstr-4', title: 'Margin',        year: '2024', lore: 'A small piece about edges.', mobileHide: true },
-      { id: 25, x: 26, y: 31, size: 'sm', rot:  7,  z: 'fg',  drift: 'A', dur: 7.6, style: 'illustration', variant: 'illus-4', title: 'Pocket moon',   year: '2026', lore: 'A tiny one.' }
+      { id: 25, x: 26, y: 31, size: 'sm', rot:  7,  z: 'fg',  drift: 'A', dur: 7.6, style: 'illustration', src: 'art/grimz-012-2025.jpg',      title: 'GrimZ 012',       year: '2025', lore: '' },
+
+      // DARK — 5 pieces
+      { id: 26, x: 16, y: 72, size: 'lg', rot: -8,  z: 'fg',  drift: 'B', dur: 8.1, style: 'dark', src: 'art/monstrosity-2024.jpg', title: 'Monstrosity', year: '2024', lore: '' },
+      { id: 27, x: 74, y: 40, size: 'md', rot:  6,  z: 'mid', drift: 'D', dur: 7.7, style: 'dark', src: 'art/beast-2024.jpg',       title: 'Beast',       year: '2024', lore: '' },
+      { id: 28, x: 66, y: 54, size: 'md', rot: -9,  z: 'bg',  drift: 'A', dur: 9.1, style: 'dark', src: 'art/camera-face-2024.jpg', title: 'Camera Face', year: '2024', lore: '', mobileHide: true },
+      { id: 29, x: 42, y: 52, size: 'sm', rot:  11, z: 'fg',  drift: 'C', dur: 6.9, style: 'dark', src: 'art/tv-head-2024.jpg',     title: 'TV Head',     year: '2024', lore: '', mobileHide: true },
+      { id: 30, x:  4, y: 58, size: 'md', rot: -4,  z: 'mid', drift: 'B', dur: 8.4, style: 'dark', src: 'art/prophet-2022.jpg',     title: 'Prophet',     year: '2022', lore: '' }
     ];
 
     const PIECE_BY_ID = {};
