@@ -485,9 +485,57 @@
     10%  {                                                 opacity: 0.6; }
     100% { transform: translate(-50%, -50%) scale(1.08); opacity: 0;    border-width: 0.5px; }
   }
+  /* Mobile ring pulse: bigger expansion (to span the section), lower peak
+     opacity (felt-not-seen background heartbeat). Same cadence as desktop. */
+  @keyframes ringPulseMobile {
+    0%   { transform: translate(-50%, -50%) scale(0);    opacity: 0;    border-width: 1.5px; }
+    12%  {                                                 opacity: 0.18; }
+    100% { transform: translate(-50%, -50%) scale(2.6);  opacity: 0;    border-width: 0.3px; }
+  }
   @media (max-width: 900px) {
-    /* hide rings on mobile — at <140px they read meager next to the body copy */
-    .about-rings { display: none; }
+    /* Free the rings' parent .reveal from the transform / opacity that
+       would otherwise establish a containing block, so the absolute-
+       positioned .about-rings anchors to the section rather than to the
+       left column. We also skip the scroll-reveal animation here — on
+       mobile we want the heartbeat present from the moment the section
+       enters viewport. */
+    #about .about-grid > .reveal:first-child {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none;
+      position: relative;
+      z-index: 1;
+    }
+    /* Section becomes the positioning + clipping context for the rings. */
+    #about { overflow: hidden; }
+    /* Rings: shown, centered behind text, softened, full opacity wrapper
+       (the ring keyframe carries the 0.18 peak). */
+    .about-rings {
+      display: block;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(420px, 90%);
+      aspect-ratio: 1;
+      max-width: none;
+      margin: 0;
+      opacity: 1;
+      filter: blur(1.5px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .about-rings .ring {
+      animation-name: ringPulseMobile;
+    }
+    /* Center dot turned down so it doesn't read as a fixed bright point
+       behind the text — atmospheric only. */
+    .about-rings .dot {
+      opacity: 0.30;
+      box-shadow: none;
+    }
+    /* Bring all text content above the rings layer. */
+    #about .eyebrow      { position: relative; z-index: 2; }
+    #about .about-body   { position: relative; z-index: 1; }
   }
   @media (prefers-reduced-motion: reduce) {
     .about-rings .ring { animation: none; opacity: 0.3; transform: translate(-50%, -50%) scale(0.7); }
