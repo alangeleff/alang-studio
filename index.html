@@ -932,14 +932,15 @@
     aspect-ratio: 1;
   }
   /* soft warm aura behind the constellation */
+  /* Gold-centered aura — matches Devil's new canonical gold center. */
   .fiend-constellation::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: 50%;
     background:
-      radial-gradient(circle at 50% 50%, rgba(220,38,38,0.18) 0%, transparent 50%),
-      radial-gradient(circle at 50% 50%, rgba(244,185,78,0.10) 30%, transparent 65%);
+      radial-gradient(circle at 50% 50%, rgba(244,201,93,0.22) 0%, transparent 48%),
+      radial-gradient(circle at 50% 50%, rgba(244,201,93,0.10) 30%, transparent 65%);
     z-index: 0;
     pointer-events: none;
   }
@@ -950,7 +951,7 @@
     top: 50%; left: 50%;
     width: 78%; aspect-ratio: 1;
     border-radius: 50%;
-    border: 1px dashed rgba(244,185,78,0.20);
+    border: 1px dashed rgba(244,201,93,0.22);
     transform: translate(-50%, -50%);
     z-index: 0;
     pointer-events: none;
@@ -960,12 +961,16 @@
     display: grid; place-items: center;
   }
   .fiend img { width: 100%; height: 100%; display: block; user-select: none; -webkit-user-drag: none; }
+  /* Devil — gold flagship at center. Brighter, larger glow than the
+     orbiters since it carries the brand's flagship Fiend identity. */
   .fiend.center {
     top: 50%; left: 50%;
     width: 44%; aspect-ratio: 1;
     transform: translate(-50%, -50%);
     z-index: 2;
-    filter: drop-shadow(0 8px 20px rgba(220,38,38,0.5));
+    filter:
+      drop-shadow(0 0 18px rgba(244,201,93,0.55))
+      drop-shadow(0 8px 22px rgba(244,201,93,0.40));
   }
   .fiend-orbit {
     position: absolute;
@@ -975,7 +980,6 @@
   .fiend-orbit > div {
     width: 100%; height: 100%;
     display: grid; place-items: center;
-    filter: drop-shadow(0 5px 12px rgba(244,185,78,0.32));
     animation: fiendDrift 9s ease-in-out infinite alternate;
   }
   .fiend-orbit.top    { top: 0;        left: 50%; margin-left: -11%; }
@@ -986,6 +990,30 @@
   .fiend-orbit.right  > div { animation-delay: -2.3s;  animation-duration: 10.4s; }
   .fiend-orbit.bottom > div { animation-delay: -4.6s;  animation-duration: 8.4s; }
   .fiend-orbit.left   > div { animation-delay: -6.9s;  animation-duration: 9.7s; }
+  /* Per-Fiend glow halos — colors pulled from Bad People's canonical
+     card glow palette (bad-people-cards/src/components/ui.jsx). The
+     orbit-position class maps to which Fiend renders at that compass
+     point per the constellation HTML in this section. */
+  .fiend-orbit.top    > div { /* Phoenix — warm fire flicker */
+    filter:
+      drop-shadow(0 0 10px rgba(255,180,0,0.55))
+      drop-shadow(0 5px 12px rgba(220,38,38,0.35));
+  }
+  .fiend-orbit.right  > div { /* Oracle — mystic gold flicker */
+    filter:
+      drop-shadow(0 0 10px rgba(255,180,0,0.45))
+      drop-shadow(0 5px 12px rgba(91,33,182,0.45));
+  }
+  .fiend-orbit.bottom > div { /* Imp — acid mint */
+    filter:
+      drop-shadow(0 0 10px rgba(94,252,141,0.55))
+      drop-shadow(0 5px 12px rgba(21,128,61,0.35));
+  }
+  .fiend-orbit.left   > div { /* Death — silver shimmer */
+    filter:
+      drop-shadow(0 0 10px rgba(192,192,192,0.45))
+      drop-shadow(0 5px 12px rgba(0,0,0,0.45));
+  }
   @keyframes fiendDrift {
     0%, 100% { transform: translateY(0); }
     50%      { transform: translateY(-5px); }
