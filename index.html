@@ -961,16 +961,18 @@
     display: grid; place-items: center;
   }
   .fiend img { width: 100%; height: 100%; display: block; user-select: none; -webkit-user-drag: none; }
-  /* Devil — gold flagship at center. Brighter, larger glow than the
-     orbiters since it carries the brand's flagship Fiend identity. */
+  /* Devil — gold flagship at center. Glow per brand-guide.html:
+     #F4C95D gold + warm halo #FFE08A. Three layered drop-shadows
+     give the canonical 'gold glowing brightest' card-pulse halo. */
   .fiend.center {
     top: 50%; left: 50%;
     width: 44%; aspect-ratio: 1;
     transform: translate(-50%, -50%);
     z-index: 2;
     filter:
-      drop-shadow(0 0 18px rgba(244,201,93,0.55))
-      drop-shadow(0 8px 22px rgba(244,201,93,0.40));
+      drop-shadow(0 0 8px rgba(255,224,138,0.65))
+      drop-shadow(0 0 22px rgba(244,201,93,0.55))
+      drop-shadow(0 10px 26px rgba(244,201,93,0.34));
   }
   .fiend-orbit {
     position: absolute;
@@ -990,29 +992,34 @@
   .fiend-orbit.right  > div { animation-delay: -2.3s;  animation-duration: 10.4s; }
   .fiend-orbit.bottom > div { animation-delay: -4.6s;  animation-duration: 8.4s; }
   .fiend-orbit.left   > div { animation-delay: -6.9s;  animation-duration: 9.7s; }
-  /* Per-Fiend glow halos — colors pulled from Bad People's canonical
-     card glow palette (bad-people-cards/src/components/ui.jsx). The
-     orbit-position class maps to which Fiend renders at that compass
-     point per the constellation HTML in this section. */
-  .fiend-orbit.top    > div { /* Phoenix — warm fire flicker */
+  /* Per-Fiend glow halos — multi-color compositions pulled from the
+     official brand guide (bad-people-cards/public/brand-guide.html).
+     Each Fiend's documented glow ring uses 2-3 colors; the stacked
+     drop-shadow approximates that ring on the icon shape, with the
+     brightest accent at the smallest radius working outward. */
+  .fiend-orbit.top    > div { /* Phoenix — tri-color fire pulse: crimson #DC2626 + orange #F97316 + gold flicker #FFB400 */
     filter:
-      drop-shadow(0 0 10px rgba(255,180,0,0.55))
-      drop-shadow(0 5px 12px rgba(220,38,38,0.35));
+      drop-shadow(0 0 6px rgba(255,180,0,0.60))
+      drop-shadow(0 0 14px rgba(249,115,22,0.55))
+      drop-shadow(0 6px 16px rgba(220,38,38,0.40));
   }
-  .fiend-orbit.right  > div { /* Oracle — mystic gold flicker */
+  .fiend-orbit.right  > div { /* Oracle — mystic tri-color: purple #5B21B6 + bright #8B5CF6 + gold flicker #FFB400 */
     filter:
-      drop-shadow(0 0 10px rgba(255,180,0,0.45))
-      drop-shadow(0 5px 12px rgba(91,33,182,0.45));
+      drop-shadow(0 0 6px rgba(255,180,0,0.50))
+      drop-shadow(0 0 14px rgba(139,92,246,0.55))
+      drop-shadow(0 6px 16px rgba(91,33,182,0.45));
   }
-  .fiend-orbit.bottom > div { /* Imp — acid mint */
+  .fiend-orbit.bottom > div { /* Imp — acid two-tone: mint #5EFC8D + bright mint #86FFAB */
     filter:
-      drop-shadow(0 0 10px rgba(94,252,141,0.55))
-      drop-shadow(0 5px 12px rgba(21,128,61,0.35));
+      drop-shadow(0 0 6px rgba(134,255,171,0.70))
+      drop-shadow(0 0 14px rgba(94,252,141,0.55))
+      drop-shadow(0 6px 16px rgba(21,128,61,0.40));
   }
-  .fiend-orbit.left   > div { /* Death — silver shimmer */
+  .fiend-orbit.left   > div { /* Death — silver shimmer + powder blue undertone: #C0C0C0 + #B0E0E6 */
     filter:
-      drop-shadow(0 0 10px rgba(192,192,192,0.45))
-      drop-shadow(0 5px 12px rgba(0,0,0,0.45));
+      drop-shadow(0 0 6px rgba(192,192,192,0.55))
+      drop-shadow(0 0 14px rgba(176,224,230,0.45))
+      drop-shadow(0 6px 16px rgba(10,10,10,0.55));
   }
   @keyframes fiendDrift {
     0%, 100% { transform: translateY(0); }
