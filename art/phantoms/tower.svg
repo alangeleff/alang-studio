@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Tower — phantom brand mock">
+  <!-- canvas: bold opinionated quarterly publication -->
+  <rect width="800" height="1000" fill="#F0EAE0"/>
+
+  <!-- asymmetric vertical bar -->
+  <rect x="0" y="0" width="46" height="1000" fill="#A92B2B"/>
+
+  <!-- masthead — issue / volume / quarter -->
+  <g transform="translate(110,140)" font-family="'Inter','Helvetica Neue',Arial,sans-serif" fill="#1A1715" font-weight="500">
+    <text font-size="11" letter-spacing="5">VOLUME III  ·  ISSUE 09  ·  SPRING MMXXVI</text>
+    <line x1="0" y1="22" x2="540" y2="22" stroke="#1A1715" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- wordmark — aggressive bold condensed, rotated -90 on the side -->
+  <g transform="translate(700,520) rotate(-90)">
+    <text text-anchor="middle" font-family="'Oswald',Impact,'Arial Narrow','Helvetica Neue Condensed',sans-serif" font-size="86" font-weight="900" letter-spacing="14" fill="#A92B2B">QUARTERLY</text>
+  </g>
+
+  <!-- giant TOWER wordmark -->
+  <g transform="translate(110,340)">
+    <text font-family="'Oswald',Impact,'Arial Narrow',sans-serif" font-size="248" font-weight="900" letter-spacing="-8" fill="#1A1715">TOWER</text>
+  </g>
+
+  <!-- horizontal red bar after wordmark -->
+  <rect x="110" y="376" width="540" height="8" fill="#A92B2B"/>
+
+  <!-- pull quote / cover blurb -->
+  <g transform="translate(110,490)">
+    <text font-family="'Playfair Display','Bodoni MT',Georgia,serif" font-size="44" font-style="italic" font-weight="400" fill="#1A1715">"Money rewards</text>
+    <text y="56" font-family="'Playfair Display','Bodoni MT',Georgia,serif" font-size="44" font-style="italic" font-weight="400" fill="#1A1715">the patient. So</text>
+    <text y="112" font-family="'Playfair Display','Bodoni MT',Georgia,serif" font-size="44" font-style="italic" font-weight="400" fill="#A92B2B">does the work."</text>
+  </g>
+
+  <!-- by-line -->
+  <g transform="translate(110,690)" font-family="'Inter','Helvetica Neue',Arial,sans-serif" fill="#1A1715">
+    <text font-size="13" letter-spacing="3" font-weight="600">— RIA DELACROIX, ON THE COVER →</text>
+  </g>
+
+  <!-- contents strip -->
+  <g transform="translate(110,800)" font-family="'Inter','Helvetica Neue',Arial,sans-serif" fill="#1A1715">
+    <line x1="0" y1="0" x2="600" y2="0" stroke="#1A1715" stroke-width="1"/>
+    <text y="32" font-size="12" letter-spacing="4" font-weight="700">INSIDE</text>
+    <text y="68" font-size="14" font-weight="500">The freelancer's tax revolt · 21</text>
+    <text y="94" font-size="14" font-weight="500">A walking tour of dead malls · 44</text>
+    <text y="120" font-size="14" font-weight="500">Why everyone hates the new dollar · 78</text>
+  </g>
+
+  <!-- corner price tag -->
+  <g transform="translate(704,930)" font-family="'Oswald',Impact,sans-serif" fill="#A92B2B" font-weight="900">
+    <text font-size="34" text-anchor="end">$14</text>
+  </g>
+</svg>

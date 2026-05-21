@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ribbon — phantom brand mock">
+  <!-- canvas: minimal B2B SaaS — off-white, indigo accent -->
+  <rect width="800" height="1000" fill="#FAFAFA"/>
+
+  <!-- micro grid hint -->
+  <g stroke="#ECEAF7" stroke-width="1">
+    <line x1="80" y1="0" x2="80" y2="1000"/>
+    <line x1="720" y1="0" x2="720" y2="1000"/>
+  </g>
+
+  <!-- eyebrow -->
+  <g transform="translate(80,140)">
+    <text font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="12" letter-spacing="4" fill="#5B4ED9" font-weight="600">WORKFLOWS · 2026</text>
+  </g>
+
+  <!-- ribbon-loop mark: two interlocking ovals -->
+  <g transform="translate(400,400)" fill="none" stroke="#5B4ED9" stroke-width="14" stroke-linecap="round">
+    <ellipse cx="-44" cy="0" rx="78" ry="48" transform="rotate(-18)"/>
+    <ellipse cx="44" cy="0" rx="78" ry="48" transform="rotate(18)"/>
+  </g>
+
+  <!-- wordmark — lowercase geometric sans -->
+  <text x="400" y="640" text-anchor="middle" font-family="'Inter','Helvetica Neue','Avenir Next',sans-serif" font-size="118" font-weight="600" letter-spacing="-3" fill="#5B4ED9">ribbon</text>
+
+  <!-- tagline -->
+  <text x="400" y="715" text-anchor="middle" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="20" fill="#2A2747" font-weight="400" letter-spacing="-0.2">The thread between every tool you use.</text>
+
+  <!-- footer row: feature chips -->
+  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="500" letter-spacing="2" fill="#5B4ED9">
+    <g transform="translate(150,900)">
+      <rect width="120" height="34" rx="17" fill="none" stroke="#5B4ED9" stroke-width="1.2"/>
+      <text x="60" y="22" text-anchor="middle">AUTOMATIONS</text>
+    </g>
+    <g transform="translate(285,900)">
+      <rect width="100" height="34" rx="17" fill="none" stroke="#5B4ED9" stroke-width="1.2"/>
+      <text x="50" y="22" text-anchor="middle">WEBHOOKS</text>
+    </g>
+    <g transform="translate(400,900)">
+      <rect width="80" height="34" rx="17" fill="none" stroke="#5B4ED9" stroke-width="1.2"/>
+      <text x="40" y="22" text-anchor="middle">AUDIT</text>
+    </g>
+    <g transform="translate(495,900)">
+      <rect width="110" height="34" rx="17" fill="#5B4ED9"/>
+      <text x="55" y="22" text-anchor="middle" fill="#FAFAFA">CONNECT →</text>
+    </g>
+  </g>
+</svg>

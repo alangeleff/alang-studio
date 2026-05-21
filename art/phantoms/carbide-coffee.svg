@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Carbide Coffee — phantom brand mock">
+  <!-- canvas: moody charcoal craft-roastery -->
+  <defs>
+    <radialGradient id="cb-vignette" cx="50%" cy="42%" r="70%">
+      <stop offset="0%" stop-color="#231F1B"/>
+      <stop offset="62%" stop-color="#1A1816"/>
+      <stop offset="100%" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <linearGradient id="cb-bean" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4A658"/>
+      <stop offset="100%" stop-color="#8E6A2F"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#cb-vignette)"/>
+
+  <!-- top eyebrow rule + label -->
+  <g transform="translate(80,120)">
+    <rect width="40" height="1.5" fill="#B89045" opacity="0.85"/>
+    <text x="56" y="6" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="13" letter-spacing="4.4" fill="#B89045" font-weight="600">EST. MMXIX · KAILUA</text>
+  </g>
+
+  <!-- coffee bean mark -->
+  <g transform="translate(400,360)">
+    <ellipse cx="0" cy="0" rx="78" ry="118" fill="url(#cb-bean)" transform="rotate(-22)"/>
+    <path d="M-4,-105 C 16,-60 16,60 -4,105" fill="none" stroke="#1A1816" stroke-width="6" stroke-linecap="round" transform="rotate(-22)"/>
+  </g>
+
+  <!-- wordmark — heavy condensed serif -->
+  <text x="400" y="640" text-anchor="middle" font-family="'Playfair Display','Bodoni 72','Bodoni MT',Georgia,serif" font-size="148" font-weight="900" letter-spacing="-2" fill="#B89045">Carbide</text>
+
+  <!-- sub-wordmark — tracked sans -->
+  <text x="400" y="700" text-anchor="middle" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="22" letter-spacing="14" font-weight="500" fill="#E5D6B5">COFFEE</text>
+
+  <!-- divider -->
+  <rect x="370" y="755" width="60" height="1" fill="#B89045" opacity="0.6"/>
+
+  <!-- italic serif tagline -->
+  <text x="400" y="820" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" font-style="italic" font-size="28" fill="#C9B98E">Small batch. Honest darkness.</text>
+
+  <!-- footer marks -->
+  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="11" letter-spacing="3.4" fill="#7A6C52" font-weight="500">
+    <text x="80" y="930">NO. 014</text>
+    <text x="720" y="930" text-anchor="end">ROASTED · GROUND · BREWED</text>
+  </g>
+</svg>

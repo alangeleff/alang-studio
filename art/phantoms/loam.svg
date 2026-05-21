@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Loam — phantom brand mock">
+  <!-- canvas: slow-living artisan food, warm olive / terracotta -->
+  <defs>
+    <radialGradient id="lm-bg" cx="50%" cy="55%" r="80%">
+      <stop offset="0%" stop-color="#EDE7CF"/>
+      <stop offset="100%" stop-color="#DDD5B4"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#lm-bg)"/>
+
+  <!-- speckled grain noise — paper texture hint -->
+  <g fill="#A88E5E" opacity="0.18">
+    <circle cx="120" cy="180" r="1.5"/>
+    <circle cx="660" cy="220" r="1"/>
+    <circle cx="240" cy="280" r="1.2"/>
+    <circle cx="540" cy="100" r="1"/>
+    <circle cx="100" cy="780" r="1.2"/>
+    <circle cx="700" cy="860" r="1.5"/>
+    <circle cx="380" cy="930" r="1"/>
+    <circle cx="180" cy="500" r="1.4"/>
+    <circle cx="640" cy="640" r="1.2"/>
+    <circle cx="320" cy="180" r="1"/>
+    <circle cx="470" cy="820" r="1"/>
+  </g>
+
+  <!-- eyebrow -->
+  <g transform="translate(400,150)">
+    <text text-anchor="middle" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="11" letter-spacing="6" fill="#4D5A2E" font-weight="600">A SLOW-FOOD KITCHEN · ASHEVILLE NC</text>
+  </g>
+
+  <!-- organic mark: seed/leaf shape with a sprout -->
+  <g transform="translate(400,380)">
+    <!-- soil arc -->
+    <path d="M -120,40 Q 0,80 120,40" fill="none" stroke="#7A5638" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+    <!-- seed -->
+    <ellipse cx="0" cy="20" rx="48" ry="62" fill="#B86E4B"/>
+    <!-- inner highlight -->
+    <ellipse cx="-12" cy="6" rx="14" ry="22" fill="#D89373" opacity="0.55"/>
+    <!-- sprout stem -->
+    <path d="M 0,-42 Q -4,-90 0,-130" stroke="#4D5A2E" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <!-- leaf left -->
+    <path d="M 0,-100 Q -36,-118 -50,-90 Q -28,-86 0,-92 Z" fill="#6B7E40"/>
+    <!-- leaf right -->
+    <path d="M 0,-78 Q 32,-96 46,-66 Q 24,-62 0,-70 Z" fill="#4D5A2E"/>
+  </g>
+
+  <!-- wordmark — handwritten serif in terracotta -->
+  <text x="400" y="640" text-anchor="middle" font-family="'Caveat','Brush Script MT','Snell Roundhand',cursive" font-size="200" font-weight="700" fill="#B86E4B" font-style="italic">Loam</text>
+
+  <!-- divider with leaf accent -->
+  <g transform="translate(400,690)">
+    <line x1="-100" y1="0" x2="-22" y2="0" stroke="#4D5A2E" stroke-width="1" opacity="0.6"/>
+    <path d="M -14,-6 Q 0,-12 14,-6 Q 0,0 -14,-6 Z" fill="#4D5A2E"/>
+    <line x1="22" y1="0" x2="100" y2="0" stroke="#4D5A2E" stroke-width="1" opacity="0.6"/>
+  </g>
+
+  <!-- tagline — italic serif -->
+  <text x="400" y="760" text-anchor="middle" font-family="'Playfair Display','Bodoni MT',Georgia,serif" font-style="italic" font-size="26" fill="#4D5A2E">Sourdough, ferments &amp; the dignity of slowness.</text>
+
+  <!-- footer marks -->
+  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="11" letter-spacing="3.4" fill="#7A5638" font-weight="500">
+    <text x="80" y="930">BAKED FRESH · FRIDAYS</text>
+    <text x="720" y="930" text-anchor="end">EST. 2021</text>
+  </g>
+</svg>

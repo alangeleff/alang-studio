@@ -1,0 +1,1488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0D0D18" />
+<title>Work with me — Alan Geleff</title>
+<meta name="description" content="Brand identity, landing pages, and full product worlds for founders who want it shipped, not pitched." />
+<link rel="canonical" href="https://alang.studio/work" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://alang.studio/work" />
+<meta property="og:title" content="Work with me — Alan Geleff" />
+<meta property="og:description" content="Brand identity, landing pages, and full product worlds for founders who want it shipped, not pitched." />
+<meta property="og:image" content="https://alang.studio/og-image.png" />
+<meta property="og:site_name" content="alang.studio" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Work with me — Alan Geleff" />
+<meta name="twitter:description" content="Brand identity, landing pages, and full product worlds for founders who want it shipped, not pitched." />
+<meta name="twitter:image" content="https://alang.studio/og-image.png" />
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,30..100&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  /* ---------------- design tokens (mirrors index.html) ---------------- */
+  :root {
+    --canvas: #0d0d18;
+    --canvas-2: #14142a;
+    --canvas-3: #1d1d36;
+    --ink: #f0f0f0;
+    --ink-2: #b9b9c4;
+    --ink-3: #7a7a8c;
+    --rule: rgba(255,255,255,0.08);
+    --rule-2: rgba(255,255,255,0.14);
+    --gold: #e0b240;
+    --gold-2: #f1c75a;
+    --gold-soft: rgba(224, 178, 64, 0.14);
+    --lime: #c8fb50;
+    --serif: "Fraunces", "Times New Roman", serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  body {
+    background:
+      radial-gradient(1100px 700px at 12% -10%, rgba(224,178,64,0.10), transparent 60%),
+      radial-gradient(900px 600px at 95% 10%, rgba(120,80,200,0.10), transparent 65%),
+      radial-gradient(1200px 900px at 50% 110%, rgba(48,30,90,0.35), transparent 70%),
+      var(--canvas);
+    min-height: 100vh;
+  }
+  ::selection { background: var(--gold); color: #0a0a14; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { font-family: inherit; }
+
+  /* ---------------- layout ---------------- */
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+  section { position: relative; padding: 120px 0; }
+  @media (max-width: 720px) { section { padding: 88px 0; } }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px; height: 1px;
+    background: var(--gold);
+    opacity: 0.8;
+  }
+
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.02em; margin: 0; }
+  h2 { font-size: clamp(36px, 5vw, 64px); line-height: 1.05; font-variation-settings: "SOFT" 60; }
+  h3 { font-size: clamp(22px, 2.4vw, 28px); line-height: 1.2; }
+  p { color: var(--ink-2); }
+  em.gold { color: var(--gold); font-style: italic; font-variation-settings: "SOFT" 100; }
+
+  /* ---------------- top nav (mirrors index.html) ---------------- */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    background: rgba(13,13,24,0.55);
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.3s var(--ease);
+  }
+  .nav-inner {
+    max-width: 1180px; margin: 0 auto;
+    padding: 14px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px;
+  }
+  .nav-mark {
+    font-family: var(--serif); font-size: 18px; letter-spacing: -0.01em;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .nav-mark .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 16px rgba(224,178,64,0.6);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .nav-mark .dot .r {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    animation: navDotPulse 2.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+  .nav-mark .dot .r1 { animation-delay:  0s;   }
+  .nav-mark .dot .r2 { animation-delay: -0.9s; }
+  .nav-mark .dot .r3 { animation-delay: -1.8s; }
+  @keyframes navDotPulse {
+    0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0;    }
+    15%  {                                                 opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0;    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-mark .dot .r { animation: none; opacity: 0; }
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 13px; color: var(--ink-2); font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s var(--ease);
+  }
+  .nav-links a:hover { color: var(--ink); }
+  @media (max-width: 720px) { .nav-links { display: none; } .nav-inner { padding: 14px 20px; } }
+
+  /* ---------------- buttons ---------------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--sans); font-weight: 500;
+    font-size: 14px; letter-spacing: 0.02em;
+    padding: 13px 22px;
+    border-radius: 999px;
+    border: 1px solid var(--rule-2);
+    background: rgba(255,255,255,0.03);
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.25s var(--ease);
+  }
+  .btn:hover { background: rgba(224,178,64,0.10); border-color: rgba(224,178,64,0.45); color: var(--gold-2); }
+  .btn.primary {
+    background: var(--gold); color: #14140a; border-color: var(--gold);
+  }
+  .btn.primary:hover { background: var(--gold-2); border-color: var(--gold-2); color: #14140a; }
+  .btn .ic { width: 16px; height: 16px; }
+
+  /* ---------------- hero ---------------- */
+  .work-hero {
+    min-height: 92vh;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding-top: 140px; padding-bottom: 80px;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 80px;
+    align-items: center;
+  }
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+  }
+  .hero-text .eyebrow { margin-bottom: 24px; }
+  .hero-h1 {
+    font-family: var(--serif);
+    font-size: clamp(48px, 7vw, 92px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 300;
+    font-variation-settings: "SOFT" 40;
+    margin: 0 0 26px 0;
+    max-width: 14ch;
+  }
+  .hero-h1 em { color: var(--gold); font-style: italic; font-variation-settings: "SOFT" 100; font-weight: 300; }
+  .hero-sub {
+    font-family: var(--sans);
+    font-size: clamp(17px, 1.8vw, 20px);
+    color: var(--ink-2);
+    max-width: 46ch;
+    margin: 0 0 40px 0;
+    line-height: 1.55;
+  }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+  /* hero brand-marks grid — proof tiles */
+  .hero-marks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 16px;
+    aspect-ratio: 3/2;
+    max-width: 440px;
+    margin-left: auto;
+  }
+  @media (max-width: 980px) { .hero-marks { margin: 0 auto; } }
+  @media (max-width: 540px) { .hero-marks { grid-template-columns: repeat(2, 1fr); aspect-ratio: 2/3; } }
+  .hero-mark {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--canvas-2);
+    border: 1px solid var(--rule);
+    aspect-ratio: 1;
+    display: grid; place-items: center;
+    transition: transform 0.35s var(--ease), border-color 0.35s var(--ease);
+  }
+  .hero-mark:hover {
+    transform: translateY(-3px);
+    border-color: rgba(224,178,64,0.5);
+  }
+  .hero-mark .label {
+    position: absolute;
+    bottom: 8px; left: 10px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    z-index: 3;
+  }
+  /* tile interior — each gets its own brand world */
+  .hm-pv { background: linear-gradient(160deg, #0f1a08 0%, #060a04 100%); }
+  .hm-pv .blob {
+    width: 60%; aspect-ratio: 1; border-radius: 60% 40% 55% 45% / 45% 55% 50% 50%;
+    background: var(--lime);
+    box-shadow: 0 0 30px rgba(200,251,80,0.35);
+    animation: blobSpin 14s ease-in-out infinite alternate;
+  }
+  @keyframes blobSpin {
+    0%   { border-radius: 60% 40% 55% 45% / 45% 55% 50% 50%; transform: rotate(0deg); }
+    100% { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; transform: rotate(8deg); }
+  }
+  .hm-bp { background: radial-gradient(circle at 50% 45%, #2a1f08 0%, #0a0816 70%); }
+  .hm-bp .star {
+    width: 56%; aspect-ratio: 1;
+    background: radial-gradient(circle, #f4c95d 0%, #c08020 60%, transparent 90%);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 12px rgba(244,201,93,0.6));
+  }
+  .hm-pa { background: linear-gradient(160deg, #f6efe3 0%, #ead9c0 100%); }
+  .hm-pa .pa-mark {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 38px; letter-spacing: -0.02em;
+    color: #c45a4e;
+    font-variation-settings: "SOFT" 80;
+  }
+  .hm-cb { background: #1a1816; }
+  .hm-cb .cb-mark {
+    font-family: 'Playfair Display','Bodoni MT',Georgia,serif;
+    font-size: 32px; font-weight: 900; letter-spacing: -1px;
+    color: #b89045;
+  }
+  .hm-rb { background: #fafafa; }
+  .hm-rb .rb-mark {
+    font-family: var(--sans); font-weight: 600; font-size: 28px;
+    color: #5b4ed9; letter-spacing: -1.2px;
+  }
+  .hm-tw { background: #f0eae0; position: relative; }
+  .hm-tw::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10%; background: #a92b2b; }
+  .hm-tw .tw-mark {
+    font-family: 'Oswald',Impact,sans-serif; font-weight: 900;
+    font-size: 30px; letter-spacing: -1px; color: #1a1715;
+  }
+
+  /* ---------------- showcase ---------------- */
+  .showcase-header {
+    margin-bottom: 56px;
+    max-width: 720px;
+  }
+  .showcase-header h2 { margin-top: 18px; }
+  .showcase-header .lede {
+    margin-top: 22px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-2);
+    font-size: clamp(18px, 1.8vw, 22px);
+    line-height: 1.5;
+    max-width: 56ch;
+  }
+
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 980px) { .showcase-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .showcase-grid { grid-template-columns: 1fr; gap: 20px; } }
+
+  .tile {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: var(--canvas-2);
+    aspect-ratio: 4/5;
+    display: flex; flex-direction: column;
+    transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  }
+  .tile:hover {
+    transform: translateY(-4px);
+    border-color: rgba(224,178,64,0.45);
+    box-shadow: 0 24px 60px -22px rgba(0,0,0,0.6);
+  }
+  .tile-visual {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    display: grid; place-items: center;
+    background: var(--canvas-3);
+  }
+  .tile-visual img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .tile-meta {
+    padding: 18px 22px 22px;
+    border-top: 1px solid var(--rule);
+    background: rgba(13,13,24,0.6);
+  }
+  .tile-meta .kicker {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .tile-meta .name {
+    font-family: var(--serif); font-size: 22px;
+    font-weight: 400; letter-spacing: -0.015em;
+    color: var(--ink); margin-bottom: 4px;
+    font-variation-settings: "SOFT" 50;
+  }
+  .tile-meta .desc {
+    font-size: 13px; color: var(--ink-3); line-height: 1.5;
+  }
+
+  /* PostVomit tile — Peevy blob (canvas) */
+  .tile-pv .tile-visual {
+    background: linear-gradient(160deg, #14140a 0%, #060604 100%);
+  }
+  .tile-pv canvas { width: 70%; height: 70%; }
+
+  /* Bad People tile — Fiend constellation, gold/crimson */
+  .tile-bp .tile-visual {
+    background: radial-gradient(circle at 50% 50%, #2a1f08 0%, #0a0816 75%);
+  }
+  .tile-bp .bp-star {
+    width: 64%; aspect-ratio: 1;
+    background: radial-gradient(circle, #f4c95d 0%, #b87a1a 50%, transparent 85%);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 20px rgba(244,201,93,0.7));
+    position: relative;
+  }
+  .tile-bp .bp-star::before, .tile-bp .bp-star::after {
+    content: ""; position: absolute; width: 18%; aspect-ratio: 1;
+    background: radial-gradient(circle, #dc2626 0%, transparent 70%);
+    border-radius: 50%;
+    top: 12%; left: 18%;
+    filter: blur(2px);
+  }
+  .tile-bp .bp-star::after { left: auto; right: 18%; top: auto; bottom: 14%;
+    background: radial-gradient(circle, #5b21b6 0%, transparent 70%);
+  }
+
+  /* Pua Aloha tile — botanical sprig + italic wordmark on coral/forest */
+  .tile-pa .tile-visual {
+    background: linear-gradient(160deg, #f6efe3 0%, #e6d8bc 100%);
+  }
+  .tile-pa .pa-card {
+    width: 100%; height: 100%;
+    display: grid; place-items: center;
+    text-align: center;
+    padding: 28px;
+  }
+  .tile-pa .pa-sprig {
+    width: 56px; height: 80px; margin: 0 auto 14px;
+    position: relative;
+  }
+  .tile-pa .pa-sprig::before {
+    content: "";
+    position: absolute; left: 50%; top: 6px; bottom: 6px; width: 1.5px;
+    background: #355a3f;
+    transform: translateX(-50%);
+  }
+  .tile-pa .pa-wordmark {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(28px, 3.4vw, 38px);
+    font-weight: 400; letter-spacing: -0.01em;
+    color: #c45a4e;
+    font-variation-settings: "SOFT" 80;
+    line-height: 1;
+  }
+  .tile-pa .pa-tag {
+    margin-top: 10px;
+    font-family: var(--sans); font-size: 10px;
+    letter-spacing: 0.32em; text-transform: uppercase;
+    color: #355a3f;
+    font-weight: 600;
+  }
+
+  /* Phantom tiles — image fills the visual */
+  .tile-phantom .tile-visual img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+
+  /* ---------------- services — alternating rows ---------------- */
+  .serv-section {
+    padding: 110px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .serv-section:first-of-type {
+    border-top: 1px solid var(--rule);
+  }
+  .serv-row {
+    display: grid;
+    grid-template-columns: 0.45fr 0.55fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .serv-row > .serv-visual,
+  .serv-row > .serv-content { min-width: 0; }
+  .serv-row.reverse {
+    grid-template-columns: 0.55fr 0.45fr;
+  }
+  .serv-row.reverse .serv-visual { order: 2; }
+  .serv-row.reverse .serv-content { order: 1; }
+
+  @media (max-width: 900px) {
+    .serv-section { padding: 72px 0; }
+    .serv-row, .serv-row.reverse {
+      grid-template-columns: 1fr; gap: 36px;
+    }
+    .serv-row .serv-visual,
+    .serv-row.reverse .serv-visual { order: 1; }
+    .serv-row .serv-content,
+    .serv-row.reverse .serv-content { order: 2; }
+  }
+
+  .serv-visual {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 280px;
+  }
+  .serv-content .eyebrow { margin-bottom: 22px; }
+  .serv-h2 {
+    font-family: var(--serif);
+    font-size: clamp(34px, 4.6vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.022em;
+    font-weight: 300;
+    font-variation-settings: "SOFT" 50;
+    margin: 0 0 22px 0;
+  }
+  .serv-h2 em { color: var(--gold); font-style: italic; font-variation-settings: "SOFT" 100; font-weight: 300; }
+  .serv-body {
+    color: var(--ink-2);
+    font-size: 17px;
+    line-height: 1.7;
+    margin: 0 0 26px 0;
+    max-width: 56ch;
+  }
+  .serv-body strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .serv-body .price {
+    color: var(--gold);
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .serv-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--gold);
+    font-size: 14px; letter-spacing: 0.04em;
+    border-bottom: 1px solid rgba(224,178,64,0.4);
+    padding-bottom: 2px;
+    transition: all 0.2s var(--ease);
+  }
+  .serv-cta:hover { border-bottom-color: var(--gold); transform: translateX(2px); }
+
+  /* service visuals — each is a CSS composition */
+
+  /* 1. Brand Identity — concentric rings */
+  .sv-brand {
+    position: relative;
+    width: clamp(240px, 30vw, 320px); aspect-ratio: 1;
+  }
+  .sv-brand .ring {
+    position: absolute; inset: 0;
+    border: 1px solid rgba(224,178,64,0.4);
+    border-radius: 50%;
+  }
+  .sv-brand .ring.r2 { inset: 16%; border-color: rgba(224,178,64,0.55); }
+  .sv-brand .ring.r3 { inset: 32%; border-color: rgba(224,178,64,0.7); }
+  .sv-brand .ring.r4 { inset: 48%; background: var(--gold);
+    box-shadow: 0 0 30px rgba(224,178,64,0.5);
+    border: none;
+  }
+  .sv-brand .label {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--serif); font-style: italic;
+    font-size: 12px; color: #14140a;
+    z-index: 2;
+  }
+
+  /* 2. Landing Page — wireframe stack */
+  .sv-landing {
+    width: clamp(260px, 30vw, 360px);
+    aspect-ratio: 3/4;
+    background: var(--canvas-2);
+    border: 1px solid var(--rule-2);
+    border-radius: 14px;
+    padding: 22px 22px 28px;
+    box-shadow: 0 24px 50px -20px rgba(0,0,0,0.6);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .sv-landing .dotrow { display: flex; gap: 6px; }
+  .sv-landing .dotrow span {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--rule-2);
+  }
+  .sv-landing .h {
+    height: 14px; width: 70%;
+    background: var(--gold);
+    border-radius: 4px;
+  }
+  .sv-landing .h2 { height: 8px; width: 90%; background: var(--rule-2); border-radius: 4px; }
+  .sv-landing .h3 { height: 8px; width: 60%; background: var(--rule-2); border-radius: 4px; }
+  .sv-landing .pill {
+    height: 22px; width: 100px;
+    background: var(--gold); border-radius: 999px;
+    margin-top: 4px;
+  }
+  .sv-landing .img {
+    flex: 1;
+    background: linear-gradient(135deg, var(--canvas-3) 0%, #2a1840 100%);
+    border-radius: 8px;
+    margin-top: 8px;
+  }
+
+  /* 3. Full Website — multi-tile stack */
+  .sv-site {
+    width: clamp(260px, 32vw, 360px);
+    aspect-ratio: 1;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+  }
+  .sv-site .pane {
+    background: var(--canvas-2);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex; flex-direction: column; gap: 8px;
+    box-shadow: 0 14px 30px -16px rgba(0,0,0,0.5);
+  }
+  .sv-site .pane.lead { grid-row: span 2; }
+  .sv-site .pane .h {
+    height: 10px; width: 70%; background: var(--gold);
+    border-radius: 3px;
+  }
+  .sv-site .pane.lead .h { background: var(--gold); }
+  .sv-site .pane .line {
+    height: 5px; width: 90%; background: var(--rule-2);
+    border-radius: 2px;
+  }
+  .sv-site .pane .line.s { width: 60%; }
+  .sv-site .pane .img {
+    flex: 1; min-height: 30px;
+    background: linear-gradient(135deg, #2a1840 0%, #0e0b1c 100%);
+    border-radius: 6px;
+  }
+
+  /* 4. PWA — phone silhouette */
+  .sv-pwa {
+    width: clamp(180px, 22vw, 220px);
+    aspect-ratio: 9/19;
+    border: 2px solid var(--rule-2);
+    border-radius: 30px;
+    padding: 14px 10px;
+    background: var(--canvas-2);
+    position: relative;
+    box-shadow: 0 30px 60px -22px rgba(0,0,0,0.6);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .sv-pwa::before {
+    content: ""; position: absolute;
+    left: 50%; top: 8px;
+    transform: translateX(-50%);
+    width: 60px; height: 5px; border-radius: 3px;
+    background: var(--rule-2);
+  }
+  .sv-pwa .screen {
+    flex: 1;
+    border-radius: 18px;
+    background: linear-gradient(160deg, #14142a 0%, #1d1d36 100%);
+    margin-top: 14px;
+    padding: 14px 12px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .sv-pwa .h { height: 8px; width: 55%; background: var(--gold); border-radius: 3px; }
+  .sv-pwa .line { height: 4px; width: 80%; background: var(--rule-2); border-radius: 2px; }
+  .sv-pwa .line.s { width: 50%; }
+  .sv-pwa .icon {
+    width: 36px; height: 36px;
+    background: var(--gold); border-radius: 10px;
+    margin-top: 8px;
+    box-shadow: 0 8px 20px -6px rgba(224,178,64,0.5);
+  }
+
+  /* 5. Founder Identity Kit — bundle stack */
+  .sv-bundle {
+    position: relative;
+    width: clamp(260px, 32vw, 360px);
+    aspect-ratio: 1;
+  }
+  .sv-bundle .card {
+    position: absolute;
+    width: 60%; aspect-ratio: 1;
+    background: var(--canvas-2);
+    border: 1px solid var(--rule-2);
+    border-radius: 12px;
+    box-shadow: 0 24px 50px -22px rgba(0,0,0,0.7);
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .sv-bundle .card .h { height: 10px; width: 60%; background: var(--gold); border-radius: 3px; }
+  .sv-bundle .card .line { height: 5px; width: 80%; background: var(--rule-2); border-radius: 2px; }
+  .sv-bundle .card.c1 { left: 2%; top: 6%; transform: rotate(-6deg); }
+  .sv-bundle .card.c1::before { content: ""; flex: 1; background: radial-gradient(circle at 30% 30%, var(--gold) 0%, transparent 60%), var(--canvas-3); border-radius: 8px; margin-top: 4px; }
+  .sv-bundle .card.c2 { left: 22%; top: 24%; transform: rotate(2deg); background: var(--canvas-3); }
+  .sv-bundle .card.c2::before { content: ""; flex: 1; background: linear-gradient(135deg, #2a1840 0%, #14142a 100%); border-radius: 8px; margin-top: 4px; }
+  .sv-bundle .card.c3 { left: 38%; top: 42%; transform: rotate(-2deg); }
+  .sv-bundle .card.c3::before { content: ""; flex: 1; background: linear-gradient(135deg, var(--gold) 0%, #a87820 100%); border-radius: 8px; margin-top: 4px; }
+  .sv-bundle .stamp {
+    position: absolute; right: 4%; bottom: 6%;
+    font-family: var(--serif); font-style: italic;
+    color: var(--gold); font-size: 22px;
+    font-variation-settings: "SOFT" 80;
+    background: rgba(13,13,24,0.85);
+    padding: 8px 16px;
+    border: 1px solid rgba(224,178,64,0.4);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    transform: rotate(-4deg);
+    z-index: 4;
+  }
+
+  /* ---------------- form section ---------------- */
+  .form-section {
+    padding: 120px 0 100px;
+    border-top: 1px solid var(--rule);
+  }
+  .form-header { margin-bottom: 48px; max-width: 720px; }
+  .form-header h2 { margin-top: 18px; }
+  .form-header .sub {
+    margin-top: 22px; font-size: 17px; color: var(--ink-2);
+    max-width: 56ch; line-height: 1.6;
+  }
+
+  .intake-form {
+    max-width: 760px;
+    display: flex; flex-direction: column;
+    gap: 44px;
+  }
+  .field { display: flex; flex-direction: column; gap: 14px; }
+  .field-label {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .field-label::before {
+    content: "";
+    width: 20px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .field-label .req { color: var(--ink-3); font-weight: 500; letter-spacing: 0.04em; }
+  .field-label .req::before { content: " · "; }
+
+  .input, .textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--rule-2);
+    padding: 12px 2px;
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: clamp(18px, 1.8vw, 22px);
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+    resize: none;
+  }
+  .input:focus, .textarea:focus {
+    outline: none;
+    border-bottom-color: var(--gold);
+    background: linear-gradient(to top, rgba(224,178,64,0.04), transparent);
+  }
+  .textarea {
+    min-height: 92px;
+    line-height: 1.5;
+  }
+  .input::placeholder, .textarea::placeholder {
+    color: var(--ink-3); font-style: italic; opacity: 0.7;
+  }
+
+  /* radio + checkbox — custom pill style */
+  .options {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .opt {
+    position: relative;
+    cursor: pointer;
+  }
+  .opt input {
+    position: absolute; opacity: 0; pointer-events: none;
+  }
+  .opt .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--rule-2);
+    color: var(--ink-2);
+    font-size: 14px;
+    font-weight: 500;
+    background: rgba(255,255,255,0.02);
+    transition: all 0.2s var(--ease);
+  }
+  .opt:hover .pill { color: var(--ink); border-color: rgba(224,178,64,0.45); }
+  .opt input:focus-visible ~ .pill {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  .opt input:checked ~ .pill {
+    background: var(--gold);
+    color: #14140a;
+    border-color: var(--gold);
+  }
+
+  .form-submit {
+    margin-top: 12px;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .send-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    padding: 16px 32px;
+    border-radius: 999px;
+    border: 1px solid var(--gold);
+    background: var(--gold);
+    color: #14140a;
+    cursor: pointer;
+    transition: all 0.25s var(--ease);
+  }
+  .send-btn:hover {
+    background: var(--gold-2);
+    border-color: var(--gold-2);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px -10px rgba(224,178,64,0.5);
+  }
+  .send-btn:disabled {
+    opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none;
+  }
+  .form-note {
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* thank-you state */
+  .thank-you {
+    display: none;
+    padding: 56px 0 0;
+  }
+  .thank-you.show { display: block; }
+  .intake-form.hidden { display: none; }
+  .thank-you .ty-eyebrow {
+    color: var(--gold);
+    font-family: var(--sans);
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 600;
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 18px;
+  }
+  .thank-you .ty-eyebrow::before {
+    content: ""; width: 28px; height: 1px; background: var(--gold);
+  }
+  .thank-you h3 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.1; letter-spacing: -0.02em;
+    font-variation-settings: "SOFT" 60;
+    margin: 0 0 18px 0;
+    max-width: 24ch;
+  }
+  .thank-you h3 em { color: var(--gold); font-style: italic; font-variation-settings: "SOFT" 100; }
+  .thank-you p {
+    color: var(--ink-2); font-size: 17px;
+    max-width: 56ch; margin: 0;
+  }
+
+  .form-err {
+    color: #f08484;
+    font-size: 13px;
+    margin-top: 12px;
+    display: none;
+  }
+  .form-err.show { display: block; }
+
+  /* ---------------- footer ---------------- */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 48px 0 64px;
+    text-align: center;
+  }
+  footer .back {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--serif); font-style: italic;
+    font-size: 16px; color: var(--gold);
+    font-variation-settings: "SOFT" 60;
+    border-bottom: 1px solid rgba(224,178,64,0.35);
+    padding-bottom: 2px;
+    transition: all 0.25s var(--ease);
+  }
+  footer .back:hover {
+    color: var(--gold-2);
+    border-bottom-color: var(--gold);
+    transform: translateX(-2px);
+  }
+  footer .meta {
+    margin-top: 16px; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+
+  /* ---------------- reveal on scroll ---------------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-mark">
+      <span class="dot" aria-hidden="true">
+        <span class="r r1"></span>
+        <span class="r r2"></span>
+        <span class="r r3"></span>
+      </span>
+      <span>Alan Geleff</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="work-hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">Work with me</span>
+        <h1 class="hero-h1">Brands. Pages. Whole <em>product worlds</em>.</h1>
+        <p class="hero-sub">Identity work for founders who want it shipped, not pitched. Brand systems, landing pages, and entire product worlds — built by one person, fast, in your taste.</p>
+        <div class="hero-ctas">
+          <a href="#start" class="btn primary">
+            Start a project
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
+          </a>
+          <a href="#work" class="btn">See the work</a>
+        </div>
+      </div>
+
+      <!-- 6 brand proof tiles -->
+      <div class="hero-marks" aria-label="Recent brand work">
+        <div class="hero-mark hm-pv" aria-label="PostVomit">
+          <div class="blob"></div>
+          <span class="label">PostVomit</span>
+        </div>
+        <div class="hero-mark hm-bp" aria-label="Bad People">
+          <div class="star"></div>
+          <span class="label">Bad People</span>
+        </div>
+        <div class="hero-mark hm-pa" aria-label="Pua Aloha">
+          <span class="pa-mark">Pua Aloha</span>
+          <span class="label" style="color:rgba(53,90,63,0.7);">Pua Aloha</span>
+        </div>
+        <div class="hero-mark hm-cb" aria-label="Carbide">
+          <span class="cb-mark">Carbide</span>
+          <span class="label">Carbide</span>
+        </div>
+        <div class="hero-mark hm-rb" aria-label="Ribbon">
+          <span class="rb-mark">ribbon</span>
+          <span class="label" style="color:rgba(91,78,217,0.65);">ribbon</span>
+        </div>
+        <div class="hero-mark hm-tw" aria-label="Tower">
+          <span class="tw-mark">TOWER</span>
+          <span class="label" style="color:rgba(26,23,21,0.55);">Tower</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SHOWCASE ============== -->
+<section id="work">
+  <div class="wrap">
+    <div class="showcase-header reveal">
+      <span class="eyebrow">The work I make</span>
+      <h2>Eight brands. <em class="gold">Eight different worlds.</em></h2>
+      <p class="lede">A house style would be easier. Instead, every brand gets its own visual logic — the look that fits the founder, not the look that fits me.</p>
+    </div>
+
+    <div class="showcase-grid">
+
+      <!-- PostVomit -->
+      <a class="tile tile-pv reveal" href="https://postvomit.com" target="_blank" rel="noopener" aria-label="PostVomit — full brand and product">
+        <div class="tile-visual"><canvas id="pvCanvas"></canvas></div>
+        <div class="tile-meta">
+          <div class="kicker">Brand + product · Live</div>
+          <div class="name">PostVomit</div>
+          <div class="desc">Full brand identity, voice system, and product UI. Peevy the mascot, lime-and-dark palette, the whole thing.</div>
+        </div>
+      </a>
+
+      <!-- Bad People -->
+      <a class="tile tile-bp reveal" href="https://badpeople.cards" target="_blank" rel="noopener" aria-label="Bad People — game and brand">
+        <div class="tile-visual"><div class="bp-star"></div></div>
+        <div class="tile-meta">
+          <div class="kicker">Brand + game · Live</div>
+          <div class="name">Bad People</div>
+          <div class="desc">Full identity for an online card game. The Fiends, the gold/crimson palette, every card every screen.</div>
+        </div>
+      </a>
+
+      <!-- Pua Aloha -->
+      <a class="tile tile-pa reveal" href="#start" aria-label="Pua Aloha — Hawaiian floral studio">
+        <div class="tile-visual">
+          <div class="pa-card">
+            <div class="pa-sprig" aria-hidden="true">
+              <svg width="56" height="80" viewBox="0 0 56 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M28 76 V 14" stroke="#355a3f" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M28 56 Q 12 50 6 36 Q 18 38 28 50 Z" fill="#5a8060"/>
+                <path d="M28 44 Q 44 38 50 24 Q 38 24 28 40 Z" fill="#355a3f"/>
+                <path d="M28 32 Q 16 28 12 18 Q 22 18 28 28 Z" fill="#5a8060"/>
+                <circle cx="28" cy="12" r="6" fill="#c45a4e"/>
+                <circle cx="22" cy="14" r="3" fill="#e57b6b"/>
+                <circle cx="34" cy="14" r="3" fill="#e57b6b"/>
+              </svg>
+            </div>
+            <div class="pa-wordmark">Pua Aloha</div>
+            <div class="pa-tag">Hawaiian floral studio</div>
+          </div>
+        </div>
+        <div class="tile-meta">
+          <div class="kicker">Brand identity</div>
+          <div class="name">Pua Aloha</div>
+          <div class="desc">Brand identity for a Hawaiian floral studio. Naming, logo, voice. Coral and forest, soft and certain.</div>
+        </div>
+      </a>
+
+      <!-- Carbide (phantom) -->
+      <a class="tile tile-phantom reveal" href="#start" aria-label="Carbide Coffee">
+        <div class="tile-visual"><img src="/art/phantoms/carbide-coffee.svg" alt="Carbide Coffee brand mock — moody charcoal craft-roastery identity"/></div>
+        <div class="tile-meta">
+          <div class="kicker">Concept brand</div>
+          <div class="name">Carbide Coffee</div>
+          <div class="desc">Upmarket craft roastery. Brass on charcoal, condensed serif, the kind of bag you put on the shelf.</div>
+        </div>
+      </a>
+
+      <!-- Ribbon (phantom) -->
+      <a class="tile tile-phantom reveal" href="#start" aria-label="Ribbon">
+        <div class="tile-visual"><img src="/art/phantoms/ribbon.svg" alt="Ribbon brand mock — minimal indigo B2B SaaS identity"/></div>
+        <div class="tile-meta">
+          <div class="kicker">Concept brand</div>
+          <div class="name">Ribbon</div>
+          <div class="desc">A B2B workflow tool that doesn't look like one. Off-white, indigo, lowercase. Trust without dullness.</div>
+        </div>
+      </a>
+
+      <!-- Felt (phantom) -->
+      <a class="tile tile-phantom reveal" href="#start" aria-label="Felt">
+        <div class="tile-visual"><img src="/art/phantoms/felt.svg" alt="Felt brand mock — warm magenta pet brand identity"/></div>
+        <div class="tile-meta">
+          <div class="kicker">Concept brand</div>
+          <div class="name">Felt</div>
+          <div class="desc">A pet brand with a heartbeat. Warm pink, chunky type, a friendly creature you actually want to look at.</div>
+        </div>
+      </a>
+
+      <!-- Tower (phantom) -->
+      <a class="tile tile-phantom reveal" href="#start" aria-label="Tower">
+        <div class="tile-visual"><img src="/art/phantoms/tower.svg" alt="Tower brand mock — bold editorial quarterly publication identity"/></div>
+        <div class="tile-meta">
+          <div class="kicker">Concept brand</div>
+          <div class="name">Tower</div>
+          <div class="desc">A loud, opinionated quarterly. Crimson and bone, oversized condensed type, the cover does the arguing.</div>
+        </div>
+      </a>
+
+      <!-- Loam (phantom) -->
+      <a class="tile tile-phantom reveal" href="#start" aria-label="Loam">
+        <div class="tile-visual"><img src="/art/phantoms/loam.svg" alt="Loam brand mock — earthy slow-living artisan food identity"/></div>
+        <div class="tile-meta">
+          <div class="kicker">Concept brand</div>
+          <div class="name">Loam</div>
+          <div class="desc">Slow food, handwritten. Olive and terracotta, hand-drawn wordmark, the dignity of taking your time.</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== SERVICES ============== -->
+
+<!-- 1. Brand Identity -->
+<section class="serv-section">
+  <div class="wrap">
+    <div class="serv-row reveal">
+      <div class="serv-visual">
+        <div class="sv-brand" aria-hidden="true">
+          <div class="ring r1"></div>
+          <div class="ring r2"></div>
+          <div class="ring r3"></div>
+          <div class="ring r4"></div>
+        </div>
+      </div>
+      <div class="serv-content">
+        <span class="eyebrow">Brand Identity</span>
+        <h2 class="serv-h2">Make a brand <em>actually feel</em> like something.</h2>
+        <p class="serv-body">
+          From a single-deliverable audition at <span class="price">$500</span> — a wordmark concept, a colour direction, one focused piece you can put in your deck — all the way up to a complete brand system: naming, logo suite, palette, type stack, voice, and application mockups at <span class="price">$8,000</span>. Most projects land at the <strong>$4,500 Standard</strong>, which gets you a finished identity ready to ship.
+        </p>
+        <p class="serv-body">
+          Starter at <span class="price">$2,500</span> covers logo, palette, and a one-page brand sheet. Premium at <span class="price">$8,000</span> is the works — built like a brand book a designer could pick up tomorrow.
+        </p>
+        <a href="#start" class="serv-cta">
+          Start a brand project
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Landing Page -->
+<section class="serv-section">
+  <div class="wrap">
+    <div class="serv-row reverse reveal">
+      <div class="serv-visual">
+        <div class="sv-landing" aria-hidden="true">
+          <div class="dotrow"><span></span><span></span><span></span></div>
+          <div class="h"></div>
+          <div class="h2"></div>
+          <div class="h3"></div>
+          <div class="pill"></div>
+          <div class="img"></div>
+        </div>
+      </div>
+      <div class="serv-content">
+        <span class="eyebrow">Landing Page</span>
+        <h2 class="serv-h2">One page that <em>actually converts</em>.</h2>
+        <p class="serv-body">
+          A standalone landing page — copy, design, build, deployed — for <span class="price">$2,500</span>. Bundled with a brand project, it's <span class="price">+$1,500</span>. Either way you get a page that holds its own next to anything in your category, written so the right person knows to click and the wrong person knows to leave.
+        </p>
+        <p class="serv-body">
+          Built static, fast, hosted wherever you want. No CMS unless you ask. Conversion isn't a JavaScript framework — it's a sentence in the right place.
+        </p>
+        <a href="#start" class="serv-cta">
+          Start a landing page
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Full Website -->
+<section class="serv-section">
+  <div class="wrap">
+    <div class="serv-row reveal">
+      <div class="serv-visual">
+        <div class="sv-site" aria-hidden="true">
+          <div class="pane lead">
+            <div class="h"></div>
+            <div class="line"></div>
+            <div class="line s"></div>
+            <div class="img"></div>
+          </div>
+          <div class="pane">
+            <div class="h"></div>
+            <div class="line"></div>
+            <div class="img"></div>
+          </div>
+          <div class="pane">
+            <div class="h"></div>
+            <div class="line s"></div>
+            <div class="img"></div>
+          </div>
+        </div>
+      </div>
+      <div class="serv-content">
+        <span class="eyebrow">Full Website</span>
+        <h2 class="serv-h2">A site that <em>holds the whole story</em>.</h2>
+        <p class="serv-body">
+          Small at <span class="price">$5,000</span> covers 3-5 pages — home, about, work, contact, maybe one more. Standard at <span class="price">$8,500</span> is 5-10 pages with deeper architecture, case studies, and the kind of system you can keep growing into. Anything bigger — multilingual, complex catalogues, custom CMS — starts at <span class="price">$12,000</span> and we scope it together.
+        </p>
+        <p class="serv-body">
+          All builds are hand-rolled, fast, and yours to keep. No SaaS lock-in. No theme dependencies. Hosting on Vercel by default — you own the repo.
+        </p>
+        <a href="#start" class="serv-cta">
+          Start a website project
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PWA Conversion -->
+<section class="serv-section">
+  <div class="wrap">
+    <div class="serv-row reverse reveal">
+      <div class="serv-visual">
+        <div class="sv-pwa" aria-hidden="true">
+          <div class="screen">
+            <div class="h"></div>
+            <div class="line"></div>
+            <div class="line s"></div>
+            <div class="icon"></div>
+            <div class="line"></div>
+            <div class="line s"></div>
+          </div>
+        </div>
+      </div>
+      <div class="serv-content">
+        <span class="eyebrow">PWA Conversion</span>
+        <h2 class="serv-h2">Make your site <em>feel like an app</em>.</h2>
+        <p class="serv-body">
+          Take your existing site and turn it into an installable Progressive Web App — home-screen icon, offline mode, push-ready, splash screen, the works. Flat <span class="price">$2,500</span>, usually done inside a week. No app store, no Swift, no Apple tax.
+        </p>
+        <p class="serv-body">
+          Best for tools, dashboards, and any site you want people to <strong>open every day</strong> instead of forget. If you've got a Shopify or framework-locked stack, we'll scope first.
+        </p>
+        <a href="#start" class="serv-cta">
+          Convert my site to a PWA
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Founder Identity Kit -->
+<section class="serv-section">
+  <div class="wrap">
+    <div class="serv-row reveal">
+      <div class="serv-visual">
+        <div class="sv-bundle" aria-hidden="true">
+          <div class="card c1"></div>
+          <div class="card c2"></div>
+          <div class="card c3"></div>
+          <div class="stamp">the bundle</div>
+        </div>
+      </div>
+      <div class="serv-content">
+        <span class="eyebrow">Founder Identity Kit</span>
+        <h2 class="serv-h2">Everything a <em>first-day founder</em> needs.</h2>
+        <p class="serv-body">
+          The bundle, at <span class="price">$5,500</span>: a Standard brand identity, a landing page, and the PWA wrapper around it. By the end you've got a name, a look, a site that converts, and an installable app — enough that the next person you tell about the company can find you, install you, and remember you a week later.
+        </p>
+        <p class="serv-body">
+          Saves about <strong>$1,500</strong> over buying the pieces separately. Built in one stretch, so the design language carries cleanly from logo to landing to product surface.
+        </p>
+        <a href="#start" class="serv-cta">
+          Start the Founder Identity Kit
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== INTAKE FORM ============== -->
+<section class="form-section" id="start">
+  <div class="wrap">
+    <div class="form-header reveal">
+      <span class="eyebrow">Start a project</span>
+      <h2>Tell me what you're <em class="gold">working on</em>.</h2>
+      <p class="sub">The more you tell me upfront, the sharper my first reply. No template responses — every project gets a real read.</p>
+    </div>
+
+    <!--
+      ============================================================
+      WEB3FORMS SETUP — Alan, paste your key here:
+      1. Sign up at https://web3forms.com (free, takes 60 seconds)
+      2. Copy the access key from your dashboard
+      3. Replace REPLACE_WITH_WEB3FORMS_KEY on the line below
+         (it's the value="" on the hidden access_key input)
+      That's it. The form will start delivering to your inbox.
+      ============================================================
+    -->
+    <form class="intake-form reveal" id="intakeForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY">
+      <input type="hidden" name="subject" value="New project inquiry — alang.studio/work">
+      <input type="hidden" name="from_name" value="alang.studio/work intake">
+      <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+
+      <!-- 1. What are you building -->
+      <div class="field">
+        <label for="building" class="field-label">What are you building?</label>
+        <textarea id="building" name="What are you building" class="textarea" rows="3" placeholder="A sentence or three is plenty. Working title, what it does, who it's for." required></textarea>
+      </div>
+
+      <!-- 2. What kind of help -->
+      <div class="field">
+        <span class="field-label">What kind of help do you need? <span class="req">pick any</span></span>
+        <div class="options">
+          <label class="opt"><input type="checkbox" name="Help needed" value="Brand identity"><span class="pill">Brand identity</span></label>
+          <label class="opt"><input type="checkbox" name="Help needed" value="Landing page"><span class="pill">Landing page</span></label>
+          <label class="opt"><input type="checkbox" name="Help needed" value="Full website"><span class="pill">Full website</span></label>
+          <label class="opt"><input type="checkbox" name="Help needed" value="PWA conversion"><span class="pill">PWA conversion</span></label>
+          <label class="opt"><input type="checkbox" name="Help needed" value="Founder Identity Kit"><span class="pill">Founder Identity Kit</span></label>
+          <label class="opt"><input type="checkbox" name="Help needed" value="Not sure yet"><span class="pill">Not sure yet</span></label>
+        </div>
+      </div>
+
+      <!-- 3. Timing -->
+      <div class="field">
+        <span class="field-label">When are you looking to start?</span>
+        <div class="options">
+          <label class="opt"><input type="radio" name="Timing" value="ASAP"><span class="pill">ASAP</span></label>
+          <label class="opt"><input type="radio" name="Timing" value="Within the month"><span class="pill">Within the month</span></label>
+          <label class="opt"><input type="radio" name="Timing" value="1-3 months"><span class="pill">1-3 months</span></label>
+          <label class="opt"><input type="radio" name="Timing" value="Just exploring"><span class="pill">Just exploring</span></label>
+        </div>
+      </div>
+
+      <!-- 4. Budget -->
+      <div class="field">
+        <span class="field-label">Budget range?</span>
+        <div class="options">
+          <label class="opt"><input type="radio" name="Budget" value="Under $2K"><span class="pill">Under $2K</span></label>
+          <label class="opt"><input type="radio" name="Budget" value="$2K-$5K"><span class="pill">$2K-$5K</span></label>
+          <label class="opt"><input type="radio" name="Budget" value="$5K-$10K"><span class="pill">$5K-$10K</span></label>
+          <label class="opt"><input type="radio" name="Budget" value="$10K+"><span class="pill">$10K+</span></label>
+          <label class="opt"><input type="radio" name="Budget" value="Not sure"><span class="pill">Not sure</span></label>
+        </div>
+      </div>
+
+      <!-- 5. Email -->
+      <div class="field">
+        <label for="email" class="field-label">Where can I reach you? <span class="req">required</span></label>
+        <input id="email" name="Email" type="email" class="input" placeholder="you@somewhere.com" required>
+      </div>
+
+      <!-- 6. Anything else -->
+      <div class="field">
+        <label for="extra" class="field-label">Anything else? <span class="req">optional</span></label>
+        <textarea id="extra" name="Anything else" class="textarea" rows="3" placeholder="Links, references, the tone you want, what's stuck. Whatever helps."></textarea>
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="send-btn">
+          Send it
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </button>
+        <span class="form-note">Replies within 24 hours</span>
+      </div>
+
+      <div class="form-err" id="formErr">Something went wrong sending that. Email me directly at alan.geleff@gmail.com.</div>
+    </form>
+
+    <!-- thank-you state -->
+    <div class="thank-you" id="thankYou" aria-live="polite">
+      <span class="ty-eyebrow">Sent</span>
+      <h3>Got it. I'll get back within <em>24 hours</em>.</h3>
+      <p>If anything urgent, I'm also at <a href="mailto:alan.geleff@gmail.com" style="color:var(--gold); border-bottom:1px solid rgba(224,178,64,0.4);">alan.geleff@gmail.com</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="wrap">
+    <a href="/" class="back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Back to alang.studio
+    </a>
+    <div class="meta">© <span id="yr">2026</span> · Alan Geleff</div>
+  </div>
+</footer>
+
+<script>
+  // ----------------- reveal on scroll -----------------
+  (function () {
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(e => e.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+    els.forEach(e => io.observe(e));
+  })();
+
+  // ----------------- peevy blob (PostVomit tile) — port from index.html -----------------
+  (function () {
+    const canvas = document.getElementById('pvCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function fitCanvas() {
+      const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      const rect = canvas.getBoundingClientRect();
+      canvas.width  = Math.max(1, Math.round(rect.width  * dpr));
+      canvas.height = Math.max(1, Math.round(rect.height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    fitCanvas();
+    let resizeRaf = null;
+    window.addEventListener('resize', () => {
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(fitCanvas);
+    });
+
+    const POINTS = 80;
+    function drawPeevy(ts) {
+      const rect = canvas.getBoundingClientRect();
+      const W = rect.width, H = rect.height;
+      if (W < 4 || H < 4) { requestAnimationFrame(drawPeevy); return; }
+      const cx = W / 2, cy = H / 2;
+      const baseR = Math.min(W, H) * 0.28;
+      const scaleVal = 1 + Math.sin(ts * 0.001) * 0.03;
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.scale(scaleVal, scaleVal);
+      ctx.translate(-cx, -cy);
+
+      ctx.beginPath();
+      for (let i = 0; i <= POINTS; i++) {
+        const angle = (i / POINTS) * Math.PI * 2;
+        const r = baseR
+          + Math.sin(angle * 2 + ts * 0.0018) * (baseR * 0.32)
+          + Math.sin(angle * 3 - ts * 0.0024) * (baseR * 0.21)
+          + Math.sin(angle * 5 + ts * 0.0012) * (baseR * 0.11);
+        const x = cx + Math.cos(angle) * r;
+        const y = cy + Math.sin(angle) * r;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fillStyle = '#c8fb50';
+      ctx.fill();
+
+      ctx.beginPath();
+      for (let i = 0; i <= POINTS; i++) {
+        const angle = (i / POINTS) * Math.PI * 2;
+        const r = (baseR * 0.55)
+          + Math.sin(angle * 3 - ts * 0.002)  * (baseR * 0.18)
+          + Math.sin(angle * 2 + ts * 0.0015) * (baseR * 0.11);
+        const x = cx + Math.cos(angle) * r;
+        const y = cy + Math.sin(angle) * r;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fillStyle = '#1a1a2e';
+      ctx.fill();
+
+      ctx.restore();
+      requestAnimationFrame(drawPeevy);
+    }
+    requestAnimationFrame(drawPeevy);
+  })();
+
+  // ----------------- form submit handler -----------------
+  (function () {
+    const form = document.getElementById('intakeForm');
+    const thankYou = document.getElementById('thankYou');
+    const err = document.getElementById('formErr');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      err.classList.remove('show');
+
+      const btn = form.querySelector('.send-btn');
+      const origBtn = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = 'Sending…';
+
+      const data = new FormData(form);
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) throw new Error('bad status');
+        form.classList.add('hidden');
+        thankYou.classList.add('show');
+        thankYou.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (_) {
+        btn.disabled = false;
+        btn.innerHTML = origBtn;
+        err.classList.add('show');
+      }
+    });
+  })();
+
+  // ----------------- year stamp -----------------
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

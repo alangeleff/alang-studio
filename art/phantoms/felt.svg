@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Felt — phantom brand mock">
+  <!-- canvas: warm pink pet brand -->
+  <defs>
+    <radialGradient id="ft-bg" cx="30%" cy="20%" r="90%">
+      <stop offset="0%" stop-color="#FEEFEF"/>
+      <stop offset="100%" stop-color="#FCE7E7"/>
+    </radialGradient>
+    <radialGradient id="ft-blob" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FBD0CE"/>
+      <stop offset="100%" stop-color="#F8B8B6"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#ft-bg)"/>
+
+  <!-- soft blob behind dog -->
+  <ellipse cx="400" cy="400" rx="240" ry="200" fill="url(#ft-blob)" opacity="0.7"/>
+
+  <!-- eyebrow -->
+  <g transform="translate(400,140)">
+    <text text-anchor="middle" font-family="'Quicksand','Avenir','Trebuchet MS',sans-serif" font-size="13" letter-spacing="5" fill="#C2456C" font-weight="700">★  EAT · PLAY · CURL UP  ★</text>
+  </g>
+
+  <!-- friendly dog silhouette — chunky, rounded -->
+  <g transform="translate(400,400)" fill="#C2456C">
+    <!-- body -->
+    <ellipse cx="0" cy="40" rx="140" ry="78"/>
+    <!-- head -->
+    <circle cx="-80" cy="-30" r="68"/>
+    <!-- ear -->
+    <ellipse cx="-118" cy="-78" rx="22" ry="44" transform="rotate(-30 -118 -78)"/>
+    <ellipse cx="-46" cy="-78" rx="20" ry="40" transform="rotate(28 -46 -78)"/>
+    <!-- legs -->
+    <rect x="-90" y="100" width="32" height="44" rx="14"/>
+    <rect x="-30" y="106" width="32" height="38" rx="14"/>
+    <rect x="40" y="106" width="32" height="38" rx="14"/>
+    <rect x="98" y="100" width="32" height="44" rx="14"/>
+    <!-- tail (wagging up) -->
+    <path d="M130,28 Q 180,-10 162,-56" stroke="#C2456C" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <!-- eye -->
+    <circle cx="-94" cy="-36" r="5" fill="#FCE7E7"/>
+    <!-- nose -->
+    <ellipse cx="-138" cy="-22" rx="8" ry="6" fill="#FCE7E7"/>
+  </g>
+
+  <!-- wordmark — rounded display in warm magenta -->
+  <text x="400" y="690" text-anchor="middle" font-family="'Quicksand','Nunito','Avenir Rounded',sans-serif" font-size="172" font-weight="700" letter-spacing="-2" fill="#C2456C">felt</text>
+
+  <!-- tagline -->
+  <text x="400" y="765" text-anchor="middle" font-family="'Quicksand','Avenir',sans-serif" font-size="22" font-weight="500" fill="#7A2945" letter-spacing="-0.3">Treats, toys &amp; tiny joys — delivered monthly.</text>
+
+  <!-- footer playful row -->
+  <g font-family="'Quicksand','Avenir',sans-serif" font-size="12" font-weight="700" letter-spacing="3" fill="#C2456C">
+    <text x="80" y="930">DOGS</text>
+    <text x="160" y="930">·</text>
+    <text x="200" y="930">CATS</text>
+    <text x="280" y="930">·</text>
+    <text x="320" y="930">CRITTERS</text>
+    <text x="720" y="930" text-anchor="end">FELT.PET →</text>
+  </g>
+</svg>
