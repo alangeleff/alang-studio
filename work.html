@@ -431,17 +431,19 @@
   /* PostVomit tile — Peevy blob (canvas) */
   .tile-pv .tile-visual {
     background: linear-gradient(160deg, #14140a 0%, #060604 100%);
+    position: relative;
   }
-  .tile-pv canvas { width: 70%; height: 70%; }
+  .tile-pv canvas { width: 52%; height: 52%; }
 
   /* Bad People tile — official Fiend constellation (ported from index.html
      project section). Same animated cast, scaled into the tile. */
   .tile-bp .tile-visual {
     background: radial-gradient(circle at 50% 50%, #1a1208 0%, #0a0816 80%);
+    position: relative;
   }
   .tile-bp .fiend-constellation {
-    width: 78%;
-    max-width: 240px;
+    width: 58%;
+    max-width: 180px;
   }
 
   /* Fiend constellation — lifted verbatim from index.html.
@@ -541,13 +543,109 @@
   /* Pua Aloha tile — the real logo PNG */
   .tile-pa .tile-visual {
     background: linear-gradient(160deg, #f6efe3 0%, #e6d8bc 100%);
-    padding: 26px;
+    padding: 30px 26px 78px;
+    position: relative;
   }
   .tile-pa .tile-visual img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    object-position: center;
+    object-position: center top;
+  }
+
+  /* Live-brand tile dressing — phantom-style eyebrow/divider/tagline/footer
+     overlays that wrap the existing mascot (Peevy canvas, Fiend constellation,
+     Pua Aloha logo PNG). Keeps the mascot as the centered hero while bringing
+     the live tiles up to the same compositional language as the concept tiles. */
+  .tile-pv .brand-eyebrow,
+  .tile-bp .brand-eyebrow {
+    position: absolute;
+    top: 14px; left: 18px; right: 18px;
+    display: flex; align-items: center; gap: 9px;
+    font-family: var(--sans);
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .tile-pv .brand-eyebrow::before,
+  .tile-bp .brand-eyebrow::before {
+    content: "";
+    display: block;
+    width: 18px; height: 1px;
+    background: currentColor; opacity: 0.75;
+    flex-shrink: 0;
+  }
+  .tile-pv .brand-eyebrow { color: var(--lime); }
+  .tile-bp .brand-eyebrow { color: var(--gold); }
+
+  .tile-pv .brand-bottom,
+  .tile-bp .brand-bottom,
+  .tile-pa .brand-bottom {
+    position: absolute;
+    bottom: 14px; left: 18px; right: 18px;
+    display: flex; flex-direction: column; align-items: center;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .tile-pv .brand-divider,
+  .tile-bp .brand-divider,
+  .tile-pa .brand-divider {
+    width: 48px; height: 1px;
+    background: currentColor; opacity: 0.45;
+    margin: 0 auto 10px;
+  }
+  .tile-pv .brand-tagline,
+  .tile-bp .brand-tagline,
+  .tile-pa .brand-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.3;
+    text-align: center;
+    letter-spacing: -0.005em;
+    margin: 0 0 12px;
+    font-variation-settings: "SOFT" 60;
+  }
+  .tile-pv .brand-footer,
+  .tile-bp .brand-footer,
+  .tile-pa .brand-footer {
+    display: flex; justify-content: space-between;
+    width: 100%;
+    font-family: var(--sans);
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.72;
+  }
+
+  .tile-pv .brand-divider,
+  .tile-pv .brand-tagline,
+  .tile-pv .brand-footer { color: var(--lime); }
+  .tile-pv .brand-tagline { color: #e6f8b3; }
+
+  .tile-bp .brand-divider,
+  .tile-bp .brand-tagline,
+  .tile-bp .brand-footer { color: var(--gold); }
+  .tile-bp .brand-tagline { color: #f4d785; }
+
+  .tile-pa .brand-divider,
+  .tile-pa .brand-tagline,
+  .tile-pa .brand-footer { color: #2C5535; }
+  .tile-pa .brand-tagline { color: #1F3D26; }
+
+  @media (max-width: 600px) {
+    .tile-pv .brand-tagline,
+    .tile-bp .brand-tagline,
+    .tile-pa .brand-tagline { font-size: 13px; }
+    .tile-pv .brand-footer,
+    .tile-bp .brand-footer,
+    .tile-pa .brand-footer { font-size: 8px; letter-spacing: 0.15em; }
+    .tile-pv .brand-eyebrow,
+    .tile-bp .brand-eyebrow { font-size: 9.5px; letter-spacing: 0.16em; }
   }
 
   /* Concept-brand tiles — full brand vignettes (window into a whole world,
@@ -1404,7 +1502,18 @@
 
       <!-- PostVomit -->
       <a class="tile tile-pv reveal" href="https://postvomit.com" target="_blank" rel="noopener" aria-label="PostVomit — full brand and product">
-        <div class="tile-visual"><canvas class="peevy-canvas" id="pvCanvas"></canvas></div>
+        <div class="tile-visual">
+          <span class="brand-eyebrow" aria-hidden="true">Write like you · postvomit.com</span>
+          <canvas class="peevy-canvas" id="pvCanvas"></canvas>
+          <div class="brand-bottom" aria-hidden="true">
+            <div class="brand-divider"></div>
+            <p class="brand-tagline">Posts that sound like you.</p>
+            <div class="brand-footer">
+              <span>Live</span>
+              <span>Write · Polish · Ship</span>
+            </div>
+          </div>
+        </div>
         <div class="tile-meta">
           <div class="kicker">Brand + product · Live</div>
           <div class="name">PostVomit</div>
@@ -1415,12 +1524,21 @@
       <!-- Bad People — official Fiend constellation, lifted from index.html -->
       <a class="tile tile-bp reveal" href="https://badpeople.cards" target="_blank" rel="noopener" aria-label="Bad People — game and brand">
         <div class="tile-visual">
+          <span class="brand-eyebrow" aria-hidden="true">badpeople.cards · card game</span>
           <div class="fiend-constellation" aria-hidden="true">
             <div class="fiend center"><img src="/art/fiends/devil-icon.svg" alt=""></div>
             <div class="fiend-orbit top">    <div><img src="/art/fiends/phoenix-icon.svg" alt=""></div></div>
             <div class="fiend-orbit right">  <div><img src="/art/fiends/oracle-icon.svg"  alt=""></div></div>
             <div class="fiend-orbit bottom"> <div><img src="/art/fiends/imp-icon.svg"     alt=""></div></div>
             <div class="fiend-orbit left">   <div><img src="/art/fiends/death-icon.svg"   alt=""></div></div>
+          </div>
+          <div class="brand-bottom" aria-hidden="true">
+            <div class="brand-divider"></div>
+            <p class="brand-tagline">The night gets weird.</p>
+            <div class="brand-footer">
+              <span>Live</span>
+              <span>Ask · Dare · Confess</span>
+            </div>
           </div>
         </div>
         <div class="tile-meta">
@@ -1434,6 +1552,14 @@
       <a class="tile tile-pa reveal" href="#start" aria-label="Pua Aloha — Hawaiian floral studio">
         <div class="tile-visual">
           <img src="/art/pua-aloha-logo.png" alt="Pua Aloha logo — italic serif wordmark with botanical sprig" loading="lazy">
+          <div class="brand-bottom" aria-hidden="true">
+            <div class="brand-divider"></div>
+            <p class="brand-tagline">Coral and forest. Soft and certain.</p>
+            <div class="brand-footer">
+              <span>No. 001</span>
+              <span>Brand Identity · Commissioned</span>
+            </div>
+          </div>
         </div>
         <div class="tile-meta">
           <div class="kicker">Brand identity</div>
