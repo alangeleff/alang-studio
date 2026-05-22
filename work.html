@@ -480,9 +480,18 @@
   .tile-meta .palette span {
     width: 13px; height: 13px;
     border-radius: 50%;
-    box-shadow:
-      inset 0 0 0 1px rgba(255,255,255,0.05),
-      0 0 0 1px rgba(0,0,0,0.20);
+    box-sizing: border-box;
+    /* Default: light-meta tile (Ribbon, Felt, Tower, Loam, Pua Aloha) — dark ring */
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+  }
+  /* Dark-meta tiles invert the ring to translucent white so light/cream dots have a defined edge */
+  .tile-pv .tile-meta .palette span,
+  .tile-bp .tile-meta .palette span,
+  .tile-carbide .tile-meta .palette span,
+  .tile-iterate .tile-meta .palette span {
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.10);
   }
   .tile-meta .cta {
     display: inline-flex;
@@ -727,11 +736,6 @@
   .tile-concept .tile-meta .desc {
     color: var(--brand-ink, var(--ink-3));
     opacity: 0.78;
-  }
-  .tile-concept .tile-meta .palette span {
-    box-shadow:
-      inset 0 0 0 1px rgba(255,255,255,0.08),
-      0 0 0 1px var(--brand-rule, rgba(0,0,0,0.12));
   }
   .tile-concept .tile-meta .cta {
     color: var(--brand-ink, var(--gold));
