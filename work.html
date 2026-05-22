@@ -388,7 +388,7 @@
     overflow: hidden;
     border: 1px solid var(--rule);
     background: var(--canvas-2);
-    aspect-ratio: 4/5;
+    aspect-ratio: 3/5;
     display: flex; flex-direction: column;
     transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
   }
@@ -409,32 +409,59 @@
     object-fit: cover;
   }
   .tile-meta {
-    padding: 18px 22px 20px;
+    padding: 16px 20px 18px;
     border-top: 1px solid var(--rule);
     background: rgba(13,13,24,0.6);
     display: flex; flex-direction: column;
-    min-height: 220px;
+    min-height: 260px;
     flex-shrink: 0;
   }
   .tile-meta .kicker {
     font-family: var(--mono); font-size: 10px;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 8px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin: 0 0 6px;
+  }
+  .tile-meta .eyebrow {
+    font-family: var(--sans); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-2); opacity: 0.75;
+    margin: 0 0 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .tile-meta .eyebrow::before {
+    content: ""; display: block;
+    width: 16px; height: 1px; background: currentColor;
+    flex-shrink: 0;
   }
   .tile-meta .name {
     font-family: var(--serif); font-size: 22px;
     font-weight: 400; letter-spacing: -0.015em;
-    color: var(--ink); margin-bottom: 6px;
+    color: var(--ink); margin: 0 0 5px;
     font-variation-settings: "SOFT" 50;
   }
   .tile-meta .desc {
-    font-size: 13px; color: var(--ink-3); line-height: 1.5;
+    font-size: 12.5px; color: var(--ink-3); line-height: 1.45;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
-    margin: 0;
+    margin: 0 0 8px;
   }
+  .tile-meta .tagline {
+    font-family: var(--serif); font-style: italic;
+    font-size: 13px; line-height: 1.35;
+    color: var(--ink-2); opacity: 0.78;
+    margin: 0 0 8px;
+    font-variation-settings: "SOFT" 80;
+  }
+  .tile-meta .footer-marks {
+    display: flex; justify-content: space-between;
+    font-family: var(--sans); font-size: 9px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink-3); opacity: 0.65;
+    margin: 0 0 4px;
+  }
+  .tile-meta .footer-marks span:only-child { width: 100%; text-align: left; }
   .tile-meta .palette-cta {
     display: flex;
     justify-content: space-between;
@@ -484,32 +511,52 @@
   .tile-pa .tile-meta .name { color: #1F3D26; }
   .tile-pa .tile-meta .desc { color: #4A6B52; }
 
-  /* PostVomit tile — Peevy blob (canvas).
-     Lime spotlight behind Peevy so the brand color reads at a glance even
-     before you parse the mascot. */
+  /* PostVomit tile - official PV wordmark (with P icon) as hero; Peevy in supporting corner role */
   .tile-pv .tile-visual {
     background:
       radial-gradient(ellipse 95% 60% at 50% 42%, rgba(200,251,80,0.30) 0%, rgba(200,251,80,0.10) 32%, transparent 62%),
       linear-gradient(160deg, #14140a 0%, #060604 100%);
     position: relative;
+    display: flex; align-items: center; justify-content: center;
   }
-  .tile-pv canvas { width: 52%; height: 52%; position: relative; z-index: 1; }
+  .tile-pv .pv-wordmark {
+    width: 78%; max-width: 480px;
+    height: auto;
+    display: block;
+    position: relative; z-index: 2;
+  }
+  .tile-pv canvas {
+    width: 28%; height: 28%;
+    position: absolute;
+    bottom: 14px; right: 14px;
+    z-index: 1;
+    opacity: 0.85;
+  }
 
   /* Bad People tile — official Fiend constellation (ported from index.html
      project section). Same animated cast, scaled into the tile. */
-  /* Bad People — gold spotlight behind the constellation + crimson edge glow,
-     so gold + crimson read instantly without parsing the Fiend icons. */
+  /* Bad People - official BAD PEOPLE wordmark (with devil horns) as hero; constellation in supporting role */
   .tile-bp .tile-visual {
     background:
       radial-gradient(circle at 50% 42%, rgba(244,201,93,0.30) 0%, transparent 38%),
       radial-gradient(ellipse 95% 55% at 50% 108%, rgba(220,38,38,0.32) 0%, rgba(220,38,38,0.08) 38%, transparent 65%),
       radial-gradient(circle at 50% 50%, #221308 0%, #0a0816 82%);
     position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tile-bp .bp-wordmark {
+    width: 60%; max-width: 300px;
+    height: auto;
+    display: block;
+    position: relative; z-index: 2;
   }
   .tile-bp .fiend-constellation {
-    width: 58%;
-    max-width: 180px;
-    position: relative; z-index: 1;
+    width: 30%;
+    max-width: 110px;
+    position: absolute;
+    bottom: 14px; right: 14px;
+    z-index: 1;
+    opacity: 0.85;
   }
 
   /* Fiend constellation — lifted verbatim from index.html.
@@ -613,89 +660,6 @@
     --brand-rule: rgba(38,77,46,0.18);
   }
 
-  /* Live-brand tile dressing — phantom-style eyebrow/divider/tagline/footer
-     overlays that wrap the existing mascot (Peevy canvas, Fiend constellation,
-     Pua Aloha logo PNG). Keeps the mascot as the centered hero while bringing
-     the live tiles up to the same compositional language as the concept tiles. */
-  .tile-pv .brand-eyebrow,
-  .tile-bp .brand-eyebrow {
-    position: absolute;
-    top: 14px; left: 18px; right: 18px;
-    display: flex; align-items: center; gap: 9px;
-    font-family: var(--sans);
-    font-size: 10px; font-weight: 600;
-    letter-spacing: 0.20em;
-    text-transform: uppercase;
-    z-index: 3;
-    pointer-events: none;
-  }
-  .tile-pv .brand-eyebrow::before,
-  .tile-bp .brand-eyebrow::before {
-    content: "";
-    display: block;
-    width: 18px; height: 1px;
-    background: currentColor; opacity: 0.75;
-    flex-shrink: 0;
-  }
-  .tile-pv .brand-eyebrow { color: var(--lime); }
-  .tile-bp .brand-eyebrow { color: var(--gold); }
-
-  .tile-pv .brand-bottom,
-  .tile-bp .brand-bottom {
-    position: absolute;
-    bottom: 14px; left: 18px; right: 18px;
-    display: flex; flex-direction: column; align-items: center;
-    z-index: 3;
-    pointer-events: none;
-  }
-  .tile-pv .brand-divider,
-  .tile-bp .brand-divider {
-    width: 48px; height: 1px;
-    background: currentColor; opacity: 0.45;
-    margin: 0 auto 10px;
-  }
-  .tile-pv .brand-tagline,
-  .tile-bp .brand-tagline {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.3;
-    text-align: center;
-    letter-spacing: -0.005em;
-    margin: 0 0 12px;
-    font-variation-settings: "SOFT" 60;
-  }
-  .tile-pv .brand-footer,
-  .tile-bp .brand-footer {
-    display: flex; justify-content: space-between;
-    width: 100%;
-    font-family: var(--sans);
-    font-size: 8.5px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    opacity: 0.72;
-  }
-
-  .tile-pv .brand-divider,
-  .tile-pv .brand-tagline,
-  .tile-pv .brand-footer { color: var(--lime); }
-  .tile-pv .brand-tagline { color: #e6f8b3; }
-
-  .tile-bp .brand-divider,
-  .tile-bp .brand-tagline,
-  .tile-bp .brand-footer { color: var(--gold); }
-  .tile-bp .brand-tagline { color: #f4d785; }
-
-  @media (max-width: 600px) {
-    .tile-pv .brand-tagline,
-    .tile-bp .brand-tagline { font-size: 13px; }
-    .tile-pv .brand-footer,
-    .tile-bp .brand-footer { font-size: 8px; letter-spacing: 0.15em; }
-    .tile-pv .brand-eyebrow,
-    .tile-bp .brand-eyebrow { font-size: 9.5px; letter-spacing: 0.16em; }
-  }
 
   /* Concept-brand tiles — full brand vignettes (window into a whole world,
      not just a logo placard). Each tile takes on the brand's palette via
@@ -705,7 +669,7 @@
     background: var(--brand-bg, var(--canvas-2));
     color: var(--brand-ink, var(--ink));
     overflow: hidden;
-    aspect-ratio: 4/5;
+    aspect-ratio: 3/5;
     display: flex; flex-direction: column;
     border: 1px solid rgba(0,0,0,0.04);
     position: relative;
@@ -1543,21 +1507,16 @@
       <!-- PostVomit -->
       <a class="tile tile-pv reveal" href="https://postvomit.com" target="_blank" rel="noopener" aria-label="PostVomit — full brand and product">
         <div class="tile-visual">
-          <span class="brand-eyebrow" aria-hidden="true">Write like you · postvomit.com</span>
+          <img class="pv-wordmark" src="/art/postvomit-wordmark.png" alt="PostVomit wordmark with P icon" loading="lazy">
           <canvas class="peevy-canvas" id="pvCanvas"></canvas>
-          <div class="brand-bottom" aria-hidden="true">
-            <div class="brand-divider"></div>
-            <p class="brand-tagline">Posts that sound like you.</p>
-            <div class="brand-footer">
-              <span>Live</span>
-              <span>Write · Polish · Ship</span>
-            </div>
-          </div>
         </div>
         <div class="tile-meta">
           <div class="kicker">Brand + product · Live</div>
+          <div class="eyebrow">Write like you · postvomit.com</div>
           <div class="name">PostVomit</div>
           <div class="desc">Full brand identity, voice system, and product UI. Peevy the mascot, lime-on-dark.</div>
+          <p class="tagline">Posts that sound like you.</p>
+          <div class="footer-marks"><span>Live</span><span>Write · Polish · Ship</span></div>
           <div class="palette-cta">
             <div class="palette" aria-hidden="true">
               <span style="background:#C8FB50"></span>
@@ -1573,7 +1532,7 @@
       <!-- Bad People — official Fiend constellation, lifted from index.html -->
       <a class="tile tile-bp reveal" href="https://badpeople.cards" target="_blank" rel="noopener" aria-label="Bad People — game and brand">
         <div class="tile-visual">
-          <span class="brand-eyebrow" aria-hidden="true">badpeople.cards · card game</span>
+          <img class="bp-wordmark" src="/art/bad-people-wordmark.png" alt="Bad People wordmark with devil horns" loading="lazy">
           <div class="fiend-constellation" aria-hidden="true">
             <div class="fiend center"><img src="/art/fiends/devil-icon.svg" alt=""></div>
             <div class="fiend-orbit top">    <div><img src="/art/fiends/phoenix-icon.svg" alt=""></div></div>
@@ -1581,19 +1540,14 @@
             <div class="fiend-orbit bottom"> <div><img src="/art/fiends/imp-icon.svg"     alt=""></div></div>
             <div class="fiend-orbit left">   <div><img src="/art/fiends/death-icon.svg"   alt=""></div></div>
           </div>
-          <div class="brand-bottom" aria-hidden="true">
-            <div class="brand-divider"></div>
-            <p class="brand-tagline">The night gets weird.</p>
-            <div class="brand-footer">
-              <span>Live</span>
-              <span>Ask · Dare · Confess</span>
-            </div>
-          </div>
         </div>
         <div class="tile-meta">
           <div class="kicker">Brand + game · Live</div>
+          <div class="eyebrow">badpeople.cards · card game</div>
           <div class="name">Bad People</div>
           <div class="desc">Full identity for an online card game. Fiends, gold-and-crimson, every screen.</div>
+          <p class="tagline">The night gets weird.</p>
+          <div class="footer-marks"><span>Live</span><span>Ask · Dare · Confess</span></div>
           <div class="palette-cta">
             <div class="palette" aria-hidden="true">
               <span style="background:#E0B240"></span>
@@ -1612,8 +1566,11 @@
         <div class="concept-art"><img src="/art/phantoms/pua-aloha.svg" alt="Pua Aloha — cream florist brand vignette with sprig, italic wordmark and FLORAL STUDIO subhead"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand identity</div>
+          <div class="eyebrow">Est. MMXXIV · Oahu</div>
           <div class="name">Pua Aloha</div>
           <div class="desc">Hawaiian floral studio. Naming, logo, voice — coral and forest, soft and certain.</div>
+          <p class="tagline">Coral and forest. Soft and certain.</p>
+          <div class="footer-marks"><span>No. 001</span><span>Brand Identity · Commissioned</span></div>
           <div class="palette-cta">
             <div class="palette" aria-hidden="true">
               <span style="background:#E8907A"></span>
@@ -1632,8 +1589,11 @@
         <div class="concept-art"><img src="/art/phantoms/carbide-coffee.svg" alt="Carbide Coffee — moody charcoal craft-roastery vignette"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
+          <div class="eyebrow">Est. MMXIX · Kailua</div>
           <div class="name">Carbide Coffee</div>
           <div class="desc">Single-origin coffee brand. Editorial dressing with a gold serif wordmark.</div>
+          <p class="tagline">Small batch. Honest darkness.</p>
+          <div class="footer-marks"><span>No. 014</span><span>Roasted · Ground · Brewed</span></div>
           <div class="palette-cta">
             <div class="palette" aria-hidden="true">
               <span style="background:#1A1816"></span>
@@ -1652,8 +1612,11 @@
         <div class="concept-art"><img src="/art/phantoms/ribbon.svg" alt="Ribbon — minimal indigo B2B SaaS vignette"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
+          <div class="eyebrow">Workflows · 2026</div>
           <div class="name">Ribbon</div>
           <div class="desc">Workflow automation identity. Mirrored pill tittle, indigo on bone.</div>
+          <p class="tagline">The thread between every tool you use.</p>
+          <div class="footer-marks"><span>Automations · Webhooks</span><span>Audit · Connect</span></div>
           <div class="palette-cta">
             <div class="palette" aria-hidden="true">
               <span style="background:#5824E8"></span>
@@ -1672,8 +1635,11 @@
         <div class="concept-art"><img src="/art/phantoms/felt.svg" alt="Felt — warm character-forward pet brand vignette"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
+          <div class="eyebrow">★ Eat · Play · Curl Up ★</div>
           <div class="name">Felt</div>
           <div class="desc">Playful pet brand. Chunky display type with cat-ear and tail flourishes.</div>
+          <p class="tagline">Treats, toys & tiny joys — delivered monthly.</p>
+          <div class="footer-marks"><span>Dogs · Cats · Critters</span><span>felt.pet →</span></div>
           <div class="palette-cta">
             <div class="palette" aria-hidden="true">
               <span style="background:#CD0B61"></span>
@@ -1692,8 +1658,11 @@
         <div class="concept-art"><img src="/art/phantoms/tower.svg" alt="Tower — bold editorial quarterly publication vignette"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
+          <div class="eyebrow">Volume III · Issue 09 · Spring MMXXVI</div>
           <div class="name">Tower</div>
           <div class="desc">Editorial magazine identity. Masthead-bar wordmark, red on cream.</div>
+          <p class="tagline">Money rewards the patient. So does the work.</p>
+          <div class="footer-marks"><span>On the cover</span><span>$14</span></div>
           <div class="palette-cta">
             <div class="palette" aria-hidden="true">
               <span style="background:#A41B1B"></span>
@@ -1712,8 +1681,11 @@
         <div class="concept-art"><img src="/art/phantoms/loam.svg" alt="Loam — earthy slow-living artisan food vignette"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
+          <div class="eyebrow">A slow-food kitchen · Asheville NC</div>
           <div class="name">Loam</div>
           <div class="desc">Slow-food kitchen brand. Leaf-from-L, seed-in-o, terracotta on sage.</div>
+          <p class="tagline">Sourdough, ferments & the dignity of slowness.</p>
+          <div class="footer-marks"><span>Baked fresh · Fridays</span><span>Est. 2021</span></div>
           <div class="palette-cta">
             <div class="palette" aria-hidden="true">
               <span style="background:#964031"></span>
@@ -1732,8 +1704,11 @@
         <div class="concept-art"><img src="/art/phantoms/iterate.svg" alt="Iterate — navy product-engineering vignette with concentric loop mark"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
+          <div class="eyebrow">Build · Test · Ship</div>
           <div class="name">Iterate</div>
           <div class="desc">Product engineering brand. Concentric loop mark, italic wordmark on navy.</div>
+          <p class="tagline">Every loop, sharper.</p>
+          <div class="footer-marks"><span>No. 015</span><span>Shipped · Measured · Improved</span></div>
           <div class="palette-cta">
             <div class="palette" aria-hidden="true">
               <span style="background:#0A1628"></span>
