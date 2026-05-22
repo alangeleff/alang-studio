@@ -606,17 +606,11 @@
     .fiend-orbit > div { animation: none; }
   }
 
-  /* Pua Aloha tile — the real logo PNG */
-  .tile-pa .tile-visual {
-    background: linear-gradient(160deg, #f6efe3 0%, #e6d8bc 100%);
-    padding: 30px 26px 78px;
-    position: relative;
-  }
-  .tile-pa .tile-visual img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center top;
+  /* Pua Aloha — brand vars so the universal .tile-concept rules pick up the cream/forest palette */
+  .tile-pa {
+    --brand-bg: #FBF4E6;
+    --brand-ink: #264D2E;
+    --brand-rule: rgba(38,77,46,0.18);
   }
 
   /* Live-brand tile dressing — phantom-style eyebrow/divider/tagline/footer
@@ -647,8 +641,7 @@
   .tile-bp .brand-eyebrow { color: var(--gold); }
 
   .tile-pv .brand-bottom,
-  .tile-bp .brand-bottom,
-  .tile-pa .brand-bottom {
+  .tile-bp .brand-bottom {
     position: absolute;
     bottom: 14px; left: 18px; right: 18px;
     display: flex; flex-direction: column; align-items: center;
@@ -656,15 +649,13 @@
     pointer-events: none;
   }
   .tile-pv .brand-divider,
-  .tile-bp .brand-divider,
-  .tile-pa .brand-divider {
+  .tile-bp .brand-divider {
     width: 48px; height: 1px;
     background: currentColor; opacity: 0.45;
     margin: 0 auto 10px;
   }
   .tile-pv .brand-tagline,
-  .tile-bp .brand-tagline,
-  .tile-pa .brand-tagline {
+  .tile-bp .brand-tagline {
     font-family: var(--serif);
     font-style: italic;
     font-size: 14px;
@@ -676,8 +667,7 @@
     font-variation-settings: "SOFT" 60;
   }
   .tile-pv .brand-footer,
-  .tile-bp .brand-footer,
-  .tile-pa .brand-footer {
+  .tile-bp .brand-footer {
     display: flex; justify-content: space-between;
     width: 100%;
     font-family: var(--sans);
@@ -698,18 +688,11 @@
   .tile-bp .brand-footer { color: var(--gold); }
   .tile-bp .brand-tagline { color: #f4d785; }
 
-  .tile-pa .brand-divider,
-  .tile-pa .brand-tagline,
-  .tile-pa .brand-footer { color: #2C5535; }
-  .tile-pa .brand-tagline { color: #1F3D26; }
-
   @media (max-width: 600px) {
     .tile-pv .brand-tagline,
-    .tile-bp .brand-tagline,
-    .tile-pa .brand-tagline { font-size: 13px; }
+    .tile-bp .brand-tagline { font-size: 13px; }
     .tile-pv .brand-footer,
-    .tile-bp .brand-footer,
-    .tile-pa .brand-footer { font-size: 8px; letter-spacing: 0.15em; }
+    .tile-bp .brand-footer { font-size: 8px; letter-spacing: 0.15em; }
     .tile-pv .brand-eyebrow,
     .tile-bp .brand-eyebrow { font-size: 9.5px; letter-spacing: 0.16em; }
   }
@@ -1623,19 +1606,10 @@
         </div>
       </a>
 
-      <!-- Pua Aloha — real logo PNG -->
-      <a class="tile tile-pa reveal" href="#start" aria-label="Pua Aloha — Hawaiian floral studio">
-        <div class="tile-visual">
-          <img src="/art/pua-aloha-logo.png" alt="Pua Aloha logo — italic serif wordmark with botanical sprig" loading="lazy">
-          <div class="brand-bottom" aria-hidden="true">
-            <div class="brand-divider"></div>
-            <p class="brand-tagline">Coral and forest. Soft and certain.</p>
-            <div class="brand-footer">
-              <span>No. 001</span>
-              <span>Brand Identity · Commissioned</span>
-            </div>
-          </div>
-        </div>
+      <!-- Pua Aloha — phantom-style SVG (sprig + italic wordmark + FLORAL STUDIO + tagline + footer marks, all in one composition) -->
+      <a class="tile tile-concept tile-pa reveal" href="#start" aria-label="Pua Aloha — Hawaiian floral studio">
+        <span class="concept-chip">Brand · Pua Aloha</span>
+        <div class="concept-art"><img src="/art/phantoms/pua-aloha.svg" alt="Pua Aloha — cream florist brand vignette with sprig, italic wordmark and FLORAL STUDIO subhead"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand identity</div>
           <div class="name">Pua Aloha</div>
