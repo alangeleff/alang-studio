@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Loam — concept brand vignette with official wordmark">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-300 0 1400 1000" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Loam — concept brand vignette with official wordmark">
   <!-- canvas: slow-living artisan food, warm olive / terracotta -->
   <defs>
     <radialGradient id="lm-bg" cx="50%" cy="55%" r="80%">
@@ -6,7 +6,7 @@
       <stop offset="100%" stop-color="#DDD5B4"/>
     </radialGradient>
   </defs>
-  <rect width="800" height="1000" fill="url(#lm-bg)"/>
+  <rect x="-300" width="1400" height="1000" fill="url(#lm-bg)"/>
 
   <!-- speckled grain noise — paper texture hint -->
   <g fill="#A88E5E" opacity="0.18">
@@ -57,7 +57,7 @@
 
   <!-- footer marks -->
   <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="11" letter-spacing="3.4" fill="#7A5638" font-weight="500">
-    <text x="80" y="930">BAKED FRESH · FRIDAYS</text>
-    <text x="720" y="930" text-anchor="end">EST. 2021</text>
+    <text x="-220" y="930">BAKED FRESH · FRIDAYS</text>
+    <text x="1020" y="930" text-anchor="end">EST. 2021</text>
   </g>
 </svg>

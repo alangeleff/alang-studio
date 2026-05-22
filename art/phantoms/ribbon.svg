@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ribbon — concept brand vignette with official wordmark">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-300 0 1400 1000" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Ribbon — concept brand vignette with official wordmark">
   <!-- canvas: minimal B2B SaaS — off-white, indigo accent -->
-  <rect width="800" height="1000" fill="#FAFAFA"/>
+  <rect x="-300" width="1400" height="1000" fill="#FAFAFA"/>
 
   <!-- micro grid hint -->
   <g stroke="#ECEAF7" stroke-width="1">
-    <line x1="80" y1="0" x2="80" y2="1000"/>
-    <line x1="720" y1="0" x2="720" y2="1000"/>
+    <line x1="-220" y1="0" x2="-220" y2="1000"/>
+    <line x1="1020" y1="0" x2="1020" y2="1000"/>
   </g>
 
   <!-- eyebrow -->
-  <g transform="translate(80,140)">
+  <g transform="translate(-220,140)">
     <text font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="12" letter-spacing="4" fill="#5B4ED9" font-weight="600">WORKFLOWS · 2026</text>
   </g>
 

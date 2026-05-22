@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Tower — concept brand vignette with official wordmark">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-300 0 1400 1000" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Tower — concept brand vignette with official wordmark">
   <!-- canvas: bold opinionated quarterly publication -->
-  <rect width="800" height="1000" fill="#F0EAE0"/>
+  <rect x="-300" width="1400" height="1000" fill="#F0EAE0"/>
 
   <!-- asymmetric vertical bar -->
-  <rect x="0" y="0" width="46" height="1000" fill="#A92B2B"/>
+  <rect x="-300" y="0" width="46" height="1000" fill="#A92B2B"/>
 
   <!-- masthead — issue / volume / quarter -->
-  <g transform="translate(110,140)" font-family="'Inter','Helvetica Neue',Arial,sans-serif" fill="#1A1715" font-weight="500">
+  <g transform="translate(-190,140)" font-family="'Inter','Helvetica Neue',Arial,sans-serif" fill="#1A1715" font-weight="500">
     <text font-size="11" letter-spacing="5">VOLUME III  ·  ISSUE 09  ·  SPRING MMXXVI</text>
     <line x1="0" y1="22" x2="540" y2="22" stroke="#1A1715" stroke-width="1" opacity="0.4"/>
   </g>
@@ -29,18 +29,18 @@
   </g>
 
   <!-- pull quote / cover blurb -->
-  <g transform="translate(110,640)">
+  <g transform="translate(-190,640)">
     <text font-family="'Playfair Display','Bodoni MT',Georgia,serif" font-size="34" font-style="italic" font-weight="400" fill="#1A1715">"Money rewards the patient.</text>
     <text y="46" font-family="'Playfair Display','Bodoni MT',Georgia,serif" font-size="34" font-style="italic" font-weight="400" fill="#A92B2B">So does the work."</text>
   </g>
 
   <!-- by-line -->
-  <g transform="translate(110,755)" font-family="'Inter','Helvetica Neue',Arial,sans-serif" fill="#1A1715">
+  <g transform="translate(-190,755)" font-family="'Inter','Helvetica Neue',Arial,sans-serif" fill="#1A1715">
     <text font-size="12" letter-spacing="3" font-weight="600">— RIA DELACROIX, ON THE COVER →</text>
   </g>
 
   <!-- contents strip -->
-  <g transform="translate(110,830)" font-family="'Inter','Helvetica Neue',Arial,sans-serif" fill="#1A1715">
+  <g transform="translate(-190,830)" font-family="'Inter','Helvetica Neue',Arial,sans-serif" fill="#1A1715">
     <line x1="0" y1="0" x2="580" y2="0" stroke="#1A1715" stroke-width="1"/>
     <text y="26" font-size="11" letter-spacing="4" font-weight="700">INSIDE</text>
     <text y="54" font-size="13" font-weight="500">The freelancer's tax revolt · 21</text>
@@ -49,7 +49,7 @@
   </g>
 
   <!-- corner price tag -->
-  <g transform="translate(704,930)" font-family="'Oswald',Impact,sans-serif" fill="#A92B2B" font-weight="900">
+  <g transform="translate(1004,930)" font-family="'Oswald',Impact,sans-serif" fill="#A92B2B" font-weight="900">
     <text font-size="34" text-anchor="end">$14</text>
   </g>
 </svg>

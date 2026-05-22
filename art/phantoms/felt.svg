@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Felt — concept brand vignette with official wordmark">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-300 0 1400 1000" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Felt — concept brand vignette with official wordmark">
   <!-- canvas: warm pink pet brand -->
   <defs>
     <radialGradient id="ft-bg" cx="30%" cy="20%" r="90%">
@@ -10,7 +10,7 @@
       <stop offset="100%" stop-color="#F8B8B6"/>
     </radialGradient>
   </defs>
-  <rect width="800" height="1000" fill="url(#ft-bg)"/>
+  <rect x="-300" width="1400" height="1000" fill="url(#ft-bg)"/>
 
   <!-- soft blob behind logo -->
   <ellipse cx="400" cy="430" rx="280" ry="220" fill="url(#ft-blob)" opacity="0.55"/>
@@ -38,11 +38,11 @@
 
   <!-- footer playful row -->
   <g font-family="'Quicksand','Avenir',sans-serif" font-size="12" font-weight="700" letter-spacing="3" fill="#C2456C">
-    <text x="80" y="930">DOGS</text>
-    <text x="160" y="930">·</text>
-    <text x="200" y="930">CATS</text>
-    <text x="280" y="930">·</text>
-    <text x="320" y="930">CRITTERS</text>
-    <text x="720" y="930" text-anchor="end">FELT.PET →</text>
+    <text x="-220" y="930">DOGS</text>
+    <text x="-140" y="930">·</text>
+    <text x="-100" y="930">CATS</text>
+    <text x="-20" y="930">·</text>
+    <text x="20" y="930">CRITTERS</text>
+    <text x="1020" y="930" text-anchor="end">FELT.PET →</text>
   </g>
 </svg>
