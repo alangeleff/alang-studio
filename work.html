@@ -420,11 +420,21 @@
   .tile-meta .brand-badge {
     position: absolute;
     top: 14px; right: 18px;
-    width: 30px; height: 30px;
-    display: block;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    box-sizing: border-box;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.22));
     z-index: 1;
-    opacity: 0.92;
     pointer-events: none;
+  }
+  /* span-container variant (6 brands whose icons are standalone marks) — rounded square + brand bg */
+  .tile-meta span.brand-badge {
+    border-radius: 6px;
+  }
+  .tile-meta span.brand-badge img {
+    width: 80%; height: 80%;
+    object-fit: contain;
+    display: block;
   }
   /* Kicker reserves space on its right side so it never collides with the badge */
   .tile-meta .kicker { padding-right: 42px; }
@@ -1586,7 +1596,7 @@
         <div class="concept-art"><img src="/art/phantoms/pua-aloha.svg" alt="Pua Aloha — cream florist brand vignette with sprig, italic wordmark and FLORAL STUDIO subhead"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand identity</div>
-          <img class="brand-badge" src="/art/icons/puaaloha-sprig.svg" alt="Pua Aloha sprig" loading="lazy">
+          <span class="brand-badge" style="background:#FBF4E6"><img src="/art/icons/pua-aloha-icon.svg" alt="Pua Aloha sprig" loading="lazy"></span>
           <div class="name">Pua Aloha</div>
           <div class="desc">Hawaiian floral studio. Naming, logo, voice — coral and forest, soft and certain.</div>
           <p class="tagline">Coral and forest. Soft and certain.</p>
@@ -1608,7 +1618,7 @@
         <div class="concept-art"><img src="/art/phantoms/carbide-coffee.svg" alt="Carbide Coffee — moody charcoal craft-roastery vignette"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
-          <img class="brand-badge" src="/art/icons/carbide-bean.svg" alt="Carbide coffee bean" loading="lazy">
+          <span class="brand-badge" style="background:#1A1816"><img src="/art/icons/carbide-icon.svg" alt="Carbide C glyph" loading="lazy"></span>
           <div class="name">Carbide Coffee</div>
           <div class="desc">Single-origin coffee brand. Editorial dressing with a gold serif wordmark.</div>
           <p class="tagline">Small batch. Honest darkness.</p>
@@ -1652,7 +1662,7 @@
         <div class="concept-art"><img src="/art/phantoms/felt.svg" alt="Felt — warm character-forward pet brand vignette"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
-          <img class="brand-badge" src="/art/icons/felt-f.svg" alt="Felt F mark" loading="lazy">
+          <span class="brand-badge" style="background:#FCE7E7"><img src="/art/icons/felt-icon.svg" alt="Felt f with cat ears" loading="lazy"></span>
           <div class="name">Felt</div>
           <div class="desc">Playful pet brand. Chunky display type with cat-ear and tail flourishes.</div>
           <p class="tagline">Treats, toys & tiny joys — delivered monthly.</p>
@@ -1674,7 +1684,7 @@
         <div class="concept-art"><img src="/art/phantoms/tower.svg" alt="Tower — bold editorial quarterly publication vignette"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
-          <img class="brand-badge" src="/art/icons/tower-t.svg" alt="Tower T mark" loading="lazy">
+          <span class="brand-badge" style="background:#EAE1D0"><img src="/art/icons/tower-icon.svg" alt="Tower T with masthead bar" loading="lazy"></span>
           <div class="name">Tower</div>
           <div class="desc">Editorial magazine identity. Masthead-bar wordmark, red on cream.</div>
           <p class="tagline">Money rewards the patient. So does the work.</p>
@@ -1696,7 +1706,7 @@
         <div class="concept-art"><img src="/art/phantoms/loam.svg" alt="Loam — earthy slow-living artisan food vignette"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
-          <img class="brand-badge" src="/art/icons/loam-leaf.svg" alt="Loam leaf" loading="lazy">
+          <span class="brand-badge" style="background:#E8E2C9"><img src="/art/icons/loam-icon.svg" alt="Loam L with leaf" loading="lazy"></span>
           <div class="name">Loam</div>
           <div class="desc">Slow-food kitchen brand. Leaf-from-L, seed-in-o, terracotta on sage.</div>
           <p class="tagline">Sourdough, ferments & the dignity of slowness.</p>
@@ -1718,7 +1728,7 @@
         <div class="concept-art"><img src="/art/phantoms/iterate.svg" alt="Iterate — navy product-engineering vignette with concentric loop mark"/></div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
-          <img class="brand-badge" src="/art/icons/iterate-orbit.svg" alt="Iterate orbit" loading="lazy">
+          <span class="brand-badge" style="background:#0A1628"><img src="/art/icons/iterate-icon.svg" alt="Iterate concentric orbit" loading="lazy"></span>
           <div class="name">Iterate</div>
           <div class="desc">Product engineering brand. Concentric loop mark, italic wordmark on navy.</div>
           <p class="tagline">Every loop, sharper.</p>
