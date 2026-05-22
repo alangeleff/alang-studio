@@ -29,7 +29,7 @@
   <!-- functional pill chips at the bottom — communicates brand category.
        Chip widths increased so text fits; row spans 150 → 850 (700px total),
        centered in the 1000-wide viewBox; 12px gap between chips. -->
-  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="22" letter-spacing="2.4" font-weight="600" fill="#5B4ED9">
+  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="19" letter-spacing="2.0" font-weight="600" fill="#5B4ED9">
     <g transform="translate(150,880)">
       <rect width="220" height="48" rx="24" fill="none" stroke="#5B4ED9" stroke-width="1.8"/>
       <text x="110" y="31" text-anchor="middle">AUTOMATIONS</text>
