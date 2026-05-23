@@ -544,6 +544,13 @@
   .tile-pa .tile-meta .kicker { color: #B86E4B; }
   .tile-pa .tile-meta .name { color: #1F3D26; }
   .tile-pa .tile-meta .desc { color: #4A6B52; }
+  /* Hana Olu — brand cream + plum-mauve ink (derived from the lavender accent in the master SVG) */
+  .tile-ho .tile-meta .tagline { color: #6E5D8F; opacity: 0.78; }
+  .tile-ho .tile-meta .cta { color: #6E5D8F; }
+  .tile-ho .tile-meta { background: rgba(236,233,228,0.95); border-top-color: rgba(110,93,143,0.18); }
+  .tile-ho .tile-meta .kicker { color: #6E5D8F; opacity: 0.62; }
+  .tile-ho .tile-meta .name { color: #4A3F66; }
+  .tile-ho .tile-meta .desc { color: #6E5D8F; opacity: 0.74; }
 
   /* PostVomit tile - Peevy mascot above, wordmark below, both centered.
      Lime spotlight repositioned to embrace the Peevy mascot at top-center. */
@@ -849,6 +856,35 @@
     --brand-cta-font: var(--sans);
     --brand-cta-tracking: 0.06em;
     --brand-cta-radius: 4px;
+  }
+  /* Hana Olu — brand palette pulled from the master wordmark SVG:
+     pink #D79AB8, lavender #A494BE, cream #ECE9E4. Ink #6E5D8F is a darker
+     plum-mauve derived from the lavender, picked for readable text on cream. */
+  .tile-ho {
+    --brand-bg: #ECE9E4;
+    --brand-ink: #6E5D8F;
+    --brand-rule: rgba(110,93,143,0.18);
+  }
+  /* No href yet — the tile is a status card, not a link. When the brand-guide URL
+     goes live, add an href and this :not([href]) rule disables itself. */
+  .tile-ho:not([href]) { cursor: default; }
+  /* "Launching Soon" status pill — pulsing dot stands in for the action arrow */
+  .tile-ho .status-cta { gap: 6px; }
+  .tile-ho .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(110,93,143,0.55);
+    animation: hoCtaPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes hoCtaPulse {
+    0%, 100% { box-shadow: 0 0 0 0   rgba(110,93,143,0.50); }
+    50%      { box-shadow: 0 0 0 5px rgba(110,93,143,0);    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tile-ho .status-dot { animation: none; }
   }
 
   /* Pua Aloha hover preserved from .tile rules */
@@ -1530,7 +1566,7 @@
   <div class="wrap">
     <div class="showcase-header reveal">
       <span class="eyebrow">The work I make</span>
-      <h2>Nine brands. <em class="gold">Nine different worlds.</em></h2>
+      <h2>Brand after brand. <em class="gold">Each one a different world.</em></h2>
       <p class="lede">A house style would be easier. Instead, every brand gets its own visual logic — the look that fits the founder, not the look that fits me.</p>
     </div>
 
@@ -1740,6 +1776,30 @@
               <span style="background:#061020"></span>
             </div>
             <span class="cta">See exploration <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Hana Olu — real brand, in development (@hanaolubeauty). Phantom is the
+           official master wordmark vignette; badge is the brand's sakura mark.
+           No href yet (status card, not a link); will eventually link to the brand-guide HTML. -->
+      <a class="tile tile-concept tile-ho reveal" aria-disabled="true" aria-label="Hana Olu — Hawaiian and Japanese natural body care, launching soon">
+        <span class="concept-chip">Brand · Hana Olu</span>
+        <div class="concept-art"><img src="/art/phantoms/hana-olu.svg" alt="Hana Olu master wordmark on cream &mdash; two cherry blossoms flanking a flowing cursive hana&middot;olu lockup"/></div>
+        <div class="tile-meta">
+          <div class="kicker">Brand identity &middot; In development</div>
+          <span class="brand-badge" style="background:#ECE9E4"><img src="/art/icons/hana-olu-icon.svg" alt="Hana Olu sakura mark" loading="lazy"></span>
+          <div class="name">Hana Olu</div>
+          <div class="desc">Hawaiian + Japanese beauty brand. Naming, logo, packaging &mdash; handcrafted sugar scrubs and body care.</div>
+          <p class="tagline">Where Hawaiian &amp; Japanese beauty meet nature.</p>
+          <div class="palette-cta">
+            <div class="palette" aria-hidden="true">
+              <span style="background:#D79AB8"></span>
+              <span style="background:#A494BE"></span>
+              <span style="background:#ECE9E4"></span>
+              <span style="background:#6E5D8F"></span>
+            </div>
+            <span class="cta status-cta"><span class="status-dot" aria-hidden="true"></span>Launching Soon</span>
           </div>
         </div>
       </a>
