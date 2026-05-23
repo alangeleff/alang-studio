@@ -357,6 +357,91 @@
     font-weight: 600;
   }
 
+  /* ---- hero stack: layered PostVomit UI frames + floating Peevy mascot ----
+     Replaces the old single-stage .hero-pv-showcase. Four real product
+     screens fanned like cards on a desk, with Peevy floating uncontained
+     in front — proves the work is real on first glance. */
+  .hero-stack {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5/4;
+    max-width: 560px;
+    margin-left: auto;
+  }
+  @media (max-width: 980px) {
+    .hero-stack { margin: 0 auto; max-width: 460px; }
+  }
+  .hero-frame {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 38%;
+    aspect-ratio: 4/5;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #0a0a14;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.06),
+      0 24px 50px -16px rgba(0,0,0,0.75),
+      0 8px 18px -8px rgba(0,0,0,0.55);
+    transform-origin: center;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    animation: heroFrameIn 0.95s var(--ease) both;
+  }
+  .hero-frame img {
+    width: 100%; height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: top center;
+  }
+  /* fanned positions — custom props feed the keyframe end-state */
+  .hero-frame.f1 { z-index: 1; --tx: -72%; --ty: -28%; --rot: -10deg; animation-delay: 0.10s; }
+  .hero-frame.f2 { z-index: 2; --tx: -30%; --ty: -42%; --rot:  -3deg; animation-delay: 0.20s; }
+  .hero-frame.f3 { z-index: 3; --tx:  10%; --ty: -28%; --rot:   4deg; animation-delay: 0.30s; }
+  .hero-frame.f4 { z-index: 4; --tx:  46%; --ty: -38%; --rot:  10deg; animation-delay: 0.40s; }
+  @keyframes heroFrameIn {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
+    to   { opacity: 1; transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) rotate(var(--rot)); }
+  }
+  @media (max-width: 720px) {
+    /* mobile: only the front two frames; back two hidden to declutter */
+    .hero-frame { width: 50%; }
+    .hero-frame.f1, .hero-frame.f2 { display: none; }
+    .hero-frame.f3 { --tx: -20%; --ty: -32%; --rot: -4deg; }
+    .hero-frame.f4 { --tx:  22%; --ty: -32%; --rot:  6deg; }
+  }
+
+  /* floating Peevy — uncontained, bottom-right of the stack */
+  .hero-peevy {
+    position: absolute;
+    width: 28%;
+    aspect-ratio: 1;
+    bottom: -4%;
+    right: -2%;
+    z-index: 5;
+    pointer-events: none;
+    filter: drop-shadow(0 14px 30px rgba(200,251,80,0.30));
+    opacity: 0;
+    transform: translateY(22px) scale(0.85);
+    animation: heroPeevyIn 0.95s var(--ease) 0.55s both;
+  }
+  @keyframes heroPeevyIn {
+    from { opacity: 0; transform: translateY(22px) scale(0.85); }
+    to   { opacity: 1; transform: translateY(0)   scale(1); }
+  }
+  .hero-peevy canvas {
+    width: 100%; height: 100%;
+    display: block;
+  }
+  @media (max-width: 720px) {
+    .hero-peevy { width: 32%; bottom: -6%; right: 0%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-frame { animation: none; opacity: 1; transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) rotate(var(--rot)); }
+    .hero-peevy { animation: none; opacity: 1; transform: translateY(0) scale(1); }
+  }
+
   /* ---------------- showcase ---------------- */
   .showcase-header {
     margin-bottom: 56px;
@@ -1533,28 +1618,25 @@
         </div>
       </div>
 
-      <!-- Hero deep showcase: a single brand world (PostVomit) instead of a
-           thumbnail grid. Peevy mascot + a generated-post card + the brand
-           wordmark/tagline strip make the "complete world" point in one tile. -->
-      <div class="hero-pv-showcase" aria-label="PostVomit — brand and product showcase">
-        <div class="pv-stage" aria-hidden="true">
+      <!-- Hero stack: 4 PostVomit screens fanned like cards on a desk, with
+           Peevy floating uncontained in the foreground. Real product UI proof
+           on first glance. Existing .peevy-canvas JS (line ~2155) picks up
+           #heroPvCanvas automatically. -->
+      <div class="hero-stack" aria-label="PostVomit — real product screens with floating Peevy mascot">
+        <div class="hero-frame f1" aria-hidden="true">
+          <img src="/art/postvomit/pricing.png" alt="" loading="eager"/>
+        </div>
+        <div class="hero-frame f2" aria-hidden="true">
+          <img src="/art/postvomit/workspace.png" alt="" loading="eager"/>
+        </div>
+        <div class="hero-frame f3" aria-hidden="true">
+          <img src="/art/postvomit/landing.png" alt="" loading="eager"/>
+        </div>
+        <div class="hero-frame f4">
+          <img src="/art/postvomit/peevy-chat.png" alt="PostVomit Peevy chat overlay on the workspace screen" loading="eager"/>
+        </div>
+        <div class="hero-peevy" aria-hidden="true">
           <canvas class="peevy-canvas" id="heroPvCanvas"></canvas>
-        </div>
-
-        <div class="pv-post-card" aria-hidden="true">
-          <div class="pv-post-meta">Generated from your brief</div>
-          <p class="pv-post-body">"Three coffees in, debugging a typo that pretended to be a race condition. The breakthrough was admitting I hadn't slept."</p>
-          <div class="pv-post-actions">
-            <span class="pv-post-pill solid">Twitter</span>
-            <span class="pv-post-pill">Threads</span>
-            <span class="pv-post-pill">LinkedIn</span>
-            <span class="pv-post-pill">Substack</span>
-          </div>
-        </div>
-
-        <div class="pv-id-strip" aria-hidden="true">
-          <span class="pv-wordmark">PostVomit</span>
-          <span class="pv-tag">Write once · show up everywhere</span>
         </div>
       </div>
     </div>
