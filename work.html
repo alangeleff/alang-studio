@@ -401,11 +401,13 @@
     object-fit: cover;
     object-position: center;
   }
-  /* per-frame: natural aspect ratio + anchor + 3D transform recipe */
+  /* per-frame: natural aspect ratio + anchor + 3D transform recipe.
+     Anchors pulled inward from the corners so all 4 frames cluster around
+     Peevy's glow radius rather than the outer container edges. */
   .hero-frame.f-pricing {
     /* landscape (1080×925 ≈ 1.17), upper-left, furthest back */
-    top: 2%; left: -6%;
-    width: 40%;
+    top: 6%; left: 4%;
+    width: 36%;
     aspect-ratio: 1.17;
     --tz: -120px;
     --rotx:   6deg;
@@ -415,8 +417,8 @@
   }
   .hero-frame.f-landing {
     /* portrait phone (1080×1992 ≈ 0.542), lower-left, mid-back */
-    bottom: -4%; left: 2%;
-    width: 24%;
+    bottom: 4%; left: 6%;
+    width: 22%;
     aspect-ratio: 0.542;
     --tz: -60px;
     --rotx:  -4deg;
@@ -426,8 +428,8 @@
   }
   .hero-frame.f-workspace {
     /* near-square (1080×1000 ≈ 1.08), lower-right, mid-depth */
-    bottom: 4%; right: -6%;
-    width: 38%;
+    bottom: 6%; right: 4%;
+    width: 34%;
     aspect-ratio: 1.08;
     --tz: -20px;
     --rotx:  -6deg;
@@ -437,8 +439,8 @@
   }
   .hero-frame.f-peevy-chat {
     /* portrait phone (1080×2140 ≈ 0.505), upper-right, closest */
-    top: -2%; right: 4%;
-    width: 28%;
+    top: 4%; right: 8%;
+    width: 24%;
     aspect-ratio: 0.505;
     --tz:  40px;
     --rotx:   4deg;
@@ -476,22 +478,39 @@
     from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
     to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   }
-  .hero-peevy canvas { width: 100%; height: 100%; display: block; }
+  .hero-peevy canvas {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; height: 100%;
+    display: block;
+  }
 
   @media (max-width: 720px) {
-    /* mobile: keep the two most-distinctive frames (workspace + peevy-chat),
-       drop the backs so Peevy keeps its focal weight. */
-    .hero-frame.f-pricing,
-    .hero-frame.f-landing { display: none; }
+    /* mobile: keep all 4 frames, tightened to a 2×2-ish cluster around Peevy.
+       Landscapes (pricing, workspace) keep more width; portraits (landing,
+       peevy-chat) stay narrower so their natural tall aspect doesn't dominate. */
+    .hero-frame.f-pricing {
+      top: 4%; left: -4%;
+      width: 44%;
+      --tz: -100px; --rotx:  6deg; --roty:  20deg; --rotz: -7deg;
+    }
+    .hero-frame.f-landing {
+      bottom: 4%; left: 2%;
+      width: 26%;
+      --tz:  -50px; --rotx: -3deg; --roty:  12deg; --rotz: -10deg;
+    }
     .hero-frame.f-workspace {
-      width: 46%; bottom: 6%; right: -8%;
-      --tz: -10px;  --rotx: -6deg; --roty: -14deg; --rotz:  8deg;
+      bottom: 4%; right: -4%;
+      width: 42%;
+      --tz:  -10px; --rotx: -6deg; --roty: -14deg; --rotz:  7deg;
     }
     .hero-frame.f-peevy-chat {
-      width: 34%; top: 2%; right: 2%;
-      --tz:  30px;  --rotx:  3deg; --roty: -18deg; --rotz:  4deg;
+      top: 2%; right: 2%;
+      width: 26%;
+      --tz:   35px; --rotx:  3deg; --roty: -18deg; --rotz:  4deg;
     }
-    .hero-peevy { width: 50%; }
+    .hero-peevy { width: 48%; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -2315,10 +2334,20 @@
       }
       fitCanvas();
       let resizeRaf = null;
-      window.addEventListener('resize', () => {
+      const scheduleFit = () => {
         if (resizeRaf) cancelAnimationFrame(resizeRaf);
         resizeRaf = requestAnimationFrame(fitCanvas);
-      });
+      };
+      window.addEventListener('resize', scheduleFit);
+      // Also refit when the canvas's own box resizes — covers the entrance
+      // animation finishing (scale 0.7 → 1), grid reflow, and parent transform
+      // settling. Without this, the hero Peevy was initializing at the scaled-
+      // down size and rendering as a flat cutoff blob after the animation
+      // resolved. ResizeObserver fires once the layout has actually committed.
+      if (typeof ResizeObserver !== 'undefined') {
+        const ro = new ResizeObserver(scheduleFit);
+        ro.observe(canvas);
+      }
 
       const POINTS = 80;
       function drawPeevy(ts) {
