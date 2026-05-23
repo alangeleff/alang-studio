@@ -357,89 +357,152 @@
     font-weight: 600;
   }
 
-  /* ---- hero stack: layered PostVomit UI frames + floating Peevy mascot ----
-     Replaces the old single-stage .hero-pv-showcase. Four real product
-     screens fanned like cards on a desk, with Peevy floating uncontained
-     in front — proves the work is real on first glance. */
-  .hero-stack {
+  /* ---- hero stage: floating frames in real 3D space, Peevy as focal center ----
+     Each PostVomit screen sits at its OWN natural aspect ratio + position +
+     depth + tilt. .hero-stack is the 3D perspective context (children
+     translate in Z and rotate on X/Y/Z to feel like real planes in space).
+     .hero-peevy is a 2D sibling on top — the prominent focal point.
+     Composition reference: the .sv-bundle "Founder Identity Kit" visual. */
+  .hero-stage {
     position: relative;
     width: 100%;
-    aspect-ratio: 5/4;
-    max-width: 560px;
+    aspect-ratio: 1;
+    max-width: 580px;
     margin-left: auto;
   }
   @media (max-width: 980px) {
-    .hero-stack { margin: 0 auto; max-width: 460px; }
+    .hero-stage { margin: 0 auto; max-width: 460px; }
+  }
+  .hero-stack {
+    position: absolute;
+    inset: 0;
+    perspective: 1200px;
+    perspective-origin: 50% 45%;
+    transform-style: preserve-3d;
   }
   .hero-frame {
     position: absolute;
-    top: 50%; left: 50%;
-    width: 38%;
-    aspect-ratio: 4/5;
-    border-radius: 16px;
+    border-radius: 14px;
     overflow: hidden;
     background: #0a0a14;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.10);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.06),
-      0 24px 50px -16px rgba(0,0,0,0.75),
-      0 8px 18px -8px rgba(0,0,0,0.55);
-    transform-origin: center;
+      inset 0 1px 0 rgba(255,255,255,0.08),
+      0 30px 60px -18px rgba(0,0,0,0.78),
+      0 12px 22px -8px rgba(0,0,0,0.55);
+    transform-origin: center center;
     opacity: 0;
-    transform: translate(-50%, -50%);
-    animation: heroFrameIn 0.95s var(--ease) both;
+    animation: heroFrameIn 1.1s var(--ease) both;
+    backface-visibility: hidden;
   }
   .hero-frame img {
     width: 100%; height: 100%;
     display: block;
     object-fit: cover;
-    object-position: top center;
+    object-position: center;
   }
-  /* fanned positions — custom props feed the keyframe end-state */
-  .hero-frame.f1 { z-index: 1; --tx: -72%; --ty: -28%; --rot: -10deg; animation-delay: 0.10s; }
-  .hero-frame.f2 { z-index: 2; --tx: -30%; --ty: -42%; --rot:  -3deg; animation-delay: 0.20s; }
-  .hero-frame.f3 { z-index: 3; --tx:  10%; --ty: -28%; --rot:   4deg; animation-delay: 0.30s; }
-  .hero-frame.f4 { z-index: 4; --tx:  46%; --ty: -38%; --rot:  10deg; animation-delay: 0.40s; }
+  /* per-frame: natural aspect ratio + anchor + 3D transform recipe */
+  .hero-frame.f-pricing {
+    /* landscape (1080×925 ≈ 1.17), upper-left, furthest back */
+    top: 2%; left: -6%;
+    width: 40%;
+    aspect-ratio: 1.17;
+    --tz: -120px;
+    --rotx:   6deg;
+    --roty:  22deg;
+    --rotz:  -6deg;
+    animation-delay: 0.10s;
+  }
+  .hero-frame.f-landing {
+    /* portrait phone (1080×1992 ≈ 0.542), lower-left, mid-back */
+    bottom: -4%; left: 2%;
+    width: 24%;
+    aspect-ratio: 0.542;
+    --tz: -60px;
+    --rotx:  -4deg;
+    --roty:  14deg;
+    --rotz:  -9deg;
+    animation-delay: 0.22s;
+  }
+  .hero-frame.f-workspace {
+    /* near-square (1080×1000 ≈ 1.08), lower-right, mid-depth */
+    bottom: 4%; right: -6%;
+    width: 38%;
+    aspect-ratio: 1.08;
+    --tz: -20px;
+    --rotx:  -6deg;
+    --roty: -12deg;
+    --rotz:   7deg;
+    animation-delay: 0.34s;
+  }
+  .hero-frame.f-peevy-chat {
+    /* portrait phone (1080×2140 ≈ 0.505), upper-right, closest */
+    top: -2%; right: 4%;
+    width: 28%;
+    aspect-ratio: 0.505;
+    --tz:  40px;
+    --rotx:   4deg;
+    --roty: -16deg;
+    --rotz:   5deg;
+    animation-delay: 0.46s;
+  }
   @keyframes heroFrameIn {
-    from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
-    to   { opacity: 1; transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) rotate(var(--rot)); }
-  }
-  @media (max-width: 720px) {
-    /* mobile: only the front two frames; back two hidden to declutter */
-    .hero-frame { width: 50%; }
-    .hero-frame.f1, .hero-frame.f2 { display: none; }
-    .hero-frame.f3 { --tx: -20%; --ty: -32%; --rot: -4deg; }
-    .hero-frame.f4 { --tx:  22%; --ty: -32%; --rot:  6deg; }
+    from {
+      opacity: 0;
+      transform: translateZ(-260px) rotateX(var(--rotx)) rotateY(var(--roty)) rotateZ(var(--rotz)) scale(0.86);
+    }
+    to {
+      opacity: 1;
+      transform: translateZ(var(--tz)) rotateX(var(--rotx)) rotateY(var(--roty)) rotateZ(var(--rotz));
+    }
   }
 
-  /* floating Peevy — uncontained, bottom-right of the stack */
+  /* Peevy — focal center, large, on top, 2D sibling outside the 3D stack */
   .hero-peevy {
     position: absolute;
-    width: 28%;
+    width: 44%;
     aspect-ratio: 1;
-    bottom: -4%;
-    right: -2%;
-    z-index: 5;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
     pointer-events: none;
-    filter: drop-shadow(0 14px 30px rgba(200,251,80,0.30));
+    filter:
+      drop-shadow(0 22px 48px rgba(200,251,80,0.45))
+      drop-shadow(0 8px 18px rgba(200,251,80,0.30));
     opacity: 0;
-    transform: translateY(22px) scale(0.85);
-    animation: heroPeevyIn 0.95s var(--ease) 0.55s both;
+    animation: heroPeevyIn 1.1s var(--ease) 0.6s both;
   }
   @keyframes heroPeevyIn {
-    from { opacity: 0; transform: translateY(22px) scale(0.85); }
-    to   { opacity: 1; transform: translateY(0)   scale(1); }
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   }
-  .hero-peevy canvas {
-    width: 100%; height: 100%;
-    display: block;
-  }
+  .hero-peevy canvas { width: 100%; height: 100%; display: block; }
+
   @media (max-width: 720px) {
-    .hero-peevy { width: 32%; bottom: -6%; right: 0%; }
+    /* mobile: keep the two most-distinctive frames (workspace + peevy-chat),
+       drop the backs so Peevy keeps its focal weight. */
+    .hero-frame.f-pricing,
+    .hero-frame.f-landing { display: none; }
+    .hero-frame.f-workspace {
+      width: 46%; bottom: 6%; right: -8%;
+      --tz: -10px;  --rotx: -6deg; --roty: -14deg; --rotz:  8deg;
+    }
+    .hero-frame.f-peevy-chat {
+      width: 34%; top: 2%; right: 2%;
+      --tz:  30px;  --rotx:  3deg; --roty: -18deg; --rotz:  4deg;
+    }
+    .hero-peevy { width: 50%; }
   }
+
   @media (prefers-reduced-motion: reduce) {
-    .hero-frame { animation: none; opacity: 1; transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) rotate(var(--rot)); }
-    .hero-peevy { animation: none; opacity: 1; transform: translateY(0) scale(1); }
+    .hero-frame {
+      animation: none; opacity: 1;
+      transform: translateZ(var(--tz)) rotateX(var(--rotx)) rotateY(var(--roty)) rotateZ(var(--rotz));
+    }
+    .hero-peevy {
+      animation: none; opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
   }
 
   /* ---------------- showcase ---------------- */
@@ -1618,22 +1681,26 @@
         </div>
       </div>
 
-      <!-- Hero stack: 4 PostVomit screens fanned like cards on a desk, with
-           Peevy floating uncontained in the foreground. Real product UI proof
-           on first glance. Existing .peevy-canvas JS (line ~2155) picks up
+      <!-- Hero stage: 4 PostVomit screens floating in real 3D space at their
+           own natural aspect ratios, Peevy as the prominent focal center.
+           .hero-stack is the perspective context (children get translateZ +
+           rotateX/Y/Z). .hero-peevy is a 2D sibling on top — the only flat
+           element. Existing .peevy-canvas JS (line ~2155) picks up the
            #heroPvCanvas automatically. -->
-      <div class="hero-stack" aria-label="PostVomit — real product screens with floating Peevy mascot">
-        <div class="hero-frame f1" aria-hidden="true">
-          <img src="/art/postvomit/pricing.png" alt="" loading="eager"/>
-        </div>
-        <div class="hero-frame f2" aria-hidden="true">
-          <img src="/art/postvomit/workspace.png" alt="" loading="eager"/>
-        </div>
-        <div class="hero-frame f3" aria-hidden="true">
-          <img src="/art/postvomit/landing.png" alt="" loading="eager"/>
-        </div>
-        <div class="hero-frame f4">
-          <img src="/art/postvomit/peevy-chat.png" alt="PostVomit Peevy chat overlay on the workspace screen" loading="eager"/>
+      <div class="hero-stage" aria-label="PostVomit — real product screens floating around the Peevy mascot">
+        <div class="hero-stack">
+          <div class="hero-frame f-pricing" aria-hidden="true">
+            <img src="/art/postvomit/pricing.png" alt="" loading="eager"/>
+          </div>
+          <div class="hero-frame f-landing" aria-hidden="true">
+            <img src="/art/postvomit/landing.png" alt="" loading="eager"/>
+          </div>
+          <div class="hero-frame f-workspace" aria-hidden="true">
+            <img src="/art/postvomit/workspace.png" alt="" loading="eager"/>
+          </div>
+          <div class="hero-frame f-peevy-chat">
+            <img src="/art/postvomit/peevy-chat.png" alt="PostVomit Peevy chat overlay on the workspace screen" loading="eager"/>
+          </div>
         </div>
         <div class="hero-peevy" aria-hidden="true">
           <canvas class="peevy-canvas" id="heroPvCanvas"></canvas>
