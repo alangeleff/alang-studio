@@ -1722,7 +1722,13 @@
           </div>
         </div>
         <div class="hero-peevy" aria-hidden="true">
-          <canvas class="peevy-canvas" id="heroPvCanvas"></canvas>
+          <!-- Hardcoded width/height locks the backing buffer at 400×400 in
+               buffer coords. CSS stretches it to fit the parent. This makes
+               the canvas fully immune to the layout-race that was leaving it
+               stuck at the entrance-animation scaled-down init size. The
+               peevy IIFE detects these attrs and takes the "locked" code path
+               (no fitCanvas, no resize listeners). -->
+          <canvas class="peevy-canvas" id="heroPvCanvas" width="400" height="400"></canvas>
         </div>
       </div>
     </div>
@@ -2325,7 +2331,24 @@
 
     function startPeevy(canvas) {
       const ctx = canvas.getContext('2d');
+
+      // Two modes:
+      //
+      //   LOCKED  — canvas has explicit HTML width/height attributes. The
+      //             backing buffer is fixed at those values; CSS stretches it
+      //             to fit the parent. No resize listeners, no layout reads.
+      //             This is the canonical peevy.html pattern (width="200" on
+      //             the canvas) and is fully immune to layout-race conditions
+      //             like the hero entrance animation, which was leaving the
+      //             responsive path stuck with a too-small init buffer.
+      //
+      //   RESPONSIVE — no HTML width/height attrs. Backing buffer tracks
+      //             display × DPR for crisp rendering. Used by the showcase-
+      //             tile thumbnail where there's no entrance-animation race.
+      const isLocked = canvas.hasAttribute('width') && canvas.hasAttribute('height');
+
       function fitCanvas() {
+        if (isLocked) return;
         const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
         const rect = canvas.getBoundingClientRect();
         canvas.width  = Math.max(1, Math.round(rect.width  * dpr));
@@ -2333,26 +2356,34 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
       fitCanvas();
-      let resizeRaf = null;
-      const scheduleFit = () => {
-        if (resizeRaf) cancelAnimationFrame(resizeRaf);
-        resizeRaf = requestAnimationFrame(fitCanvas);
-      };
-      window.addEventListener('resize', scheduleFit);
-      // Also refit when the canvas's own box resizes — covers the entrance
-      // animation finishing (scale 0.7 → 1), grid reflow, and parent transform
-      // settling. Without this, the hero Peevy was initializing at the scaled-
-      // down size and rendering as a flat cutoff blob after the animation
-      // resolved. ResizeObserver fires once the layout has actually committed.
-      if (typeof ResizeObserver !== 'undefined') {
-        const ro = new ResizeObserver(scheduleFit);
-        ro.observe(canvas);
+
+      if (!isLocked) {
+        let resizeRaf = null;
+        const scheduleFit = () => {
+          if (resizeRaf) cancelAnimationFrame(resizeRaf);
+          resizeRaf = requestAnimationFrame(fitCanvas);
+        };
+        window.addEventListener('resize', scheduleFit);
+        if (typeof ResizeObserver !== 'undefined') {
+          const ro = new ResizeObserver(scheduleFit);
+          ro.observe(canvas);
+        }
       }
 
       const POINTS = 80;
       function drawPeevy(ts) {
-        const rect = canvas.getBoundingClientRect();
-        const W = rect.width, H = rect.height;
+        // Locked canvases draw in their fixed buffer coords; responsive
+        // canvases draw in display CSS coords (the ctx.setTransform set by
+        // fitCanvas applies the DPR scale).
+        let W, H;
+        if (isLocked) {
+          W = canvas.width;
+          H = canvas.height;
+        } else {
+          const rect = canvas.getBoundingClientRect();
+          W = rect.width;
+          H = rect.height;
+        }
         if (W < 4 || H < 4) { requestAnimationFrame(drawPeevy); return; }
         const cx = W / 2, cy = H / 2;
         const baseR = Math.min(W, H) * 0.28;
