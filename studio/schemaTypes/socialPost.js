@@ -40,38 +40,45 @@ export default defineType({
       title: 'Embed Code',
       type: 'text',
       description: 'Paste the raw embed HTML from X or Facebook. Only used when type = embed.',
+      hidden: ({document}) => document?.type !== 'embed',
     }),
     defineField({
       name: 'name',
-      title: 'Display Name',
+      title: 'Display Name / Label',
       type: 'string',
+      description: 'Shown on custom cards. For embeds, use this as an internal label to identify the entry.',
     }),
     defineField({
       name: 'handle',
       title: 'Handle (@username)',
       type: 'string',
+      hidden: ({document}) => document?.type !== 'card',
     }),
     defineField({
       name: 'pfpUrl',
       title: 'Profile Picture URL',
       type: 'url',
+      hidden: ({document}) => document?.type !== 'card',
     }),
     defineField({
       name: 'body',
       title: 'Post Body',
       type: 'text',
       description: 'Post text content. Used for custom card type.',
+      hidden: ({document}) => document?.type !== 'card',
     }),
     defineField({
       name: 'postUrl',
       title: 'Link to Original Post',
       type: 'url',
       validation: (R) => R.required(),
+      hidden: ({document}) => document?.type !== 'card',
     }),
     defineField({
       name: 'date',
       title: 'Post Date',
       type: 'date',
+      hidden: ({document}) => document?.type !== 'card',
     }),
     defineField({
       name: 'order',
@@ -82,8 +89,19 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'name',
-      subtitle: 'handle',
+      platform: 'platform',
+      type: 'type',
+      name: 'name',
+      handle: 'handle',
+      order: 'order',
+    },
+    prepare({ platform, type, name, handle, order }) {
+      const title = name ? name : platform ? platform.toUpperCase() : 'Post'
+      const subtitle = type === 'card' && handle ? handle : type === 'embed' ? 'Embed' : ''
+      return {
+        title: order != null ? `${order}. ${title}` : title,
+        subtitle,
+      }
     },
   },
 })
