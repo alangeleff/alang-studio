@@ -1905,6 +1905,143 @@
     line-height: 1.6;
   }
 
+  /* ---------------- kind words (Sanity social proof feed) ---------------- */
+  .kw-section {
+    padding: 110px 0;
+    border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 720px) { .kw-section { padding: 80px 0; } }
+
+  .kw-header {
+    max-width: 720px;
+    margin: 0 auto 56px;
+    text-align: center;
+  }
+  .kw-header .eyebrow { justify-content: center; }
+  .kw-header .eyebrow::before { display: none; }
+  .kw-header h2 {
+    margin: 18px 0 14px;
+    font-size: clamp(34px, 4.4vw, 52px);
+    font-weight: 300;
+    font-variation-settings: "SOFT" 60;
+  }
+  .kw-header h2 em { color: var(--gold); font-style: italic; font-variation-settings: "SOFT" 100; }
+  .kw-header .sub {
+    color: var(--ink-3);
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .kw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 22px;
+    align-items: start;
+  }
+
+  .kw-card {
+    position: relative;
+    background: #0f0f1a;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 22px 22px 20px;
+    transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+    color: var(--ink-2);
+    overflow: hidden;
+  }
+  .kw-card:hover {
+    border-color: rgba(255,255,255,0.18);
+    transform: translateY(-2px);
+  }
+
+  .kw-platform-icon {
+    position: absolute;
+    top: 18px; right: 18px;
+    width: 18px; height: 18px;
+    color: var(--ink-3);
+    opacity: 0.7;
+    transition: opacity 0.25s var(--ease), color 0.25s var(--ease);
+  }
+  .kw-card:hover .kw-platform-icon { opacity: 1; color: var(--ink-2); }
+  .kw-platform-icon svg { width: 100%; height: 100%; display: block; }
+
+  /* Card-type post */
+  .kw-card .kw-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 36px 14px 0;
+  }
+  .kw-card .kw-pfp {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--canvas-3);
+    border: 1px solid var(--rule-2);
+    flex-shrink: 0;
+  }
+  .kw-card .kw-pfp-fallback {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--canvas-3);
+    border: 1px solid var(--rule-2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-3);
+    font-family: var(--mono);
+    font-size: 14px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .kw-card .kw-name {
+    font-family: var(--sans);
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    line-height: 1.25;
+  }
+  .kw-card .kw-handle {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    color: var(--ink-3);
+    line-height: 1.3;
+    margin-top: 2px;
+  }
+  .kw-card .kw-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    white-space: pre-wrap;
+    margin: 0 0 16px;
+    overflow-wrap: anywhere;
+  }
+  .kw-card .kw-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+  }
+  .kw-card .kw-date { color: var(--ink-3); }
+  .kw-card .kw-link {
+    color: var(--gold);
+    border-bottom: 1px solid rgba(224,178,64,0.35);
+    padding-bottom: 1px;
+    transition: border-color 0.2s var(--ease);
+  }
+  .kw-card .kw-link:hover { border-bottom-color: var(--gold); }
+
+  /* Embed-type post — wrap native X/Facebook embeds in the same shell.
+     Reset their max-width so they fill the card. */
+  .kw-card .kw-embed { margin: 0; }
+  .kw-card .kw-embed > * { max-width: 100% !important; margin: 0 !important; }
+  .kw-card .kw-embed iframe { max-width: 100% !important; }
+  .kw-card .kw-embed blockquote { background: transparent !important; border: none !important; }
+
   /* ---------------- reveal on scroll ---------------- */
   .reveal {
     opacity: 0;
@@ -2450,6 +2587,20 @@
   </div>
 </section>
 
+<!-- ============== KIND WORDS (Sanity social proof feed) ============== -->
+<!-- Hidden by default. JS fetches from the Sanity public dataset and only
+     unhides the section if at least one socialPost comes back. -->
+<section class="kw-section" id="kindwords" hidden>
+  <div class="wrap">
+    <div class="kw-header reveal">
+      <span class="eyebrow">Kind words</span>
+      <h2>What people are <em>saying</em>.</h2>
+      <p class="sub">Posts found in the wild. Lightly curated, never paid.</p>
+    </div>
+    <div class="kw-grid" id="kwGrid"></div>
+  </div>
+</section>
+
 <!-- ============== INTAKE FORM ============== -->
 <section class="form-section" id="start">
   <div class="wrap">
@@ -2952,6 +3103,152 @@
         }
       }
     });
+  })();
+
+  // ----------------- kind words (Sanity social proof feed) -----------------
+  // Fetches socialPost documents from the public Sanity dataset and renders
+  // either native embeds (X / Facebook) or custom cards (everything else),
+  // all sharing the same outer card shell. Section stays hidden if no posts
+  // come back so the layout doesn't show an empty state.
+  (function () {
+    const section = document.getElementById('kindwords');
+    const grid = document.getElementById('kwGrid');
+    if (!section || !grid) return;
+
+    const SANITY_PROJECT = '5itftb7u';
+    const SANITY_DATASET = 'production';
+    const QUERY = '*[_type=="socialPost"]|order(order asc)';
+    const ENDPOINT = `https://${SANITY_PROJECT}.api.sanity.io/v2024-01-01/data/query/${SANITY_DATASET}?query=${encodeURIComponent(QUERY)}`;
+
+    // Minimal monochrome platform icons (currentColor + 24x24 viewbox).
+    const ICONS = {
+      x: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+      facebook: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>',
+      instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+      threads: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.7 11.18a8.7 8.7 0 0 0-.32-.14c-.19-3.45-2.07-5.43-5.23-5.45h-.04c-1.89 0-3.46.81-4.43 2.28l1.74 1.19c.72-1.09 1.85-1.33 2.69-1.33h.03c1.06 0 1.85.31 2.36.92.37.44.61 1.05.74 1.83a13.6 13.6 0 0 0-3-.15c-3.02.17-4.96 1.93-4.83 4.37.07 1.24.68 2.3 1.74 3 .89.59 2.03.88 3.21.81 1.57-.09 2.8-.69 3.66-1.78.65-.83 1.07-1.9 1.25-3.25.74.45 1.29 1.04 1.6 1.74.51 1.2.55 3.17-1.06 4.78-1.4 1.4-3.09 2.01-5.65 2.03-2.84-.02-4.98-.93-6.37-2.7C3.49 17.78 2.79 15.54 2.76 12c.03-3.54.73-5.78 2.04-7.42 1.4-1.77 3.54-2.68 6.37-2.7 2.86.02 5.04.93 6.48 2.71.71.87 1.24 1.97 1.59 3.25l1.97-.53c-.43-1.58-1.1-2.95-2-4.07C17.43 1.07 14.75-.04 11.18 0c-3.56-.04-6.21 1.07-8.04 3.36C1.5 5.45.71 8.04.68 12v.01c.03 3.96.82 6.55 2.46 8.64 1.83 2.28 4.48 3.39 8.04 3.36 3.16-.02 5.38-.85 7.21-2.68 2.4-2.4 2.33-5.4 1.54-7.25-.57-1.32-1.65-2.41-3.12-3.13M11.92 16.5c-1.3.07-2.66-.52-2.73-1.78-.05-.94.66-1.99 2.81-2.11.25-.02.49-.02.73-.02.78 0 1.5.08 2.16.22-.25 3.06-1.7 3.6-2.97 3.69"/></svg>',
+      tiktok: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.6a8.16 8.16 0 0 0 4.77 1.52V6.69h-1.84z"/></svg>',
+      linkedin: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>',
+    };
+
+    const PLATFORM_LABEL = {
+      x: 'X',
+      facebook: 'Facebook',
+      instagram: 'Instagram',
+      threads: 'Threads',
+      tiktok: 'TikTok',
+      linkedin: 'LinkedIn',
+    };
+
+    function esc(s) {
+      return String(s ?? '').replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+    }
+
+    function platformIcon(platform) {
+      const svg = ICONS[platform] || '';
+      const label = PLATFORM_LABEL[platform] || platform || '';
+      return `<span class="kw-platform-icon" role="img" aria-label="${esc(label)}">${svg}</span>`;
+    }
+
+    function formatDate(isoDate) {
+      if (!isoDate) return '';
+      const d = new Date(isoDate);
+      if (isNaN(d.getTime())) return '';
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function buildCardPost(post) {
+      const handleClean = post.handle ? String(post.handle).replace(/^@/, '') : '';
+      const initials = (post.name || handleClean || '?').trim().charAt(0).toUpperCase();
+      const pfp = post.pfpUrl
+        ? `<img class="kw-pfp" src="${esc(post.pfpUrl)}" alt="${esc(post.name || handleClean)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'kw-pfp-fallback',textContent:'${esc(initials)}'}))">`
+        : `<span class="kw-pfp-fallback">${esc(initials)}</span>`;
+      const nameLine = post.name ? `<div class="kw-name">${esc(post.name)}</div>` : '';
+      const handleLine = handleClean ? `<div class="kw-handle">@${esc(handleClean)}</div>` : '';
+      const body = post.body ? `<p class="kw-body">${esc(post.body)}</p>` : '';
+      const date = formatDate(post.date);
+      const link = post.postUrl
+        ? `<a class="kw-link" href="${esc(post.postUrl)}" target="_blank" rel="noopener noreferrer">View post →</a>`
+        : '';
+
+      return `
+        <article class="kw-card">
+          ${platformIcon(post.platform)}
+          <div class="kw-author">
+            ${pfp}
+            <div>${nameLine}${handleLine}</div>
+          </div>
+          ${body}
+          <div class="kw-footer">
+            <span class="kw-date">${esc(date)}</span>
+            ${link}
+          </div>
+        </article>
+      `;
+    }
+
+    function buildEmbedPost(post) {
+      const date = formatDate(post.date);
+      const link = post.postUrl
+        ? `<a class="kw-link" href="${esc(post.postUrl)}" target="_blank" rel="noopener noreferrer">View post →</a>`
+        : '';
+      const footer = (date || link)
+        ? `<div class="kw-footer"><span class="kw-date">${esc(date)}</span>${link}</div>`
+        : '';
+      // Embed HTML comes from a trusted source (Alan's own Sanity dataset).
+      return `
+        <article class="kw-card">
+          ${platformIcon(post.platform)}
+          <div class="kw-embed">${post.embedCode || ''}</div>
+          ${footer}
+        </article>
+      `;
+    }
+
+    function loadScriptOnce(id, src) {
+      if (document.getElementById(id)) return;
+      const s = document.createElement('script');
+      s.id = id;
+      s.src = src;
+      s.async = true;
+      s.charset = 'utf-8';
+      document.body.appendChild(s);
+    }
+
+    function activateEmbeds(posts) {
+      const hasTwitter = posts.some(p => p.type === 'embed' && p.platform === 'x');
+      const hasFacebook = posts.some(p => p.type === 'embed' && p.platform === 'facebook');
+      if (hasTwitter) {
+        loadScriptOnce('twitter-wjs', 'https://platform.twitter.com/widgets.js');
+        if (window.twttr && window.twttr.widgets) window.twttr.widgets.load(grid);
+      }
+      if (hasFacebook) {
+        loadScriptOnce('facebook-jssdk', 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0');
+        if (window.FB && window.FB.XFBML) window.FB.XFBML.parse(grid);
+      }
+    }
+
+    fetch(ENDPOINT, { mode: 'cors' })
+      .then(r => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))
+      .then(json => {
+        const posts = Array.isArray(json && json.result) ? json.result : [];
+        if (!posts.length) return;
+        grid.innerHTML = posts.map(p => p.type === 'embed' ? buildEmbedPost(p) : buildCardPost(p)).join('');
+        section.hidden = false;
+        // Re-arm the reveal observer for the header now that the section is visible.
+        const header = section.querySelector('.reveal');
+        if (header && 'IntersectionObserver' in window) {
+          const io = new IntersectionObserver((entries, obs) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+          }, { threshold: 0.15 });
+          io.observe(header);
+        } else if (header) {
+          header.classList.add('in');
+        }
+        activateEmbeds(posts);
+      })
+      .catch(() => { /* leave the section hidden on any failure */ });
   })();
 
   // ----------------- year stamp -----------------
