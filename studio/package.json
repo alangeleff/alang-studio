@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Sanity Studio for alang.studio — content backing the /work Kind Words section.",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "sanity dev",
     "start": "sanity start",

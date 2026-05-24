@@ -1,3 +1,3 @@
-import socialPost from './socialPost.js'
+const { socialPost } = require('./socialPost')
 
-export const schemaTypes = [socialPost]
+module.exports = { schemaTypes: [socialPost] }

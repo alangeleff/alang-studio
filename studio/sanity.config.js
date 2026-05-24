@@ -1,15 +1,15 @@
-import { defineConfig } from 'sanity'
-import { structureTool } from 'sanity/structure'
-import { visionTool } from '@sanity/vision'
-import { schemaTypes } from './schemas/index.js'
+const { defineConfig } = require('sanity')
+const { structureTool } = require('sanity/structure')
+const { visionTool } = require('@sanity/vision')
+const { schemaTypes } = require('./schemas')
 
-export default defineConfig({
+module.exports = defineConfig({
   name: 'default',
-  title: 'alang.studio',
+  title: 'alang-studio',
   projectId: '5itftb7u',
   dataset: 'production',
   plugins: [structureTool(), visionTool()],
   schema: {
-    types: schemaTypes
-  }
+    types: schemaTypes,
+  },
 })
