@@ -4,23 +4,25 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#0D0D18" />
-<title>Work with me — Alan Geleff</title>
-<meta name="description" content="Brand identity, landing pages, and full product worlds for founders who want it shipped, not pitched." />
+<title>Work — alang.studio</title>
+<meta name="description" content="Brand identity, landing pages, and custom web builds by Alan Geleff. See the work and start a project." />
 <link rel="canonical" href="https://alang.studio/work" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://alang.studio/work" />
-<meta property="og:title" content="Work with me — Alan Geleff" />
-<meta property="og:description" content="Brand identity, landing pages, and full product worlds for founders who want it shipped, not pitched." />
-<meta property="og:image" content="https://alang.studio/og-image.png" />
+<meta property="og:title" content="Work — alang.studio" />
+<meta property="og:description" content="Brand identity, landing pages, and custom web builds by Alan Geleff. See the work and start a project." />
+<meta property="og:image" content="https://alang.studio/og-work.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:site_name" content="alang.studio" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Work with me — Alan Geleff" />
-<meta name="twitter:description" content="Brand identity, landing pages, and full product worlds for founders who want it shipped, not pitched." />
-<meta name="twitter:image" content="https://alang.studio/og-image.png" />
+<meta name="twitter:title" content="Work — alang.studio" />
+<meta name="twitter:description" content="Brand identity, landing pages, and custom web builds by Alan Geleff. See the work and start a project." />
+<meta name="twitter:image" content="https://alang.studio/og-work.png" />
 
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -749,6 +751,45 @@
   .tile-ho .tile-meta .name { color: #4A3F66; }
   .tile-ho .tile-meta .desc { color: #6E5D8F; opacity: 0.74; }
 
+  /* Founder's-own chip — overlays the PV/BP tile visuals to flag them as
+     Alan's own companies, not client work. Dark pill with lime accent +
+     pulsing dot matches the "live and mine" energy. */
+  .founder-chip {
+    position: absolute;
+    top: 12px; left: 12px;
+    z-index: 4;
+    padding: 5px 10px 5px 9px;
+    background: rgba(13,13,24,0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--lime);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border: 1px solid rgba(200,251,80,0.30);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    box-shadow: 0 4px 18px -8px rgba(0,0,0,0.6);
+  }
+  .founder-chip .founder-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--lime);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(200,251,80,0.55);
+    animation: founderChipPulse 2.6s ease-in-out infinite;
+  }
+  @keyframes founderChipPulse {
+    0%, 100% { box-shadow: 0 0 0 0   rgba(200,251,80,0.55); }
+    50%      { box-shadow: 0 0 0 5px rgba(200,251,80,0);    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .founder-chip .founder-dot { animation: none; }
+  }
+
   /* PostVomit tile - Peevy mascot above, wordmark below, both centered.
      Lime spotlight repositioned to embrace the Peevy mascot at top-center. */
   .tile-pv .tile-visual {
@@ -1062,10 +1103,8 @@
     --brand-ink: #6E5D8F;
     --brand-rule: rgba(110,93,143,0.18);
   }
-  /* No href yet — the tile is a status card, not a link. When the brand-guide URL
-     goes live, add an href and this :not([href]) rule disables itself. */
-  .tile-ho:not([href]) { cursor: default; }
-  /* "Launching Soon" status pill — pulsing dot stands in for the action arrow */
+  /* "Launching Soon" status pill — pulsing dot signals live/pre-launch status,
+     diagonal arrow at the end matches the external-link affordance used on PV/BP/PA. */
   .tile-ho .status-cta { gap: 6px; }
   .tile-ho .status-dot {
     width: 6px; height: 6px;
@@ -1084,7 +1123,21 @@
     .tile-ho .status-dot { animation: none; }
   }
 
-  /* Pua Aloha hover preserved from .tile rules */
+  /* Hana Olu + Pua Aloha — both link to live external presences. Layer a
+     hover underline on top of the existing tile-cta gap+arrow shift so the
+     "this is clickable" affordance is unmistakable. */
+  .tile-ho .tile-meta .cta,
+  .tile-pa .tile-meta .cta {
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: color 0.25s var(--ease), gap 0.25s var(--ease), text-decoration-color 0.25s var(--ease);
+  }
+  .tile-ho:hover .tile-meta .cta,
+  .tile-pa:hover .tile-meta .cta {
+    text-decoration-color: currentColor;
+  }
 
   /* ---------------- services — alternating rows ---------------- */
   .serv-section {
@@ -1948,8 +2001,9 @@
     <div class="showcase-grid">
 
       <!-- PostVomit -->
-      <a class="tile tile-pv reveal" href="https://postvomit.com" target="_blank" rel="noopener" aria-label="PostVomit — full brand and product">
+      <a class="tile tile-pv reveal" href="https://postvomit.com" target="_blank" rel="noopener" aria-label="PostVomit — Alan's own brand and product">
         <div class="tile-visual">
+          <span class="founder-chip" aria-label="Founder's own project"><span class="founder-dot" aria-hidden="true"></span>Founder's own</span>
           <canvas class="peevy-canvas" id="pvCanvas"></canvas>
           <img class="pv-wordmark" src="/art/postvomit-wordmark.png" alt="PostVomit wordmark with P icon" loading="lazy">
         </div>
@@ -1972,8 +2026,9 @@
       </a>
 
       <!-- Bad People — official Fiend constellation, lifted from index.html -->
-      <a class="tile tile-bp reveal" href="https://badpeople.cards" target="_blank" rel="noopener" aria-label="Bad People — game and brand">
+      <a class="tile tile-bp reveal" href="https://badpeople.cards" target="_blank" rel="noopener" aria-label="Bad People — Alan's own game and brand">
         <div class="tile-visual">
+          <span class="founder-chip" aria-label="Founder's own project"><span class="founder-dot" aria-hidden="true"></span>Founder's own</span>
           <div class="fiend-constellation" aria-hidden="true">
             <div class="fiend center"><img src="/art/fiends/devil-icon.svg" alt=""></div>
             <div class="fiend-orbit top">    <div><img src="/art/fiends/phoenix-icon.svg" alt=""></div></div>
@@ -2020,13 +2075,14 @@
               <span style="background:#ECE9E4"></span>
               <span style="background:#6E5D8F"></span>
             </div>
-            <span class="cta status-cta"><span class="status-dot" aria-hidden="true"></span>Launching Soon</span>
+            <span class="cta status-cta"><span class="status-dot" aria-hidden="true"></span>Launching Soon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
           </div>
         </div>
       </a>
 
-      <!-- Pua Aloha — phantom-style SVG (sprig + italic wordmark + FLORAL STUDIO + tagline + footer marks, all in one composition) -->
-      <a class="tile tile-concept tile-pa reveal" href="#start" aria-label="Pua Aloha — Hawaiian floral studio">
+      <!-- Pua Aloha — phantom-style SVG (sprig + italic wordmark + FLORAL STUDIO + tagline + footer marks, all in one composition).
+           Links to the brand's Instagram (live presence ahead of the website launch). -->
+      <a class="tile tile-concept tile-pa reveal" href="https://www.instagram.com/puaaloha00_" target="_blank" rel="noopener noreferrer" aria-label="Pua Aloha — Hawaiian floral studio (view on Instagram, opens in new tab)">
         <span class="concept-chip">Brand · Pua Aloha</span>
         <div class="concept-art"><img src="/art/phantoms/pua-aloha.svg" alt="Pua Aloha — cream florist brand vignette with sprig, italic wordmark and FLORAL STUDIO subhead"/></div>
         <div class="tile-meta">
@@ -2042,7 +2098,7 @@
               <span style="background:#F6EFE3"></span>
               <span style="background:#B86E4B"></span>
             </div>
-            <span class="cta">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            <span class="cta">View on Instagram <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
           </div>
         </div>
       </a>
