@@ -1,9 +1,15 @@
-const { defineCliConfig } = require('@sanity/cli')
+import {defineCliConfig} from 'sanity/cli'
 
-module.exports = defineCliConfig({
+export default defineCliConfig({
   api: {
     projectId: '5itftb7u',
     dataset: 'production'
   },
-  studioHost: 'alang-studio'
+  deployment: {
+    /**
+     * Enable auto-updates for studios.
+     * Learn more at https://www.sanity.io/docs/studio/latest-version-of-sanity#k47faf43faf56
+     */
+    autoUpdates: true,
+  }
 })
