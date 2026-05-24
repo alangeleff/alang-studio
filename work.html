@@ -1681,6 +1681,177 @@
     text-transform: uppercase; color: var(--ink-3);
   }
 
+  /* ---------------- service CTA cluster + secondary link ---------------- */
+  .serv-ctas {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .serv-cta-secondary {
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 4px 0;
+    margin: 0;
+    cursor: pointer;
+    font-family: var(--sans);
+    color: var(--ink-2);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s var(--ease);
+  }
+  .serv-cta-secondary::after {
+    content: "→";
+    font-size: 14px;
+    transition: transform 0.2s var(--ease);
+  }
+  .serv-cta-secondary:hover { color: var(--lime); }
+  .serv-cta-secondary:hover::after { transform: translateX(3px); }
+  .serv-cta-secondary:focus-visible {
+    outline: 1px solid var(--lime);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  /* ---------------- tier breakdown modal ---------------- */
+  body.modal-open { overflow: hidden; }
+
+  .tier-modal {
+    position: fixed; inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.28s var(--ease), visibility 0.28s var(--ease);
+  }
+  .tier-modal.open { opacity: 1; visibility: visible; }
+
+  .tier-modal-overlay {
+    position: absolute; inset: 0;
+    background: rgba(6, 6, 14, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .tier-modal-card {
+    position: relative;
+    background: #0f0f1a;
+    border: 1px solid var(--rule-2);
+    border-radius: 18px;
+    padding: 48px 44px 40px;
+    max-width: 620px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: 0 40px 100px -20px rgba(0,0,0,0.8);
+    transform: translateY(16px) scale(0.985);
+    transition: transform 0.32s var(--ease);
+  }
+  .tier-modal.open .tier-modal-card { transform: translateY(0) scale(1); }
+
+  @media (max-width: 640px) {
+    .tier-modal { padding: 16px; }
+    .tier-modal-card { padding: 40px 24px 28px; border-radius: 14px; }
+  }
+
+  .tier-modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 36px; height: 36px;
+    border: 1px solid var(--rule-2);
+    background: transparent;
+    border-radius: 50%;
+    color: var(--ink-2);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+  .tier-modal-close:hover { color: var(--ink); border-color: var(--lime); }
+  .tier-modal-close:focus-visible {
+    outline: 1px solid var(--lime);
+    outline-offset: 3px;
+  }
+
+  .tier-modal-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--lime);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .tier-modal-title {
+    font-family: var(--serif);
+    font-size: clamp(26px, 3.4vw, 34px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 300;
+    font-variation-settings: "SOFT" 60;
+    margin: 0 0 28px;
+    color: var(--ink);
+  }
+
+  .tier-list {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .tier-list li {
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .tier-list li:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .tier-name {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--lime);
+    letter-spacing: -0.005em;
+    margin: 0 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .tier-name .tier-tag {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink-3);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .tier-desc {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin: 0;
+  }
+  .tier-note {
+    font-size: 13px;
+    color: var(--ink-3);
+    margin: 24px 0 0;
+    padding-top: 20px;
+    border-top: 1px dashed var(--rule);
+    line-height: 1.6;
+  }
+
   /* ---------------- reveal on scroll ---------------- */
   .reveal {
     opacity: 0;
@@ -2031,15 +2202,15 @@
         <span class="eyebrow">Brand Identity</span>
         <h2 class="serv-h2">Make a brand <em>actually feel</em> like something.</h2>
         <p class="serv-body">
-          From a single-deliverable audition at <span class="price">$500</span> — a wordmark concept, a colour direction, one focused piece you can put in your deck — all the way up to a complete brand system: naming, logo suite, palette, type stack, voice, and application mockups at <span class="price">$8,000</span>. Most projects land at the <strong>$4,500 Standard</strong>, which gets you a finished identity ready to ship.
+          Four tiers — from a <span class="price">$500</span> Proof concept up to an <span class="price">$8,000</span> full Brand Book with naming, voice, and real-world mockups. Most projects land at <strong>System</strong> — <span class="price">$4,500</span> for a finished identity ready to ship.
         </p>
-        <p class="serv-body">
-          Starter at <span class="price">$2,500</span> covers logo, palette, and a one-page brand sheet. Premium at <span class="price">$8,000</span> is the works — built like a brand book a designer could pick up tomorrow.
-        </p>
-        <a href="#start" class="serv-cta">
-          Start a brand project
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-        </a>
+        <div class="serv-ctas">
+          <a href="#start" class="serv-cta">
+            Start a brand project
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+          <button type="button" class="serv-cta-secondary" data-modal-open="modal-brand">View full breakdown</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2063,15 +2234,15 @@
         <span class="eyebrow">Landing Page</span>
         <h2 class="serv-h2">One page that <em>actually converts</em>.</h2>
         <p class="serv-body">
-          A standalone landing page — copy, design, build, deployed — for <span class="price">$2,500</span>. Bundled with a brand project, it's <span class="price">+$1,500</span>. Either way you get a page that holds its own next to anything in your category, written so the right person knows to click and the wrong person knows to leave.
+          Copy, design, hand-coded, deployed. <span class="price">$2,500</span> standalone — or <span class="price">+$1,500</span> bundled with a System or Book brand. Two rounds of refinements baked in.
         </p>
-        <p class="serv-body">
-          Built static, fast, hosted wherever you want. No CMS unless you ask. Conversion isn't a JavaScript framework — it's a sentence in the right place.
-        </p>
-        <a href="#start" class="serv-cta">
-          Start a landing page
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-        </a>
+        <div class="serv-ctas">
+          <a href="#start" class="serv-cta">
+            Start a landing page
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+          <button type="button" class="serv-cta-secondary" data-modal-open="modal-landing">View full breakdown</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2105,15 +2276,15 @@
         <span class="eyebrow">Full Website</span>
         <h2 class="serv-h2">A site that <em>holds the whole story</em>.</h2>
         <p class="serv-body">
-          Small at <span class="price">$5,000</span> covers 3-5 pages — home, about, work, contact, maybe one more. Standard at <span class="price">$8,500</span> is 5-10 pages with deeper architecture, case studies, and the kind of system you can keep growing into. Anything bigger — multilingual, complex catalogues, custom CMS — starts at <span class="price">$12,000</span> and we scope it together.
+          Three sizes. <strong>Foundation</strong> at <span class="price">$5,000</span> for 3–5 pages. <strong>Platform</strong> at <span class="price">$8,500</span> scales to 5–10 with case studies. <strong>Custom</strong> from <span class="price">$12,000</span> — multilingual, catalogues, backend, scoped together. Hand-rolled, fast, yours to keep.
         </p>
-        <p class="serv-body">
-          All builds are hand-rolled, fast, and yours to keep. No SaaS lock-in. No theme dependencies. Hosting on Vercel by default — you own the repo.
-        </p>
-        <a href="#start" class="serv-cta">
-          Start a website project
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-        </a>
+        <div class="serv-ctas">
+          <a href="#start" class="serv-cta">
+            Start a website project
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+          <button type="button" class="serv-cta-secondary" data-modal-open="modal-site">View full breakdown</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2139,15 +2310,15 @@
         <span class="eyebrow">PWA Conversion</span>
         <h2 class="serv-h2">Make your site <em>feel like an app</em>.</h2>
         <p class="serv-body">
-          Take your existing site and turn it into an installable Progressive Web App — home-screen icon, offline mode, push-ready, splash screen, the works. Flat <span class="price">$2,500</span>, usually done inside a week. No app store, no Swift, no Apple tax.
+          Installable Progressive Web App — home-screen icon, offline mode, splash screen, push-ready. <span class="price">$2,500</span> standalone, or <span class="price">+$1,500</span> as an add-on when I'm building the site. No app store, no Swift, no Apple tax.
         </p>
-        <p class="serv-body">
-          Best for tools, dashboards, and any site you want people to <strong>open every day</strong> instead of forget. If you've got a Shopify or framework-locked stack, we'll scope first.
-        </p>
-        <a href="#start" class="serv-cta">
-          Convert my site to a PWA
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-        </a>
+        <div class="serv-ctas">
+          <a href="#start" class="serv-cta">
+            Convert my site to a PWA
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+          <button type="button" class="serv-cta-secondary" data-modal-open="modal-pwa">View full breakdown</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2209,15 +2380,15 @@
         <span class="eyebrow">Founder Identity Kit</span>
         <h2 class="serv-h2">Everything a <em>first-day founder</em> needs.</h2>
         <p class="serv-body">
-          The bundle, at <span class="price">$5,500</span>: a Standard brand identity, a landing page, and the PWA wrapper around it. By the end you've got a name, a look, a site that converts, and an installable app — enough that the next person you tell about the company can find you, install you, and remember you a week later.
+          Two bundles for founders shipping fresh. <strong>Launch Kit</strong> at <span class="price">$5,500</span> — System brand + landing page (saves $1,500). <strong>Full Launch</strong> at <span class="price">$6,500</span> — adds the PWA wrapper (saves $3,000). One stretch, one design language from logo to install.
         </p>
-        <p class="serv-body">
-          Saves about <strong>$1,500</strong> over buying the pieces separately. Built in one stretch, so the design language carries cleanly from logo to landing to product surface.
-        </p>
-        <a href="#start" class="serv-cta">
-          Start the Founder Identity Kit
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-        </a>
+        <div class="serv-ctas">
+          <a href="#start" class="serv-cta">
+            Start the Founder Identity Kit
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+          <button type="button" class="serv-cta-secondary" data-modal-open="modal-kit">View full breakdown</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2332,6 +2503,129 @@
     <div class="meta">© <span id="yr">2026</span> · Alan Geleff</div>
   </div>
 </footer>
+
+<!-- ============== TIER BREAKDOWN MODALS ============== -->
+
+<div class="tier-modal" id="modal-brand" role="dialog" aria-modal="true" aria-labelledby="modal-brand-title" aria-hidden="true">
+  <div class="tier-modal-overlay" data-modal-close></div>
+  <div class="tier-modal-card">
+    <button type="button" class="tier-modal-close" data-modal-close aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>
+    </button>
+    <span class="tier-modal-eyebrow">Brand Identity</span>
+    <h3 class="tier-modal-title" id="modal-brand-title">Full tier breakdown</h3>
+    <ul class="tier-list">
+      <li>
+        <h4 class="tier-name">Proof — $500</h4>
+        <p class="tier-desc">1 wordmark concept, 1 color direction, 1 look-and-feel comp. Offsets any upgrade — pay the remaining balance if you proceed.</p>
+      </li>
+      <li>
+        <h4 class="tier-name">Core — $2,500</h4>
+        <p class="tier-desc">Logo (primary lockup), color palette with codes, typography stack, 1-page brand sheet, SVG + PNG file delivery.</p>
+      </li>
+      <li>
+        <h4 class="tier-name">System — $4,500 <span class="tier-tag">Most projects land here</span></h4>
+        <p class="tier-desc">Full logo suite (primary + alternates), extended color system, typography hierarchy, usage guidelines, complete file suite.</p>
+      </li>
+      <li>
+        <h4 class="tier-name">Book — $8,000</h4>
+        <p class="tier-desc">Everything in System + naming, brand voice/tone, application mockups (4–8 real-world scenes), full Brand Book PDF.</p>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="tier-modal" id="modal-landing" role="dialog" aria-modal="true" aria-labelledby="modal-landing-title" aria-hidden="true">
+  <div class="tier-modal-overlay" data-modal-close></div>
+  <div class="tier-modal-card">
+    <button type="button" class="tier-modal-close" data-modal-close aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>
+    </button>
+    <span class="tier-modal-eyebrow">Landing Page</span>
+    <h3 class="tier-modal-title" id="modal-landing-title">Full tier breakdown</h3>
+    <ul class="tier-list">
+      <li>
+        <h4 class="tier-name">Standalone — $2,500</h4>
+        <p class="tier-desc">Copywriting, design, hand-coded build, deployed. No CMS, no third-party builders.</p>
+      </li>
+      <li>
+        <h4 class="tier-name">Bundled with System or Book — +$1,500</h4>
+        <p class="tier-desc">Brand assets already exist — efficiency passes to the client. (Not available with Proof or Core.)</p>
+      </li>
+    </ul>
+    <p class="tier-note">2 rounds of refinements included. Refinement Pass ($500) available for unlimited rounds beyond that.</p>
+  </div>
+</div>
+
+<div class="tier-modal" id="modal-site" role="dialog" aria-modal="true" aria-labelledby="modal-site-title" aria-hidden="true">
+  <div class="tier-modal-overlay" data-modal-close></div>
+  <div class="tier-modal-card">
+    <button type="button" class="tier-modal-close" data-modal-close aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>
+    </button>
+    <span class="tier-modal-eyebrow">Full Website</span>
+    <h3 class="tier-modal-title" id="modal-site-title">Full tier breakdown</h3>
+    <ul class="tier-list">
+      <li>
+        <h4 class="tier-name">Foundation — $5,000 <span class="tier-tag">3–5 pages</span></h4>
+        <p class="tier-desc">Home, About, Work, Contact + one more. Full responsive design, navigation, copywriting, deployment.</p>
+      </li>
+      <li>
+        <h4 class="tier-name">Platform — $8,500 <span class="tier-tag">5–10 pages</span></h4>
+        <p class="tier-desc">Everything in Foundation + case study system, deeper architecture, subpage structure.</p>
+      </li>
+      <li>
+        <h4 class="tier-name">Custom — From $12,000</h4>
+        <p class="tier-desc">Multilingual, complex catalogues, e-commerce (custom only), backend/database layer. Scoped together.</p>
+      </li>
+    </ul>
+    <p class="tier-note">2 rounds of refinements included. Refinement Pass ($500) available thereafter.</p>
+  </div>
+</div>
+
+<div class="tier-modal" id="modal-pwa" role="dialog" aria-modal="true" aria-labelledby="modal-pwa-title" aria-hidden="true">
+  <div class="tier-modal-overlay" data-modal-close></div>
+  <div class="tier-modal-card">
+    <button type="button" class="tier-modal-close" data-modal-close aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>
+    </button>
+    <span class="tier-modal-eyebrow">PWA Conversion</span>
+    <h3 class="tier-modal-title" id="modal-pwa-title">Full tier breakdown</h3>
+    <ul class="tier-list">
+      <li>
+        <h4 class="tier-name">Standalone — $2,500</h4>
+        <p class="tier-desc">Web app manifest, service worker, app icons (all sizes), splash screen, push notification infrastructure, install prompt, cross-browser testing.</p>
+      </li>
+      <li>
+        <h4 class="tier-name">Add-on to any website build — $1,500</h4>
+        <p class="tier-desc">PWA scaffolding is pre-built into every site. The add-on covers brand finishing + activation + final testing.</p>
+      </li>
+    </ul>
+    <p class="tier-note">Requires an existing custom-built site — cannot retrofit onto Shopify, Squarespace, etc.</p>
+  </div>
+</div>
+
+<div class="tier-modal" id="modal-kit" role="dialog" aria-modal="true" aria-labelledby="modal-kit-title" aria-hidden="true">
+  <div class="tier-modal-overlay" data-modal-close></div>
+  <div class="tier-modal-card">
+    <button type="button" class="tier-modal-close" data-modal-close aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>
+    </button>
+    <span class="tier-modal-eyebrow">Founder Identity Kit</span>
+    <h3 class="tier-modal-title" id="modal-kit-title">Full tier breakdown</h3>
+    <ul class="tier-list">
+      <li>
+        <h4 class="tier-name">Launch Kit — $5,500 <span class="tier-tag">Saves $1,500</span></h4>
+        <p class="tier-desc">Brand Identity: System + landing page. Individual total: $7,000.</p>
+      </li>
+      <li>
+        <h4 class="tier-name">Full Launch — $6,500 <span class="tier-tag">Saves $3,000</span></h4>
+        <p class="tier-desc">Brand Identity: System + landing page + PWA. Individual total: $9,500.</p>
+      </li>
+    </ul>
+    <p class="tier-note">All kits include 2 rounds of refinements. Refinement Pass ($500) available thereafter.</p>
+  </div>
+</div>
 
 <script>
   // ----------------- reveal on scroll -----------------
@@ -2544,6 +2838,72 @@
         btn.disabled = false;
         btn.innerHTML = origBtn;
         err.classList.add('show');
+      }
+    });
+  })();
+
+  // ----------------- tier breakdown modals -----------------
+  (function () {
+    const triggers = document.querySelectorAll('[data-modal-open]');
+    if (!triggers.length) return;
+
+    const FOCUSABLE = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    let currentModal = null;
+    let lastFocused = null;
+
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      lastFocused = document.activeElement;
+      currentModal = modal;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      requestAnimationFrame(() => {
+        const focusables = modal.querySelectorAll(FOCUSABLE);
+        if (focusables.length) focusables[0].focus();
+      });
+    }
+
+    function closeModal() {
+      if (!currentModal) return;
+      currentModal.classList.remove('open');
+      currentModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      if (lastFocused && typeof lastFocused.focus === 'function') {
+        lastFocused.focus();
+      }
+      currentModal = null;
+      lastFocused = null;
+    }
+
+    triggers.forEach(t => {
+      t.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(t.getAttribute('data-modal-open'));
+      });
+    });
+
+    document.querySelectorAll('[data-modal-close]').forEach(el => {
+      el.addEventListener('click', closeModal);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!currentModal) return;
+      if (e.key === 'Escape') { closeModal(); return; }
+      if (e.key === 'Tab') {
+        const focusables = Array.from(currentModal.querySelectorAll(FOCUSABLE));
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const active = document.activeElement;
+        if (e.shiftKey && (active === first || !currentModal.contains(active))) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && active === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     });
   })();
