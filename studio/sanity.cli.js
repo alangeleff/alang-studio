@@ -1,10 +1,9 @@
-import {defineCliConfig} from 'sanity/cli'
+import { defineCliConfig } from 'sanity/cli'
 
 export default defineCliConfig({
   api: {
     projectId: '5itftb7u',
-    dataset: 'production',
+    dataset: 'production'
   },
-  studioHost: 'alang-studio',
-  autoUpdates: true,
+  studioHost: 'alang-studio'
 })
