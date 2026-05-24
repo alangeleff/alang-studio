@@ -166,6 +166,7 @@
     transition: color 0.2s var(--ease);
   }
   .nav-links a:hover { color: var(--ink); }
+  .nav-links a.active { color: var(--ink); }
   @media (max-width: 720px) { .nav-links { display: none; } .nav-inner { padding: 14px 20px; } }
 
   /* ---------------- buttons ---------------- */
@@ -2071,6 +2072,13 @@
       </span>
       <span>Alan Geleff</span>
     </a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/#work">The work</a>
+      <a href="/#projects">Projects</a>
+      <a href="/#writing">Writing</a>
+      <a href="/work" class="active" aria-current="page">Work with me</a>
+    </div>
   </div>
 </nav>
 
