@@ -55,9 +55,9 @@ export default defineType({
       hidden: ({document}) => document?.type !== 'card',
     }),
     defineField({
-      name: 'pfpUrl',
-      title: 'Profile Picture URL',
-      type: 'url',
+      name: 'pfp',
+      title: 'Profile Picture',
+      type: 'image',
       hidden: ({document}) => document?.type !== 'card',
     }),
     defineField({

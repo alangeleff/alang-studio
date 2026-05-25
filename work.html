@@ -1989,9 +1989,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--ink-3);
+    color: var(--ink);
     font-family: var(--mono);
     font-size: 14px;
+    font-weight: 600;
     text-transform: uppercase;
     flex-shrink: 0;
   }
@@ -3125,7 +3126,7 @@
 
     const SANITY_PROJECT = '5itftb7u';
     const SANITY_DATASET = 'production';
-    const QUERY = '*[_type=="socialPost"]|order(order asc)';
+    const QUERY = '*[_type=="socialPost"]|order(order asc){..., "pfpUrl": pfp.asset->url}';
     const ENDPOINT = `https://${SANITY_PROJECT}.api.sanity.io/v2024-01-01/data/query/${SANITY_DATASET}?query=${encodeURIComponent(QUERY)}`;
 
     // Minimal monochrome platform icons (currentColor + 24x24 viewbox).
