@@ -397,10 +397,32 @@
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
   }
+  /* Marquee tile sizing — explicit dimensions on desktop so every
+     visual area is exactly 320×320 (matches the 1:1 phantom SVG
+     aspect ratio). With box geometry locked square, object-fit:
+     contain produces zero letterbox at the visual edges, and every
+     tile type (PV / BP / Hana Olu / Pua Aloha / concepts) has the
+     same visual height regardless of how meta content varies. */
   .marquee .tile,
   .marquee .tile-concept {
     width: 320px;
+    height: 535px;
     flex-shrink: 0;
+    aspect-ratio: auto;
+  }
+  .marquee .tile .tile-visual,
+  .marquee .tile-concept .concept-art {
+    height: 320px;
+    flex: 0 0 320px;
+  }
+  .marquee .tile-pv .tile-visual,
+  .marquee .tile-bp .tile-visual {
+    height: 320px;
+    flex: 0 0 320px;
+  }
+  .marquee .tile-meta {
+    flex: 1;
+    min-height: 215px;
   }
   @media (max-width: 600px) {
     .marquee .tile,
