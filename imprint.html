@@ -543,9 +543,12 @@
     font-size: 12.5px; color: var(--ink-3); line-height: 1.5;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     overflow: hidden;
     margin: 0 0 8px;
+    /* Reserve 3 lines on every card so the meta section + visual area
+       stay the same height across the row, regardless of desc length. */
+    min-height: 4.5em;
   }
   .tile-meta .tagline {
     font-family: var(--serif); font-style: italic;
@@ -647,18 +650,19 @@
     position: relative; z-index: 2;
   }
 
-  /* Founder chip — re-themed for cream. */
+  /* Founder chip — re-themed for cream. Anchored bottom-right of the
+     tile visual so it reads as a subtle indicator, not a header. */
   .founder-chip {
     position: absolute;
-    top: 12px; left: 12px;
+    bottom: 10px; right: 10px;
     z-index: 4;
-    padding: 5px 10px 5px 9px;
+    padding: 4px 8px 4px 7px;
     background: rgba(245, 241, 235, 0.95);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     color: var(--ink);
     font-family: var(--sans);
-    font-size: 9px;
+    font-size: 7.5px;
     letter-spacing: 0.20em;
     text-transform: uppercase;
     font-weight: 600;
@@ -666,11 +670,11 @@
     border: 1px solid var(--rule);
     display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
     box-shadow: 0 4px 18px -8px rgba(26,23,20,0.4);
   }
   .founder-chip .founder-dot {
-    width: 5px; height: 5px;
+    width: 4px; height: 4px;
     border-radius: 50%;
     background: var(--brown);
     flex-shrink: 0;
@@ -679,7 +683,7 @@
   }
   @keyframes founderChipPulse {
     0%, 100% { box-shadow: 0 0 0 0   rgba(140,115,85,0.55); }
-    50%      { box-shadow: 0 0 0 5px rgba(140,115,85,0);    }
+    50%      { box-shadow: 0 0 0 4px rgba(140,115,85,0);    }
   }
 
   /* Fiend constellation — verbatim from work.html, scoped here. */
@@ -789,15 +793,15 @@
   }
   .tile-concept .concept-chip {
     position: absolute;
-    top: 12px; left: 12px;
+    bottom: 10px; right: 10px;
     z-index: 4;
-    padding: 5px 10px;
+    padding: 4px 8px;
     background: rgba(245, 241, 235, 0.92);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     color: var(--ink-2);
     font-family: var(--sans);
-    font-size: 9px;
+    font-size: 7.5px;
     font-weight: 600;
     letter-spacing: 0.20em;
     text-transform: uppercase;
