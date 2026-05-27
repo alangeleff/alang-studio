@@ -1669,6 +1669,29 @@
     text-transform: uppercase; color: var(--ink-3);
     font-weight: 500;
   }
+  footer .legal-links {
+    margin-top: 18px;
+    display: inline-flex;
+    gap: 18px;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+  footer .legal-links a {
+    color: var(--ink-3);
+    transition: color 0.2s var(--ease);
+  }
+  footer .legal-links a:hover { color: var(--brown); }
+  footer .legal-links .sep {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--ink-3);
+    opacity: 0.5;
+  }
 
   /* ---------------- modal ---------------- */
   body.modal-open { overflow: hidden; }
@@ -2692,6 +2715,11 @@
       Back to alang.studio
     </a>
     <div class="meta">© <span id="yr">2026</span> Imprint Studio LLC. All rights reserved.</div>
+    <div class="legal-links">
+      <a href="/privacy">Privacy Policy</a>
+      <span class="sep"></span>
+      <a href="/terms">Terms of Service</a>
+    </div>
   </div>
 </footer>
 

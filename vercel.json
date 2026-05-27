@@ -1,6 +1,8 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/imprint", "destination": "/imprint.html" }
+    { "source": "/imprint", "destination": "/imprint.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" }
   ]
 }

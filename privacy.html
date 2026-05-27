@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#F5F1EB" />
+<title>Privacy Policy — Imprint by Alan Geleff</title>
+<meta name="description" content="How Imprint by Alan Geleff handles your information. Plain language, no dark patterns." />
+<link rel="canonical" href="https://alang.studio/privacy" />
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --cream: #F5F1EB;
+    --cream-2: #EDE7DD;
+    --surface: #FFFFFF;
+    --warm-gray: #D6CFC6;
+    --warm-gray-2: #C3BBB0;
+    --ink: #1A1714;
+    --ink-2: #3D3833;
+    --ink-3: #6E6862;
+    --brown: #8C7355;
+    --brown-2: #A38A6B;
+    --brown-soft: rgba(140, 115, 85, 0.10);
+    --rule: rgba(26, 23, 20, 0.10);
+    --rule-2: rgba(26, 23, 20, 0.18);
+    --serif: "Lora", "Times New Roman", serif;
+    --sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  body { min-height: 100vh; }
+  ::selection { background: var(--brown); color: var(--cream); }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+  /* nav */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    backdrop-filter: blur(14px) saturate(110%);
+    -webkit-backdrop-filter: blur(14px) saturate(110%);
+    background: rgba(245, 241, 235, 0.78);
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.3s var(--ease);
+  }
+  .nav-inner {
+    max-width: 1180px; margin: 0 auto;
+    padding: 14px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px;
+  }
+  .nav-mark {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--ink);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .nav-mark .nav-mark-img {
+    width: 48px; height: 48px;
+    display: block;
+    flex-shrink: 0;
+  }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--ink-2);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.2s var(--ease);
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 9px 18px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--cream) !important;
+    border: 1px solid var(--ink);
+    transition: all 0.2s var(--ease);
+  }
+  .nav-cta:hover { background: var(--brown); border-color: var(--brown); color: var(--cream) !important; }
+  @media (max-width: 720px) { .nav-links { display: none; } .nav-inner { padding: 14px 20px; } }
+
+  /* prose */
+  .doc {
+    padding-top: 140px;
+    padding-bottom: 100px;
+  }
+  .doc-head {
+    max-width: 720px;
+    margin: 0 auto 56px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brown);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .eyebrow::before,
+  .eyebrow::after {
+    content: "";
+    width: 22px; height: 1px;
+    background: var(--brown);
+    opacity: 0.7;
+  }
+  .doc-h1 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5.6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0 0 18px;
+  }
+  .doc-h1 em { color: var(--brown); font-style: italic; font-weight: 500; }
+  .doc-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(17px, 1.8vw, 20px);
+    color: var(--ink-2);
+    line-height: 1.55;
+    margin: 0 auto;
+    max-width: 56ch;
+  }
+  .doc-updated {
+    margin-top: 24px;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+
+  .prose {
+    max-width: 680px;
+    margin: 0 auto;
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: var(--ink-2);
+  }
+  .prose h2 {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.4vw, 28px);
+    line-height: 1.25;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 56px 0 14px;
+  }
+  .prose h2:first-child { margin-top: 0; }
+  .prose p { margin: 0 0 18px; }
+  .prose a {
+    color: var(--brown);
+    border-bottom: 1px solid rgba(140, 115, 85, 0.4);
+    padding-bottom: 1px;
+    transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+  .prose a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .prose strong { color: var(--ink); font-weight: 600; }
+  .prose ul {
+    margin: 0 0 18px;
+    padding-left: 22px;
+  }
+  .prose li { margin-bottom: 8px; }
+  .prose li::marker { color: var(--brown); }
+
+  /* footer */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 56px 0 56px;
+    text-align: center;
+    background: var(--cream);
+  }
+  footer .footer-mark {
+    width: 96px; height: 96px;
+    margin: 0 auto 10px;
+    opacity: 0.9;
+  }
+  footer .footer-wordmark {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  footer .footer-attr {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-2);
+    margin-bottom: 22px;
+  }
+  footer .back {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--serif); font-style: italic;
+    font-size: 15px; color: var(--brown);
+    border-bottom: 1px solid rgba(140,115,85,0.4);
+    padding-bottom: 2px;
+    transition: all 0.25s var(--ease);
+  }
+  footer .back:hover {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+    transform: translateX(-2px);
+  }
+  footer .meta {
+    margin-top: 22px; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-3);
+    font-weight: 500;
+  }
+  footer .legal-links {
+    margin-top: 18px;
+    display: inline-flex;
+    gap: 18px;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+  footer .legal-links a {
+    color: var(--ink-3);
+    transition: color 0.2s var(--ease);
+  }
+  footer .legal-links a:hover { color: var(--brown); }
+  footer .legal-links .sep {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--ink-3);
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/imprint" class="nav-mark" aria-label="Imprint — home">
+      <img class="nav-mark-img" src="/art/imprint-mark.svg" alt="" aria-hidden="true" />
+      <span>Imprint</span>
+    </a>
+    <div class="nav-links">
+      <a href="/imprint#work">The work</a>
+      <a href="/imprint#services">Services</a>
+      <a href="/imprint#kindwords">Kind words</a>
+      <a href="/">alang.studio</a>
+      <a href="/imprint#start" class="nav-cta">Start a project</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== DOC ============== -->
+<section class="doc">
+  <div class="wrap">
+    <header class="doc-head">
+      <div class="eyebrow">Privacy</div>
+      <h1 class="doc-h1">Privacy <em>Policy</em></h1>
+      <p class="doc-sub">A short, honest read. No dark patterns, no data brokers, no surprises.</p>
+      <div class="doc-updated">Last updated · May 27, 2026</div>
+    </header>
+
+    <article class="prose">
+      <h2>What I collect</h2>
+      <p>If you reach out through the contact form on Imprint, I collect the things you type into it — your name, your email address, and whatever you tell me about your project. That's it.</p>
+      <p>The site uses Vercel's built-in analytics, which gives me a high-level view of how pages perform: anonymous page views, referrers, rough country-level location. No personal data, no fingerprinting, no third-party trackers.</p>
+
+      <h2>How I use it</h2>
+      <p>The information you submit through the contact form is used for one thing: so I can respond to your inquiry and have a conversation about your project. Analytics is used to understand which parts of the site are working and which need attention.</p>
+
+      <h2>What I don't do</h2>
+      <p>I don't sell your information. I don't share it with third parties. I don't run ad networks, retargeting pixels, or persistent tracking cookies beyond what Vercel needs for basic analytics. There's no mailing list you'll be quietly added to.</p>
+
+      <h2>How long I keep it</h2>
+      <p>Inquiry emails and project notes stick around for as long as it's reasonable for client communication — often well after a project wraps, because past clients sometimes come back with questions. If you'd rather your information not stay on file, you can ask me to delete it at any time.</p>
+
+      <h2>Your rights</h2>
+      <p>You can ask to see what I have, ask me to correct something, or ask me to delete it. Just email <a href="mailto:alan.geleff@gmail.com">alan.geleff@gmail.com</a> and I'll handle it directly.</p>
+
+      <h2>Questions</h2>
+      <p>If anything here is unclear, or you'd like more detail about how something works, email <a href="mailto:alan.geleff@gmail.com">alan.geleff@gmail.com</a>. A real person — me — will reply.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="wrap">
+    <img class="footer-mark" src="/art/imprint-mark.svg" alt="Imprint mark" />
+    <div class="footer-wordmark">Imprint</div>
+    <div class="footer-attr">by Alan Geleff</div>
+    <a href="/imprint" class="back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Back to Imprint
+    </a>
+    <div class="meta">© <span id="yr">2026</span> Imprint Studio LLC. All rights reserved.</div>
+    <div class="legal-links">
+      <a href="/privacy">Privacy Policy</a>
+      <span class="sep"></span>
+      <a href="/terms">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
