@@ -359,13 +359,55 @@
     max-width: 60ch;
   }
 
-  .showcase-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+  /* Marquee carousels — replaces the prior 3-col grid.
+     Two horizontally scrolling rows (Active + Concept) with a slow,
+     ambient loop. Items are JS-cloned on load so the loop is seamless. */
+  .marquee-section { margin-top: 36px; }
+  .marquee-section + .marquee-section { margin-top: 56px; }
+  .marquee-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    opacity: 0.72;
+    margin: 0 0 16px;
+    padding-left: 2px;
   }
-  @media (max-width: 980px) { .showcase-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .showcase-grid { grid-template-columns: 1fr; gap: 20px; } }
+  .marquee {
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    animation: marqueeScroll 90s linear infinite;
+    will-change: transform;
+  }
+  .marquee--concept .marquee-track { animation-duration: 130s; }
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track { animation-play-state: paused; }
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee .tile,
+  .marquee .tile-concept {
+    width: 320px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 600px) {
+    .marquee .tile,
+    .marquee .tile-concept { width: 260px; }
+    .marquee-track { gap: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
 
   /* Tile shell — cream surface card with warm gray border.
      Each tile keeps its brand-specific palette via the per-brand classes
@@ -465,8 +507,10 @@
     width: 13px; height: 13px;
     border-radius: 50%;
     box-sizing: border-box;
-    border: 1px solid rgba(26,23,20,0.18);
-    box-shadow: inset 0 0 0 1px rgba(26,23,20,0.08);
+    border: 0;
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.28),
+      0 0 0 1px rgba(26,23,20,0.32);
   }
   .tile-meta .cta {
     display: inline-flex;
@@ -1182,12 +1226,17 @@
     border-radius: 12px;
     padding: 24px 22px 22px;
     transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 14px;
+    row-gap: 12px;
+    align-items: center;
+    min-height: 168px;
   }
   .vb-card:hover { border-color: var(--brown); transform: translateY(-2px); }
   .vb-icon {
+    grid-column: 1;
+    grid-row: 1;
     width: 36px; height: 36px;
     display: inline-flex;
     align-items: center;
@@ -1195,10 +1244,12 @@
     border-radius: 8px;
     background: var(--brown-soft);
     color: var(--brown);
-    margin-bottom: 4px;
+    flex-shrink: 0;
   }
   .vb-icon svg { width: 18px; height: 18px; }
   .vb-title {
+    grid-column: 2;
+    grid-row: 1;
     font-family: var(--serif);
     font-size: 18px;
     font-weight: 600;
@@ -1207,6 +1258,8 @@
     line-height: 1.3;
   }
   .vb-desc {
+    grid-column: 1 / -1;
+    grid-row: 2;
     font-size: 14px;
     line-height: 1.55;
     color: var(--ink-2);
@@ -1820,10 +1873,13 @@
       <p class="lede">No templates. No generic copy. Instead, every Imprint identity gets its own visual logic. A look that fits the founder and the vision behind them.</p>
     </div>
 
-    <div class="showcase-grid">
+    <div class="marquee-section reveal">
+      <div class="marquee-label">Active Projects</div>
+      <div class="marquee marquee--active">
+        <div class="marquee-track">
 
       <!-- PostVomit -->
-      <a class="tile tile-pv reveal" href="https://postvomit.com" target="_blank" rel="noopener" aria-label="PostVomit — Alan's own brand and product">
+      <a class="tile tile-pv" href="https://postvomit.com" target="_blank" rel="noopener" aria-label="PostVomit — Alan's own brand and product">
         <div class="tile-visual">
           <span class="founder-chip" aria-label="Founder's own project"><span class="founder-dot" aria-hidden="true"></span>Founder's own</span>
           <canvas class="peevy-canvas" id="pvCanvas"></canvas>
@@ -1848,7 +1904,7 @@
       </a>
 
       <!-- Bad People -->
-      <a class="tile tile-bp reveal" href="https://badpeople.cards" target="_blank" rel="noopener" aria-label="Bad People — Alan's own game and brand">
+      <a class="tile tile-bp" href="https://badpeople.cards" target="_blank" rel="noopener" aria-label="Bad People — Alan's own game and brand">
         <div class="tile-visual">
           <span class="founder-chip" aria-label="Founder's own project"><span class="founder-dot" aria-hidden="true"></span>Founder's own</span>
           <div class="fiend-constellation" aria-hidden="true">
@@ -1879,7 +1935,7 @@
       </a>
 
       <!-- Hana Olu -->
-      <a class="tile tile-concept tile-ho reveal" href="https://hanaolu.com" target="_blank" rel="noopener noreferrer" aria-label="Hana Olu — Hawaiian and Japanese natural body care, launching soon (opens in new tab)">
+      <a class="tile tile-concept tile-ho" href="https://hanaolu.com" target="_blank" rel="noopener noreferrer" aria-label="Hana Olu — Hawaiian and Japanese natural body care, launching soon (opens in new tab)">
         <span class="concept-chip">Brand · Hana Olu</span>
         <div class="concept-art"><img src="/art/phantoms/hana-olu.svg" alt="Hana Olu master wordmark on cream &mdash; two cherry blossoms flanking a flowing cursive hana&middot;olu lockup"/></div>
         <div class="tile-meta">
@@ -1901,7 +1957,7 @@
       </a>
 
       <!-- Pua Aloha -->
-      <a class="tile tile-concept tile-pa reveal" href="https://www.instagram.com/puaaloha00_" target="_blank" rel="noopener noreferrer" aria-label="Pua Aloha — Hawaiian floral studio (view on Instagram, opens in new tab)">
+      <a class="tile tile-concept tile-pa" href="https://www.instagram.com/puaaloha00_" target="_blank" rel="noopener noreferrer" aria-label="Pua Aloha — Hawaiian floral studio (view on Instagram, opens in new tab)">
         <span class="concept-chip">Brand · Pua Aloha</span>
         <div class="concept-art"><img src="/art/phantoms/pua-aloha.svg" alt="Pua Aloha — cream florist brand vignette with sprig, italic wordmark and FLORAL STUDIO subhead"/></div>
         <div class="tile-meta">
@@ -1922,8 +1978,17 @@
         </div>
       </a>
 
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee-section reveal">
+      <div class="marquee-label">Concept Brands</div>
+      <div class="marquee marquee--concept">
+        <div class="marquee-track">
+
       <!-- Carbide -->
-      <a class="tile tile-concept tile-carbide reveal" href="#start" aria-label="Carbide Coffee — concept brand">
+      <a class="tile tile-concept tile-carbide" href="#start" aria-label="Carbide Coffee — concept brand">
         <span class="concept-chip">Concept · Carbide</span>
         <div class="concept-art"><img src="/art/phantoms/carbide-coffee.svg" alt="Carbide Coffee — moody charcoal craft-roastery vignette"/></div>
         <div class="tile-meta">
@@ -1945,7 +2010,7 @@
       </a>
 
       <!-- Ribbon -->
-      <a class="tile tile-concept tile-ribbon reveal" href="#start" aria-label="Ribbon — concept brand">
+      <a class="tile tile-concept tile-ribbon" href="#start" aria-label="Ribbon — concept brand">
         <span class="concept-chip">Concept · Ribbon</span>
         <div class="concept-art"><img src="/art/phantoms/ribbon.svg" alt="Ribbon — minimal indigo B2B SaaS vignette"/></div>
         <div class="tile-meta">
@@ -1967,7 +2032,7 @@
       </a>
 
       <!-- Felt -->
-      <a class="tile tile-concept tile-felt reveal" href="#start" aria-label="Felt — concept brand">
+      <a class="tile tile-concept tile-felt" href="#start" aria-label="Felt — concept brand">
         <span class="concept-chip">Concept · Felt</span>
         <div class="concept-art"><img src="/art/phantoms/felt.svg" alt="Felt — warm character-forward pet brand vignette"/></div>
         <div class="tile-meta">
@@ -1989,7 +2054,7 @@
       </a>
 
       <!-- Tower -->
-      <a class="tile tile-concept tile-tower reveal" href="#start" aria-label="Tower — concept brand">
+      <a class="tile tile-concept tile-tower" href="#start" aria-label="Tower — concept brand">
         <span class="concept-chip">Concept · Tower</span>
         <div class="concept-art"><img src="/art/phantoms/tower.svg" alt="Tower — bold editorial quarterly publication vignette"/></div>
         <div class="tile-meta">
@@ -2011,7 +2076,7 @@
       </a>
 
       <!-- Loam -->
-      <a class="tile tile-concept tile-loam reveal" href="#start" aria-label="Loam — concept brand">
+      <a class="tile tile-concept tile-loam" href="#start" aria-label="Loam — concept brand">
         <span class="concept-chip">Concept · Loam</span>
         <div class="concept-art"><img src="/art/phantoms/loam.svg" alt="Loam — earthy slow-living artisan food vignette"/></div>
         <div class="tile-meta">
@@ -2033,7 +2098,7 @@
       </a>
 
       <!-- Iterate -->
-      <a class="tile tile-concept tile-iterate reveal" href="#start" aria-label="Iterate — concept brand">
+      <a class="tile tile-concept tile-iterate" href="#start" aria-label="Iterate — concept brand">
         <span class="concept-chip">Concept · Iterate</span>
         <div class="concept-art"><img src="/art/phantoms/iterate.svg" alt="Iterate — navy product-engineering vignette with concentric loop mark"/></div>
         <div class="tile-meta">
@@ -2054,7 +2119,10 @@
         </div>
       </a>
 
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -2460,6 +2528,26 @@
 </div>
 
 <script>
+  // ----------------- marquee clone (showcase carousels) -----------------
+  // Duplicate each track's children so the translateX(-50%) loop is seamless.
+  // Runs before the reveal observer + peevy so cloned tiles are visible and
+  // the cloned PV canvas is picked up by the peevy initializer below.
+  (function () {
+    document.querySelectorAll('.marquee-track').forEach(track => {
+      const originals = Array.from(track.children);
+      originals.forEach(node => {
+        const clone = node.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.setAttribute('tabindex', '-1');
+        clone.classList.remove('reveal', 'in');
+        if (clone.id) clone.removeAttribute('id');
+        clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+        clone.querySelectorAll('a, button').forEach(el => el.setAttribute('tabindex', '-1'));
+        track.appendChild(clone);
+      });
+    });
+  })();
+
   // ----------------- reveal on scroll -----------------
   (function () {
     const els = document.querySelectorAll('.reveal');
