@@ -1039,6 +1039,404 @@
     box-shadow: 0 14px 30px -10px rgba(244,185,78,0.55);
   }
 
+  /* ---------------- Imprint — brand identity studio ----------------
+     Cream "magazine page" insert that interrupts the dark canvas to
+     signal a different mode: editorial, identity-focused, premium.
+     Tokens are scoped to .proj-im so global tokens stay untouched. */
+  .proj-im {
+    --im-cream: #F5F1EB;
+    --im-cream-2: #EDE7DD;
+    --im-ink: #1A1714;
+    --im-ink-2: #3D3833;
+    --im-ink-3: #6E6862;
+    --im-brown: #8C7355;
+    --im-brown-2: #A38A6B;
+    --im-warm-gray: #D6CFC6;
+    --im-rule: rgba(26,23,20,0.10);
+    --im-rule-2: rgba(26,23,20,0.18);
+
+    background:
+      radial-gradient(900px 600px at 12% 0%, rgba(140,115,85,0.18), transparent 60%),
+      radial-gradient(700px 500px at 92% 100%, rgba(140,115,85,0.10), transparent 60%),
+      var(--im-cream);
+    color: var(--im-ink);
+    border-top: 0;
+    padding: 130px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Soft dark fades at the cream block's top/bottom edges so it lands on
+     the page like a printed insert rather than a hard color change. */
+  .proj-im::before,
+  .proj-im::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    height: 48px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .proj-im::before { top: 0;    background: linear-gradient(180deg, rgba(13,13,24,0.55), transparent); }
+  .proj-im::after  { bottom: 0; background: linear-gradient(0deg,   rgba(13,13,24,0.55), transparent); }
+  .proj-im .wrap { position: relative; z-index: 1; }
+
+  .proj-im .eyebrow { color: var(--im-brown); }
+  .proj-im .eyebrow::before { background: var(--im-brown); opacity: 0.7; }
+
+  .proj-im .proj-name {
+    text-align: left;
+    color: var(--im-ink);
+    font-style: italic;
+    font-weight: 400;
+    font-variation-settings: "SOFT" 80;
+    font-size: clamp(56px, 8vw, 104px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+  }
+  .proj-im .proj-name .byline {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(12px, 1vw, 14px);
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--im-ink-3);
+    margin-top: 18px;
+  }
+  .proj-im .proj-tagline {
+    color: var(--im-ink);
+    font-style: italic;
+    font-weight: 400;
+    font-variation-settings: "SOFT" 50;
+  }
+  .proj-im .proj-tagline em { color: var(--im-brown); font-style: italic; }
+  .proj-im .proj-sub { color: var(--im-ink-2); }
+
+  .im-ctas {
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .im-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--im-ink);
+    color: var(--im-cream);
+    border: 1px solid var(--im-ink);
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    transition: transform 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  }
+  .im-cta:hover {
+    background: var(--im-brown);
+    border-color: var(--im-brown);
+    transform: translateY(-1px);
+    box-shadow: 0 16px 32px -12px rgba(140,115,85,0.5);
+  }
+  .im-secondary {
+    font-family: var(--sans);
+    color: var(--im-brown);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid rgba(140,115,85,0.4);
+    padding-bottom: 2px;
+    transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+  }
+  .im-secondary:hover { color: var(--im-ink); border-color: var(--im-ink); }
+
+  /* ---- Imprint visual stage: spiral mark + floating brand cards ----
+     Same 3D-stack pattern as work.html's Peevy hero, but the focal
+     element is the Imprint spiral mark (warm brown glow) surrounded
+     by four small brand-deliverable cards. */
+  .imprint-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 560px;
+    margin-left: auto;
+  }
+  @media (max-width: 980px) { .imprint-stage { margin: 0 auto; max-width: 460px; } }
+
+  .imp-stack {
+    position: absolute;
+    inset: 0;
+    perspective: 1200px;
+    perspective-origin: 50% 45%;
+    transform-style: preserve-3d;
+  }
+
+  /* Central spiral mark — focal point with warm brown halo */
+  .imp-mark {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 44%; aspect-ratio: 1;
+    z-index: 10;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+  .imp-mark-inner {
+    position: absolute; inset: 0;
+    filter:
+      drop-shadow(0 22px 48px rgba(140,115,85,0.45))
+      drop-shadow(0 8px 18px rgba(140,115,85,0.32))
+      drop-shadow(0 0 1px rgba(26,23,20,0.18));
+    opacity: 0;
+    animation:
+      impMarkIn 1.1s var(--ease) 0.6s both,
+      impMarkBreath 6s ease-in-out 1.7s infinite;
+  }
+  .imp-mark img { width: 100%; height: 100%; display: block; }
+  /* radial warm halo behind the mark (under the SVG, above background) */
+  .imp-mark::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(140,115,85,0.22) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  @keyframes impMarkIn {
+    from { opacity: 0; transform: scale(0.78); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes impMarkBreath {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.025); }
+  }
+
+  /* Floating brand-deliverable cards (cream surfaces in 3D space) */
+  .imp-frame {
+    position: absolute;
+    background: var(--im-cream);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--im-rule);
+    box-shadow:
+      0 26px 52px -18px rgba(26,23,20,0.40),
+      0 10px 18px -6px rgba(26,23,20,0.22),
+      inset 0 1px 0 rgba(255,255,255,0.6);
+    transform-origin: center center;
+    opacity: 0;
+    animation: impFrameIn 1.1s var(--ease) both;
+    backface-visibility: hidden;
+    transition: border-color 0.25s var(--ease), filter 0.25s var(--ease);
+  }
+  .imp-frame:hover {
+    border-color: var(--im-brown);
+    filter: brightness(1.04);
+  }
+  @keyframes impFrameIn {
+    from {
+      opacity: 0;
+      transform: translateZ(-220px) rotateX(var(--rotx)) rotateY(var(--roty)) rotateZ(var(--rotz)) scale(0.86);
+    }
+    to {
+      opacity: 1;
+      transform: translateZ(var(--tz)) rotateX(var(--rotx)) rotateY(var(--roty)) rotateZ(var(--rotz));
+    }
+  }
+
+  /* Per-frame placement — anchored inward so all 4 cluster around the
+     spiral's glow radius rather than the outer container edges. */
+  .imp-f-spread {
+    /* editorial spread, upper-left, mid-back */
+    top: 4%; left: 0%;
+    width: 38%;
+    aspect-ratio: 1.3;
+    --tz: -50px; --rotx: 6deg; --roty: 22deg; --rotz: -7deg;
+    animation-delay: 0.10s;
+  }
+  .imp-f-palette {
+    /* palette card, upper-right, closest to viewer */
+    top: 6%; right: 2%;
+    width: 30%;
+    aspect-ratio: 0.85;
+    --tz: 40px; --rotx: 4deg; --roty: -18deg; --rotz: 6deg;
+    animation-delay: 0.34s;
+  }
+  .imp-f-logo {
+    /* logo lockup, lower-left, mid-depth */
+    bottom: 6%; left: 4%;
+    width: 30%;
+    aspect-ratio: 1.45;
+    --tz: -10px; --rotx: -5deg; --roty: 14deg; --rotz: 8deg;
+    animation-delay: 0.22s;
+  }
+  .imp-f-card {
+    /* business card / wordmark, lower-right */
+    bottom: 4%; right: 0%;
+    width: 36%;
+    aspect-ratio: 1.55;
+    --tz: -30px; --rotx: -6deg; --roty: -14deg; --rotz: -6deg;
+    animation-delay: 0.46s;
+  }
+
+  /* --- frame contents (tiny brand artifacts in cream/ink/brown) --- */
+  .imp-spread { display: flex; height: 100%; }
+  .imp-spread .l, .imp-spread .r {
+    flex: 1;
+    padding: 12px 14px;
+    display: flex; flex-direction: column;
+  }
+  .imp-spread .l {
+    background: var(--im-cream-2);
+    border-right: 1px solid var(--im-rule);
+    justify-content: space-between;
+  }
+  .imp-spread .lbl {
+    font-family: var(--sans); font-size: 7px;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--im-brown); font-weight: 600;
+  }
+  .imp-spread .big {
+    font-family: var(--serif);
+    font-size: 44px; line-height: 1;
+    color: var(--im-ink);
+    font-weight: 400;
+    font-style: italic;
+    font-variation-settings: "SOFT" 80;
+  }
+  .imp-spread .r .lines {
+    display: flex; flex-direction: column; gap: 4px;
+    margin-top: 8px;
+  }
+  .imp-spread .r .lines i {
+    display: block;
+    height: 3px;
+    background: var(--im-ink);
+    opacity: 0.18;
+    border-radius: 1px;
+  }
+  .imp-spread .r .lines i:nth-child(1) { width: 86%; }
+  .imp-spread .r .lines i:nth-child(2) { width: 72%; }
+  .imp-spread .r .lines i:nth-child(3) { width: 92%; }
+  .imp-spread .r .lines i:nth-child(4) { width: 64%; opacity: 0.35; background: var(--im-brown); height: 4px; }
+  .imp-spread .r .lines i:nth-child(5) { width: 80%; }
+  .imp-spread .r .lines i:nth-child(6) { width: 74%; }
+
+  .imp-palette {
+    height: 100%;
+    display: flex; flex-direction: column;
+    background: var(--im-cream);
+  }
+  .imp-palette .hd {
+    padding: 10px 12px 8px;
+    border-bottom: 1px solid var(--im-rule);
+  }
+  .imp-palette .hd .lbl {
+    font-family: var(--sans); font-size: 7px;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--im-brown); font-weight: 600;
+  }
+  .imp-palette .hd .nm {
+    font-family: var(--serif); font-style: italic;
+    font-size: 12px;
+    color: var(--im-ink); margin-top: 2px;
+  }
+  .imp-palette .grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .imp-palette .grid span {
+    display: block;
+    box-shadow: inset 0 0 0 0.5px rgba(26,23,20,0.10);
+  }
+  .imp-palette .grid span:nth-child(1) { background: var(--im-ink); }
+  .imp-palette .grid span:nth-child(2) { background: var(--im-brown); }
+  .imp-palette .grid span:nth-child(3) { background: var(--im-warm-gray); }
+  .imp-palette .grid span:nth-child(4) { background: var(--im-cream-2); }
+
+  .imp-logo {
+    height: 100%;
+    display: grid; place-items: center;
+    background: var(--im-cream);
+    padding: 12px;
+    position: relative;
+  }
+  .imp-logo::after {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid var(--im-rule);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  .imp-logo .mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--im-ink);
+    letter-spacing: -0.025em;
+    font-variation-settings: "SOFT" 80;
+    position: relative; z-index: 1;
+    text-align: center;
+    line-height: 1;
+  }
+  .imp-logo .mark::after {
+    content: "";
+    display: block;
+    width: 22px; height: 1px;
+    background: var(--im-brown);
+    margin: 6px auto 0;
+  }
+
+  .imp-card {
+    height: 100%;
+    background:
+      linear-gradient(135deg, var(--im-cream) 0%, var(--im-cream-2) 100%);
+    padding: 12px 14px;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .imp-card .top {
+    font-family: var(--sans); font-size: 7px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--im-brown); font-weight: 600;
+  }
+  .imp-card .name {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--im-ink);
+    letter-spacing: -0.015em;
+    font-variation-settings: "SOFT" 80;
+    line-height: 1.05;
+  }
+  .imp-card .ftr {
+    font-family: var(--sans); font-size: 7px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--im-ink-3); font-weight: 500;
+  }
+  .imp-card .ftr em {
+    color: var(--im-brown); font-style: normal;
+  }
+
+  @media (max-width: 900px) {
+    .proj-im { padding: 90px 0; }
+    .imp-f-spread  { top: 2%;    left: -4%;  width: 44%; }
+    .imp-f-palette { top: 4%;    right: -2%; width: 34%; }
+    .imp-f-logo    { bottom: 6%; left: -2%;  width: 34%; }
+    .imp-f-card    { bottom: 4%; right: -4%; width: 40%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .imp-frame {
+      animation: none; opacity: 1;
+      transform: translateZ(var(--tz)) rotateX(var(--rotx)) rotateY(var(--roty)) rotateZ(var(--rotz));
+    }
+    .imp-mark-inner { animation: none; opacity: 1; }
+  }
+
   /* ---------------- writing — The Humming (Substack RSS) ---------------- */
   .write-list {
     display: grid;
@@ -1350,6 +1748,86 @@
         <p>
           We all have a story to tell and a talent to share. If you value the growth and the grind, this is your place.
         </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== IMPRINT — brand identity studio ============== -->
+<section id="imprint-studio" class="proj-section proj-im">
+  <div class="wrap">
+    <div class="proj-row reveal">
+      <!-- content: eyebrow + headline + body + CTAs (LEFT on desktop) -->
+      <div class="proj-content">
+        <span class="eyebrow">Brand identity studio</span>
+        <h3 class="proj-name" style="margin-top:18px;">
+          Imprint
+          <span class="byline">by Alan Geleff</span>
+        </h3>
+        <p class="proj-tagline" style="margin-top:26px;">
+          Naming, identity systems, and brand worlds &mdash; built from <em>scratch</em>, built to <em>last</em>.
+        </p>
+        <p class="proj-sub">For founders who know exactly what they're building.</p>
+        <div class="im-ctas">
+          <a href="/imprint#start" class="im-cta">
+            Start a project
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/imprint#work" class="im-secondary">See the work &rarr;</a>
+        </div>
+      </div>
+      <!-- visual: spiral mark + floating brand cards (RIGHT on desktop) -->
+      <div class="proj-visual">
+        <div class="imprint-stage" aria-label="Imprint — brand identity studio">
+          <div class="imp-stack">
+            <!-- floating brand-deliverable cards -->
+            <div class="imp-frame imp-f-spread" aria-hidden="true">
+              <div class="imp-spread">
+                <div class="l">
+                  <span class="lbl">Typeface</span>
+                  <span class="big">Aa</span>
+                </div>
+                <div class="r">
+                  <span class="lbl">Voice</span>
+                  <div class="lines">
+                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="imp-frame imp-f-palette" aria-hidden="true">
+              <div class="imp-palette">
+                <div class="hd">
+                  <div class="lbl">Palette</div>
+                  <div class="nm">Warm Brown</div>
+                </div>
+                <div class="grid"><span></span><span></span><span></span><span></span></div>
+              </div>
+            </div>
+
+            <div class="imp-frame imp-f-logo" aria-hidden="true">
+              <div class="imp-logo">
+                <div class="mark">Loam</div>
+              </div>
+            </div>
+
+            <div class="imp-frame imp-f-card" aria-hidden="true">
+              <div class="imp-card">
+                <div class="top">Founder &middot; Studio</div>
+                <div class="name">Hana&nbsp;Olu</div>
+                <div class="ftr">est. <em>2026</em></div>
+              </div>
+            </div>
+
+            <!-- central spiral mark -->
+            <div class="imp-mark" aria-hidden="true">
+              <div class="imp-mark-inner">
+                <img src="/art/imprint-mark.svg" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
