@@ -4,5 +4,9 @@
     { "source": "/imprint", "destination": "/imprint.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/terms", "destination": "/terms.html" }
+  ],
+  "redirects": [
+    { "source": "/work", "destination": "/imprint", "permanent": true },
+    { "source": "/work.html", "destination": "/imprint", "permanent": true }
   ]
 }
