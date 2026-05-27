@@ -423,6 +423,18 @@
   .marquee .tile-meta {
     flex: 1;
     min-height: 215px;
+    /* Belt and suspenders — keep meta a flex column so the palette-cta
+       margin-top:auto trick works on every tile type (PV/BP/concept). */
+    display: flex;
+    flex-direction: column;
+  }
+  /* Pin the swatches + CTA row to the bottom of the meta section on
+     every card so they all sit at the same y-position regardless of
+     how desc/tagline wrap above. Higher specificity than the base
+     .tile-meta .palette-cta rule (which already sets margin-top:auto)
+     to guarantee it wins on every tile variant. */
+  .marquee .tile-meta .palette-cta {
+    margin-top: auto;
   }
   @media (max-width: 600px) {
     .marquee .tile,
