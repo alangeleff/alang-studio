@@ -410,23 +410,39 @@
        every card has the same square 260×260 visual area. The meta
        section flex-grows into the remaining 260px so swatches and
        CTA always have room (3-line desc clamp already truncates the
-       only variable-height text). */
+       only variable-height text). The .marquee prefix bumps
+       specificity over base rules (.tile-visual flex:1, .concept-art
+       flex:1) that would otherwise win on source order. */
     .marquee .tile,
     .marquee .tile-concept {
       height: 520px;
       aspect-ratio: auto;
     }
-    .tile .tile-visual,
-    .tile-concept .concept-art {
+    .marquee .tile .tile-visual,
+    .marquee .tile-concept .concept-art {
       height: 260px;
       flex: 0 0 260px;
     }
-    .tile-meta {
+    /* Explicit lock on PV/BP visuals — same 260×260 as concept tiles,
+       prevents any inherited flex:1 from stretching them. */
+    .marquee .tile-pv .tile-visual,
+    .marquee .tile-bp .tile-visual {
+      height: 260px;
+      flex: 0 0 260px;
+    }
+    .marquee .tile-meta {
       flex: 1;
       overflow: hidden;
     }
-    /* PV/BP keep their composed visuals — slightly tighter padding
-       and larger inner elements so the square area reads correctly. */
+    /* Concept artwork fills the 260×260 visual cleanly. With slice
+       set on the phantom SVGs, cover (over contain) guarantees the
+       SVG bleeds to all four edges even if a future tweak changes
+       the visual aspect ratio. */
+    .marquee .tile-concept .concept-art img {
+      object-fit: cover;
+    }
+    /* PV/BP composed visuals — tighter padding + scaled-up inner
+       elements so the square area reads correctly. */
     .tile-pv .tile-visual { padding: 22px 18px; }
     .tile-pv canvas { width: 54%; }
     .tile-pv .pv-wordmark { width: 88%; }
@@ -2052,7 +2068,6 @@
       <!-- Pua Aloha -->
       <a class="tile tile-concept tile-pa" href="https://www.instagram.com/puaaloha00_" target="_blank" rel="noopener noreferrer" aria-label="Pua Aloha — Hawaiian floral studio (view on Instagram, opens in new tab)">
         <div class="concept-art">
-          <span class="concept-chip">Brand · Pua Aloha</span>
           <img src="/art/phantoms/pua-aloha.svg" alt="Pua Aloha — cream florist brand vignette with sprig, italic wordmark and FLORAL STUDIO subhead"/>
         </div>
         <div class="tile-meta">
@@ -2093,11 +2108,10 @@
       <!-- Carbide -->
       <a class="tile tile-concept tile-carbide" href="#start" aria-label="Carbide Coffee — concept brand">
         <div class="concept-art">
-          <span class="concept-chip">Concept · Carbide</span>
           <img src="/art/phantoms/carbide-coffee.svg" alt="Carbide Coffee — moody charcoal craft-roastery vignette"/>
         </div>
         <div class="tile-meta">
-          <div class="kicker">Brand exploration · Concept</div>
+          <div class="kicker">Brand exploration</div>
           <span class="brand-badge" style="background:#1A1816"><img src="/art/icons/carbide-icon.svg" alt="Carbide C glyph" loading="lazy"></span>
           <div class="name">Carbide Coffee</div>
           <div class="desc">Single-origin coffee brand. Editorial dressing with a gold serif wordmark.</div>
@@ -2117,11 +2131,10 @@
       <!-- Ribbon -->
       <a class="tile tile-concept tile-ribbon" href="#start" aria-label="Ribbon — concept brand">
         <div class="concept-art">
-          <span class="concept-chip">Concept · Ribbon</span>
           <img src="/art/phantoms/ribbon.svg" alt="Ribbon — minimal indigo B2B SaaS vignette"/>
         </div>
         <div class="tile-meta">
-          <div class="kicker">Brand exploration · Concept</div>
+          <div class="kicker">Brand exploration</div>
           <img class="brand-badge" src="/art/icons/ribbon-pill.svg" alt="Ribbon pill icon" loading="lazy">
           <div class="name">Ribbon</div>
           <div class="desc">Workflow automation identity. Mirrored pill tittle, indigo on bone.</div>
@@ -2141,11 +2154,10 @@
       <!-- Felt -->
       <a class="tile tile-concept tile-felt" href="#start" aria-label="Felt — concept brand">
         <div class="concept-art">
-          <span class="concept-chip">Concept · Felt</span>
           <img src="/art/phantoms/felt.svg" alt="Felt — warm character-forward pet brand vignette"/>
         </div>
         <div class="tile-meta">
-          <div class="kicker">Brand exploration · Concept</div>
+          <div class="kicker">Brand exploration</div>
           <span class="brand-badge" style="background:#FCE7E7"><img src="/art/icons/felt-icon.svg" alt="Felt f with cat ears" loading="lazy"></span>
           <div class="name">Felt</div>
           <div class="desc">Playful pet brand. Chunky display type with cat-ear and tail flourishes.</div>
@@ -2165,11 +2177,10 @@
       <!-- Tower -->
       <a class="tile tile-concept tile-tower" href="#start" aria-label="Tower — concept brand">
         <div class="concept-art">
-          <span class="concept-chip">Concept · Tower</span>
           <img src="/art/phantoms/tower.svg" alt="Tower — bold editorial quarterly publication vignette"/>
         </div>
         <div class="tile-meta">
-          <div class="kicker">Brand exploration · Concept</div>
+          <div class="kicker">Brand exploration</div>
           <span class="brand-badge" style="background:#EAE1D0"><img src="/art/icons/tower-icon.svg" alt="Tower T with masthead bar" loading="lazy"></span>
           <div class="name">Tower</div>
           <div class="desc">Editorial magazine identity. Masthead-bar wordmark, red on cream.</div>
@@ -2189,11 +2200,10 @@
       <!-- Loam -->
       <a class="tile tile-concept tile-loam" href="#start" aria-label="Loam — concept brand">
         <div class="concept-art">
-          <span class="concept-chip">Concept · Loam</span>
           <img src="/art/phantoms/loam.svg" alt="Loam — earthy slow-living artisan food vignette"/>
         </div>
         <div class="tile-meta">
-          <div class="kicker">Brand exploration · Concept</div>
+          <div class="kicker">Brand exploration</div>
           <span class="brand-badge" style="background:#E8E2C9"><img src="/art/icons/loam-icon.svg" alt="Loam L with leaf" loading="lazy"></span>
           <div class="name">Loam</div>
           <div class="desc">Slow-food kitchen brand. Leaf-from-L, seed-in-o, terracotta on sage.</div>
@@ -2213,11 +2223,10 @@
       <!-- Iterate -->
       <a class="tile tile-concept tile-iterate" href="#start" aria-label="Iterate — concept brand">
         <div class="concept-art">
-          <span class="concept-chip">Concept · Iterate</span>
           <img src="/art/phantoms/iterate.svg" alt="Iterate — navy product-engineering vignette with concentric loop mark"/>
         </div>
         <div class="tile-meta">
-          <div class="kicker">Brand exploration · Concept</div>
+          <div class="kicker">Brand exploration</div>
           <span class="brand-badge" style="background:#0A1628"><img src="/art/icons/iterate-icon.svg" alt="Iterate concentric orbit" loading="lazy"></span>
           <div class="name">Iterate</div>
           <div class="desc">Product engineering brand. Concentric loop mark, italic wordmark on navy.</div>
