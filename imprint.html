@@ -424,9 +424,12 @@
     flex: 1;
     min-height: 215px;
     /* Belt and suspenders — keep meta a flex column so the palette-cta
-       margin-top:auto trick works on every tile type (PV/BP/concept). */
+       margin-top:auto trick works on every tile type (PV/BP/concept).
+       overflow: hidden guards against any future content overrun
+       pushing past the fixed meta box. */
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
   /* Pin the swatches + CTA row to the bottom of the meta section on
      every card so they all sit at the same y-position regardless of
@@ -983,7 +986,16 @@
   .tile-ho .tile-meta .cta { color: #6E5D8F; }
   .tile-ho .tile-meta .kicker { color: #6E5D8F; opacity: 0.62; }
   .tile-ho .tile-meta .name { color: #4A3F66; }
-  .tile-ho .tile-meta .desc { color: #6E5D8F; opacity: 0.74; }
+  .tile-ho .tile-meta .desc {
+    color: #6E5D8F;
+    opacity: 0.74;
+    /* Hana Olu has a tagline AND a description, so it needs more
+       vertical real estate than other cards. Clamp to 2 lines (vs the
+       global 3) and shrink reserved min-height to 2 lines so the
+       tagline + palette-cta below still align with sibling tiles. */
+    -webkit-line-clamp: 2;
+    min-height: 3em;
+  }
 
   /* Hana Olu launching-soon status pill. */
   .tile-ho .status-cta { gap: 6px; }
