@@ -406,15 +406,14 @@
     .marquee .tile,
     .marquee .tile-concept { width: 260px; }
     .marquee-track { gap: 16px; }
-    /* Mobile tile geometry — explicit fixed heights so every card
-       (active + concept) has the same visual area and the same meta
-       area. The desktop aspect-ratio 3/5 produces a landscape visual
-       area at 260px wide, which forces the 1:1 phantom SVGs to
-       letterbox. Pinning the visual to 260×260 + meta to 215 fixed
-       gives a uniform 475px tile, square visual, no dead space. */
+    /* Mobile tile geometry — explicit fixed tile + visual heights so
+       every card has the same square 260×260 visual area. The meta
+       section flex-grows into the remaining 260px so swatches and
+       CTA always have room (3-line desc clamp already truncates the
+       only variable-height text). */
     .marquee .tile,
     .marquee .tile-concept {
-      height: 475px;
+      height: 520px;
       aspect-ratio: auto;
     }
     .tile .tile-visual,
@@ -423,9 +422,7 @@
       flex: 0 0 260px;
     }
     .tile-meta {
-      height: 215px;
-      min-height: 215px;
-      flex: 0 0 215px;
+      flex: 1;
       overflow: hidden;
     }
     /* PV/BP keep their composed visuals — slightly tighter padding
