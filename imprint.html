@@ -2044,7 +2044,6 @@
       <!-- Hana Olu -->
       <a class="tile tile-concept tile-ho" href="https://hanaolu.com" target="_blank" rel="noopener noreferrer" aria-label="Hana Olu — Hawaiian and Japanese natural body care, launching soon (opens in new tab)">
         <div class="concept-art">
-          <span class="concept-chip">Brand · Hana Olu</span>
           <img src="/art/phantoms/hana-olu.svg" alt="Hana Olu master wordmark on cream &mdash; two cherry blossoms flanking a flowing cursive hana&middot;olu lockup"/>
         </div>
         <div class="tile-meta">
@@ -2087,6 +2086,56 @@
           </div>
         </div>
       </a>
+
+      <!-- ==========================================================
+           ADD A NEW ACTIVE PROJECT CARD
+           Drop this block inside the Active Projects <div class="marquee-track">
+           (above this comment) once everything is filled in. Uncomment to enable.
+
+           Setup checklist before inserting:
+             1. /art/phantoms/XX.svg
+                  - viewBox="0 0 1000 1000"
+                  - preserveAspectRatio="xMidYMid slice"
+                  - Full-canvas <rect> in your brand bg color
+                  - Wordmark / artwork centered on top
+             2. /art/icons/XX-icon.svg  (small brand mark for the badge)
+             3. Per-brand class added near .tile-pa / .tile-ho in this file:
+                  .tile-XX {
+                    --brand-bg: #XXXXXX;
+                    --brand-ink: #XXXXXX;
+                    --brand-rule: rgba(X,X,X,0.18);
+                  }
+             4. The marquee JS auto-clones this row on load, so a new tile
+                appears in both the original and cloned set — no extra work.
+
+           Active vs Concept differences (this template = Active):
+             - kicker text: "Brand identity"
+             - href: real external URL (target="_blank" rel="noopener")
+             - cta text: "See it live" / "View on Instagram" / status pill
+           =========================================================== -->
+      <!--
+      <a class="tile tile-concept tile-XX" href="https://brand.com" target="_blank" rel="noopener" aria-label="BrandName — short description">
+        <div class="concept-art">
+          <img src="/art/phantoms/XX.svg" alt="BrandName — short visual description"/>
+        </div>
+        <div class="tile-meta">
+          <div class="kicker">Brand identity</div>
+          <span class="brand-badge" style="background:#EEEEEE"><img src="/art/icons/XX-icon.svg" alt="BrandName mark" loading="lazy"></span>
+          <div class="name">BrandName</div>
+          <div class="desc">One or two short sentences. Auto-clamped to 3 lines on mobile.</div>
+          <p class="tagline">A short tagline in italic serif.</p>
+          <div class="palette-cta">
+            <div class="palette" aria-hidden="true">
+              <span style="background:#AABBCC"></span>
+              <span style="background:#DDEEFF"></span>
+              <span style="background:#112233"></span>
+              <span style="background:#998877"></span>
+            </div>
+            <span class="cta">See it live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+          </div>
+        </div>
+      </a>
+      -->
 
         </div>
         </div>
@@ -2242,6 +2291,60 @@
           </div>
         </div>
       </a>
+
+      <!-- ==========================================================
+           ADD A NEW CONCEPT BRAND CARD
+           Drop this block inside the Concept Brands <div class="marquee-track">
+           (above this comment) once everything is filled in. Uncomment to enable.
+
+           Setup checklist before inserting:
+             1. /art/phantoms/XX.svg
+                  - viewBox="0 0 1000 1000"
+                  - preserveAspectRatio="xMidYMid slice"
+                  - Full-canvas <rect> in your brand bg color
+                  - Wordmark / artwork centered on top
+             2. /art/icons/XX-icon.svg  (small brand mark for the badge)
+             3. Per-brand class added near .tile-carbide / .tile-iterate in this file:
+                  .tile-XX {
+                    --brand-bg: #XXXXXX;
+                    --brand-ink: #XXXXXX;
+                    --brand-rule: rgba(X,X,X,0.22);
+                    --brand-font: 'FontName', serif;       (optional)
+                    --brand-font-style: italic;            (optional)
+                    --brand-font-weight: 500;              (optional)
+                    --brand-tracking: -0.01em;             (optional)
+                  }
+             4. The marquee JS auto-clones this row on load, so a new tile
+                appears in both the original and cloned set — no extra work.
+
+           Concept vs Active differences (this template = Concept):
+             - kicker text: "Brand exploration"
+             - href: "#start" (links to the intake form anchor)
+             - cta text: "See exploration" with arrow icon
+           =========================================================== -->
+      <!--
+      <a class="tile tile-concept tile-XX" href="#start" aria-label="BrandName — concept brand">
+        <div class="concept-art">
+          <img src="/art/phantoms/XX.svg" alt="BrandName — short visual description"/>
+        </div>
+        <div class="tile-meta">
+          <div class="kicker">Brand exploration</div>
+          <span class="brand-badge" style="background:#EEEEEE"><img src="/art/icons/XX-icon.svg" alt="BrandName mark" loading="lazy"></span>
+          <div class="name">BrandName</div>
+          <div class="desc">One or two short sentences. Auto-clamped to 3 lines on mobile.</div>
+          <p class="tagline">A short tagline in italic serif.</p>
+          <div class="palette-cta">
+            <div class="palette" aria-hidden="true">
+              <span style="background:#AABBCC"></span>
+              <span style="background:#DDEEFF"></span>
+              <span style="background:#112233"></span>
+              <span style="background:#998877"></span>
+            </div>
+            <span class="cta">See exploration <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </div>
+        </div>
+      </a>
+      -->
 
         </div>
         </div>
