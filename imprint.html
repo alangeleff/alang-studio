@@ -406,16 +406,30 @@
     .marquee .tile,
     .marquee .tile-concept { width: 260px; }
     .marquee-track { gap: 16px; }
-    /* Logos fill the visual area on mobile — no dead-space gutters.
-       Concept SVG vignettes switch from contain → cover; PV/BP shrink
-       their inner padding and scale up canvas/wordmark elements. */
-    .tile-concept .concept-art img { object-fit: cover; }
-    .tile-pv .tile-visual { padding: 18px 14px; }
-    .tile-pv canvas { width: 58%; }
-    .tile-pv .pv-wordmark { width: 94%; }
-    .tile-bp .tile-visual { padding: 16px 12px; }
-    .tile-bp .fiend-constellation { width: 56%; max-width: none; }
-    .tile-bp .bp-wordmark { width: 96%; }
+    /* Root cause of mobile letterboxing: at 260px width with tile
+       aspect-ratio 3/5 + tile-meta min-height 215, the visual area
+       becomes landscape (260×218). The phantom SVGs are 1:1, so
+       object-fit (contain or cover) produces dead-space gutters at
+       the IMG level regardless of the SVG's preserveAspectRatio.
+       Fix: drop the fixed tile aspect-ratio on mobile and pin the
+       visual area to 1:1 so contain has no letterbox to produce. */
+    .tile,
+    .tile-concept {
+      aspect-ratio: auto;
+    }
+    .tile .tile-visual,
+    .tile-concept .concept-art {
+      aspect-ratio: 1;
+      flex: 0 0 auto;
+    }
+    /* PV/BP keep their composed visuals — slightly tighter padding
+       and larger inner elements so the square area reads correctly. */
+    .tile-pv .tile-visual { padding: 22px 18px; }
+    .tile-pv canvas { width: 54%; }
+    .tile-pv .pv-wordmark { width: 88%; }
+    .tile-bp .tile-visual { padding: 20px 16px; }
+    .tile-bp .fiend-constellation { width: 52%; max-width: none; }
+    .tile-bp .bp-wordmark { width: 92%; }
   }
   @media (prefers-reduced-motion: reduce) {
     .marquee-track { animation: none; }
