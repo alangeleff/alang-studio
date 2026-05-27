@@ -406,21 +406,27 @@
     .marquee .tile,
     .marquee .tile-concept { width: 260px; }
     .marquee-track { gap: 16px; }
-    /* Root cause of mobile letterboxing: at 260px width with tile
-       aspect-ratio 3/5 + tile-meta min-height 215, the visual area
-       becomes landscape (260×218). The phantom SVGs are 1:1, so
-       object-fit (contain or cover) produces dead-space gutters at
-       the IMG level regardless of the SVG's preserveAspectRatio.
-       Fix: drop the fixed tile aspect-ratio on mobile and pin the
-       visual area to 1:1 so contain has no letterbox to produce. */
-    .tile,
-    .tile-concept {
+    /* Mobile tile geometry — explicit fixed heights so every card
+       (active + concept) has the same visual area and the same meta
+       area. The desktop aspect-ratio 3/5 produces a landscape visual
+       area at 260px wide, which forces the 1:1 phantom SVGs to
+       letterbox. Pinning the visual to 260×260 + meta to 215 fixed
+       gives a uniform 475px tile, square visual, no dead space. */
+    .marquee .tile,
+    .marquee .tile-concept {
+      height: 475px;
       aspect-ratio: auto;
     }
     .tile .tile-visual,
     .tile-concept .concept-art {
-      aspect-ratio: 1;
-      flex: 0 0 auto;
+      height: 260px;
+      flex: 0 0 260px;
+    }
+    .tile-meta {
+      height: 215px;
+      min-height: 215px;
+      flex: 0 0 215px;
+      overflow: hidden;
     }
     /* PV/BP keep their composed visuals — slightly tighter padding
        and larger inner elements so the square area reads correctly. */
@@ -2024,8 +2030,10 @@
 
       <!-- Hana Olu -->
       <a class="tile tile-concept tile-ho" href="https://hanaolu.com" target="_blank" rel="noopener noreferrer" aria-label="Hana Olu — Hawaiian and Japanese natural body care, launching soon (opens in new tab)">
-        <span class="concept-chip">Brand · Hana Olu</span>
-        <div class="concept-art"><img src="/art/phantoms/hana-olu.svg" alt="Hana Olu master wordmark on cream &mdash; two cherry blossoms flanking a flowing cursive hana&middot;olu lockup"/></div>
+        <div class="concept-art">
+          <span class="concept-chip">Brand · Hana Olu</span>
+          <img src="/art/phantoms/hana-olu.svg" alt="Hana Olu master wordmark on cream &mdash; two cherry blossoms flanking a flowing cursive hana&middot;olu lockup"/>
+        </div>
         <div class="tile-meta">
           <div class="kicker">Brand identity</div>
           <span class="brand-badge" style="background:#ECE9E4"><img src="/art/icons/hana-olu-icon.svg" alt="Hana Olu sakura mark" loading="lazy"></span>
@@ -2046,8 +2054,10 @@
 
       <!-- Pua Aloha -->
       <a class="tile tile-concept tile-pa" href="https://www.instagram.com/puaaloha00_" target="_blank" rel="noopener noreferrer" aria-label="Pua Aloha — Hawaiian floral studio (view on Instagram, opens in new tab)">
-        <span class="concept-chip">Brand · Pua Aloha</span>
-        <div class="concept-art"><img src="/art/phantoms/pua-aloha.svg" alt="Pua Aloha — cream florist brand vignette with sprig, italic wordmark and FLORAL STUDIO subhead"/></div>
+        <div class="concept-art">
+          <span class="concept-chip">Brand · Pua Aloha</span>
+          <img src="/art/phantoms/pua-aloha.svg" alt="Pua Aloha — cream florist brand vignette with sprig, italic wordmark and FLORAL STUDIO subhead"/>
+        </div>
         <div class="tile-meta">
           <div class="kicker">Brand identity</div>
           <span class="brand-badge" style="background:#FBF4E6"><img src="/art/icons/pua-aloha-icon.svg" alt="Pua Aloha sprig" loading="lazy"></span>
@@ -2085,8 +2095,10 @@
 
       <!-- Carbide -->
       <a class="tile tile-concept tile-carbide" href="#start" aria-label="Carbide Coffee — concept brand">
-        <span class="concept-chip">Concept · Carbide</span>
-        <div class="concept-art"><img src="/art/phantoms/carbide-coffee.svg" alt="Carbide Coffee — moody charcoal craft-roastery vignette"/></div>
+        <div class="concept-art">
+          <span class="concept-chip">Concept · Carbide</span>
+          <img src="/art/phantoms/carbide-coffee.svg" alt="Carbide Coffee — moody charcoal craft-roastery vignette"/>
+        </div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
           <span class="brand-badge" style="background:#1A1816"><img src="/art/icons/carbide-icon.svg" alt="Carbide C glyph" loading="lazy"></span>
@@ -2107,8 +2119,10 @@
 
       <!-- Ribbon -->
       <a class="tile tile-concept tile-ribbon" href="#start" aria-label="Ribbon — concept brand">
-        <span class="concept-chip">Concept · Ribbon</span>
-        <div class="concept-art"><img src="/art/phantoms/ribbon.svg" alt="Ribbon — minimal indigo B2B SaaS vignette"/></div>
+        <div class="concept-art">
+          <span class="concept-chip">Concept · Ribbon</span>
+          <img src="/art/phantoms/ribbon.svg" alt="Ribbon — minimal indigo B2B SaaS vignette"/>
+        </div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
           <img class="brand-badge" src="/art/icons/ribbon-pill.svg" alt="Ribbon pill icon" loading="lazy">
@@ -2129,8 +2143,10 @@
 
       <!-- Felt -->
       <a class="tile tile-concept tile-felt" href="#start" aria-label="Felt — concept brand">
-        <span class="concept-chip">Concept · Felt</span>
-        <div class="concept-art"><img src="/art/phantoms/felt.svg" alt="Felt — warm character-forward pet brand vignette"/></div>
+        <div class="concept-art">
+          <span class="concept-chip">Concept · Felt</span>
+          <img src="/art/phantoms/felt.svg" alt="Felt — warm character-forward pet brand vignette"/>
+        </div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
           <span class="brand-badge" style="background:#FCE7E7"><img src="/art/icons/felt-icon.svg" alt="Felt f with cat ears" loading="lazy"></span>
@@ -2151,8 +2167,10 @@
 
       <!-- Tower -->
       <a class="tile tile-concept tile-tower" href="#start" aria-label="Tower — concept brand">
-        <span class="concept-chip">Concept · Tower</span>
-        <div class="concept-art"><img src="/art/phantoms/tower.svg" alt="Tower — bold editorial quarterly publication vignette"/></div>
+        <div class="concept-art">
+          <span class="concept-chip">Concept · Tower</span>
+          <img src="/art/phantoms/tower.svg" alt="Tower — bold editorial quarterly publication vignette"/>
+        </div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
           <span class="brand-badge" style="background:#EAE1D0"><img src="/art/icons/tower-icon.svg" alt="Tower T with masthead bar" loading="lazy"></span>
@@ -2173,8 +2191,10 @@
 
       <!-- Loam -->
       <a class="tile tile-concept tile-loam" href="#start" aria-label="Loam — concept brand">
-        <span class="concept-chip">Concept · Loam</span>
-        <div class="concept-art"><img src="/art/phantoms/loam.svg" alt="Loam — earthy slow-living artisan food vignette"/></div>
+        <div class="concept-art">
+          <span class="concept-chip">Concept · Loam</span>
+          <img src="/art/phantoms/loam.svg" alt="Loam — earthy slow-living artisan food vignette"/>
+        </div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
           <span class="brand-badge" style="background:#E8E2C9"><img src="/art/icons/loam-icon.svg" alt="Loam L with leaf" loading="lazy"></span>
@@ -2195,8 +2215,10 @@
 
       <!-- Iterate -->
       <a class="tile tile-concept tile-iterate" href="#start" aria-label="Iterate — concept brand">
-        <span class="concept-chip">Concept · Iterate</span>
-        <div class="concept-art"><img src="/art/phantoms/iterate.svg" alt="Iterate — navy product-engineering vignette with concentric loop mark"/></div>
+        <div class="concept-art">
+          <span class="concept-chip">Concept · Iterate</span>
+          <img src="/art/phantoms/iterate.svg" alt="Iterate — navy product-engineering vignette with concentric loop mark"/>
+        </div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration · Concept</div>
           <span class="brand-badge" style="background:#0A1628"><img src="/art/icons/iterate-icon.svg" alt="Iterate concentric orbit" loading="lazy"></span>
