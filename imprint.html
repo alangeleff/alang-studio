@@ -901,40 +901,6 @@
     letter-spacing: 0.02em;
     white-space: nowrap;
   }
-  /* Includes-list under the primary service: name & domain research callout. */
-  .includes-list {
-    list-style: none;
-    margin: 0 0 26px;
-    padding: 18px 22px;
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: 10px;
-    max-width: 56ch;
-  }
-  .includes-list .label {
-    font-family: var(--sans);
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 0.20em;
-    text-transform: uppercase;
-    color: var(--brown);
-    margin-bottom: 8px;
-  }
-  .includes-list li {
-    font-size: 14.5px;
-    line-height: 1.55;
-    color: var(--ink-2);
-    padding: 6px 0;
-    display: flex; align-items: baseline; gap: 10px;
-  }
-  .includes-list li::before {
-    content: "✦";
-    color: var(--brown);
-    font-size: 12px;
-    flex-shrink: 0;
-  }
-  .includes-list li strong { color: var(--ink); font-weight: 600; }
-
   .serv-ctas {
     display: inline-flex;
     align-items: center;
@@ -1070,56 +1036,6 @@
     margin-top: 8px;
   }
 
-  /* 3. Asset Kit — stack of paper-like files. */
-  .sv-kit {
-    position: relative;
-    width: clamp(260px, 30vw, 340px);
-    aspect-ratio: 1;
-  }
-  .sv-kit .sheet {
-    position: absolute;
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: 8px;
-    box-shadow: 0 20px 40px -20px rgba(26,23,20,0.18);
-    padding: 18px 16px;
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .sv-kit .sheet .h {
-    height: 8px; width: 60%; background: var(--ink); border-radius: 3px;
-  }
-  .sv-kit .sheet .l {
-    height: 4px; width: 80%; background: var(--warm-gray); border-radius: 2px;
-  }
-  .sv-kit .sheet .l.s { width: 50%; }
-  .sv-kit .sheet.s1 {
-    top: 0; left: 0;
-    width: 58%; aspect-ratio: 3/4;
-    transform: rotate(-6deg);
-    z-index: 1;
-  }
-  .sv-kit .sheet.s2 {
-    bottom: 0; right: 4%;
-    width: 58%; aspect-ratio: 3/4;
-    transform: rotate(4deg);
-    z-index: 3;
-  }
-  .sv-kit .sheet.s2 .h { background: var(--brown); }
-  .sv-kit .palette-strip {
-    position: absolute;
-    top: 42%; left: 18%;
-    display: flex; gap: 0;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 16px 32px -12px rgba(26,23,20,0.25);
-    z-index: 2;
-    transform: rotate(-2deg);
-  }
-  .sv-kit .palette-strip span {
-    width: 38px; height: 56px;
-    display: block;
-  }
-
   /* 4. Brand Guide — bound book with gold leaf. */
   .sv-guide {
     position: relative;
@@ -1170,66 +1086,6 @@
     background: var(--brown);
     opacity: 0.6;
   }
-
-  /* 5. Launch Support — phone silhouette with launch trail. */
-  .sv-launch {
-    width: clamp(180px, 22vw, 220px);
-    aspect-ratio: 9/19;
-    border: 2px solid var(--rule-2);
-    border-radius: 30px;
-    padding: 14px 10px;
-    background: var(--surface);
-    position: relative;
-    box-shadow: 0 30px 60px -22px rgba(26,23,20,0.22);
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .sv-launch::before {
-    content: ""; position: absolute;
-    left: 50%; top: 8px;
-    transform: translateX(-50%);
-    width: 60px; height: 5px; border-radius: 3px;
-    background: var(--warm-gray);
-  }
-  .sv-launch .screen {
-    flex: 1;
-    border-radius: 18px;
-    background: linear-gradient(160deg, var(--cream-2) 0%, var(--warm-gray) 100%);
-    margin-top: 14px;
-    padding: 14px 12px;
-    display: flex; flex-direction: column; gap: 8px;
-    align-items: center;
-    justify-content: flex-start;
-  }
-  .sv-launch .screen .top-h {
-    height: 6px; width: 40%; background: var(--ink); border-radius: 3px;
-    align-self: flex-start;
-  }
-  .sv-launch .screen .top-l {
-    height: 3px; width: 60%; background: rgba(26,23,20,0.18); border-radius: 2px;
-    align-self: flex-start;
-  }
-  .sv-launch .screen .icon {
-    width: 44px; height: 44px;
-    background: var(--ink);
-    border-radius: 12px;
-    margin-top: 18px;
-    box-shadow: 0 8px 22px -6px rgba(26,23,20,0.45);
-    display: grid; place-items: center;
-  }
-  .sv-launch .screen .icon::after {
-    content: "";
-    width: 22px; height: 22px;
-    background: var(--cream);
-    border-radius: 50%;
-    box-shadow: 0 0 0 2px var(--brown);
-  }
-  .sv-launch .screen .pill {
-    height: 14px; width: 70%;
-    background: var(--brown); border-radius: 999px;
-    margin-top: 10px;
-  }
-  .sv-launch .screen .line { height: 3px; width: 80%; background: rgba(26,23,20,0.18); border-radius: 2px; }
-  .sv-launch .screen .line.s { width: 50%; }
 
   /* ---------------- pwa callout (inside brand website) ---------------- */
   .pwa-callout {
@@ -1296,6 +1152,16 @@
     line-height: 1.08;
   }
   .vb-header h2 em { color: var(--brown); font-style: italic; font-weight: 500; }
+  .vb-header .vb-subhead {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--brown);
+    font-size: clamp(18px, 1.9vw, 22px);
+    line-height: 1.4;
+    margin: 0 auto 22px;
+    max-width: 56ch;
+  }
   .vb-header .lede {
     color: var(--ink-2);
     font-size: 17px;
@@ -2212,7 +2078,7 @@
         <span class="eyebrow">Brand Identity Origination &middot; Primary</span>
         <h2 class="serv-h2">Originate the <em>whole identity</em> from scratch.</h2>
         <p class="serv-body">
-          The full thing — conceived, designed, and delivered as one coherent world. Name, mark, palette, typography, voice, story, and the system that holds it together. Four tiers from a <span class="price">$500</span> Proof concept up to an <span class="price">$8,000</span> full Brand Book. Most projects land at <strong>System</strong> — <span class="price">$4,500</span> for a finished identity ready to ship.
+          You know exactly what you're building. The world just hasn't seen it yet. Imprint originates full brand identities — name, mark, palette, voice, story, and the complete visual system — for founders ready to make it real. Entry starts at <span class="price">$500</span>.
         </p>
         <div class="serv-ctas">
           <a href="#start" class="serv-cta">
@@ -2247,8 +2113,8 @@
           A printable, presentable 15–20 page guidebook that holds the whole identity — brand story, voice and tone, mark usage, color rules, typography hierarchy, do's and don'ts, real-world application mockups. The reference your team (or future collaborators) opens when they need to make something on-brand.
         </p>
         <div class="bb-reveal">
-          <div class="label">Crown jewel of the Book tier</div>
-          The Brand Book isn't an add-on or a separate purchase. It's what's waiting for you when you choose the full identity treatment — the bound, finished artifact of everything we built together.
+          <div class="label">Your entire brand, made permanent.</div>
+          This is the full identity treatment. Your mark on the world, captured in pages. The bound, finished artifact of everything we build together.
         </div>
       </div>
     </div>
@@ -2279,7 +2145,7 @@
           From a single landing page to a multi-page platform with custom backend — scoped to what your launch actually needs.
         </p>
         <div class="pwa-callout">
-          <strong>PWA included</strong> for System and Book clients when bundled with a website build. Home-screen icon, offline mode, splash screen, push-ready. Core clients can add it for <span class="price">+$1,500</span>.
+          PWA included for System and Book clients when bundled with a website build. Home-screen icon, offline mode, splash screen, push-ready.
         </div>
         <div class="serv-ctas">
           <a href="#start" class="serv-cta">
@@ -2297,9 +2163,10 @@
 <section class="vb-section">
   <div class="wrap">
     <div class="vb-header reveal">
-      <span class="eyebrow">Built into every engagement</span>
-      <h2>Before you even <em>ask</em>.</h2>
-      <p class="lede">Regardless of which service you choose, here's what every Imprint origination client receives — a second layer of value waiting on top of the brand itself.</p>
+      <span class="eyebrow">The value bundle</span>
+      <h2>Built into <em>every engagement</em>.</h2>
+      <p class="vb-subhead">We equip you for confidence and success.</p>
+      <p class="lede">Every brand deserves an upper hand at launch. Imprint delivers that advantage. Here's what every origination client receives — regardless of which service they choose. The kind of resources most companies charge for. We include them because you're entitled to them.</p>
     </div>
     <div class="vb-grid">
 
@@ -2414,11 +2281,10 @@
       <div class="field">
         <span class="field-label">What kind of help do you need? <span class="req">pick any</span></span>
         <div class="options">
-          <label class="opt"><input type="checkbox" name="Help needed" value="Brand Identity Origination"><span class="pill">Brand identity</span></label>
-          <label class="opt"><input type="checkbox" name="Help needed" value="Brand website"><span class="pill">Brand website</span></label>
-          <label class="opt"><input type="checkbox" name="Help needed" value="Asset kit"><span class="pill">Asset kit</span></label>
-          <label class="opt"><input type="checkbox" name="Help needed" value="Brand guide"><span class="pill">Brand guide</span></label>
-          <label class="opt"><input type="checkbox" name="Help needed" value="Launch support"><span class="pill">Launch support</span></label>
+          <label class="opt"><input type="checkbox" name="Help needed" value="Brand Identity Origination"><span class="pill">Brand Identity Origination</span></label>
+          <label class="opt"><input type="checkbox" name="Help needed" value="Brand Website"><span class="pill">Brand Website</span></label>
+          <label class="opt"><input type="checkbox" name="Help needed" value="PWA Conversion"><span class="pill">PWA Conversion</span></label>
+          <label class="opt"><input type="checkbox" name="Help needed" value="Founder Identity Kit"><span class="pill">Founder Identity Kit</span></label>
           <label class="opt"><input type="checkbox" name="Help needed" value="Not sure yet"><span class="pill">Not sure yet</span></label>
         </div>
       </div>
