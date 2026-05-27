@@ -1231,6 +1231,168 @@
   .sv-launch .screen .line { height: 3px; width: 80%; background: rgba(26,23,20,0.18); border-radius: 2px; }
   .sv-launch .screen .line.s { width: 50%; }
 
+  /* ---------------- pwa callout (inside brand website) ---------------- */
+  .pwa-callout {
+    margin: 6px 0 26px;
+    padding: 14px 18px;
+    background: var(--brown-soft);
+    border-left: 2px solid var(--brown);
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: 56ch;
+  }
+  .pwa-callout strong { color: var(--ink); font-weight: 600; }
+  .pwa-callout .price {
+    color: var(--brown);
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 13.5px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  /* ---------------- brand book callout (reframed from old brand guide) ---------------- */
+  .bb-reveal {
+    margin: 4px 0 24px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 56ch;
+  }
+  .bb-reveal .label {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--brown);
+    margin-bottom: 8px;
+  }
+  .bb-reveal strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------------- value bundle ---------------- */
+  .vb-section {
+    padding: 110px 0;
+    border-top: 1px solid var(--rule);
+    background: var(--cream-2);
+  }
+  @media (max-width: 720px) { .vb-section { padding: 80px 0; } }
+  .vb-header {
+    max-width: 760px;
+    margin: 0 auto 56px;
+    text-align: center;
+  }
+  .vb-header .eyebrow { justify-content: center; }
+  .vb-header .eyebrow::before { display: none; }
+  .vb-header h2 {
+    margin: 18px 0 18px;
+    font-size: clamp(34px, 4.6vw, 56px);
+    line-height: 1.08;
+  }
+  .vb-header h2 em { color: var(--brown); font-style: italic; font-weight: 500; }
+  .vb-header .lede {
+    color: var(--ink-2);
+    font-size: 17px;
+    line-height: 1.65;
+    max-width: 62ch;
+    margin: 0 auto;
+  }
+  .vb-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 900px) { .vb-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .vb-grid { grid-template-columns: 1fr; } }
+  .vb-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 24px 22px 22px;
+    transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .vb-card:hover { border-color: var(--brown); transform: translateY(-2px); }
+  .vb-icon {
+    width: 36px; height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--brown-soft);
+    color: var(--brown);
+    margin-bottom: 4px;
+  }
+  .vb-icon svg { width: 18px; height: 18px; }
+  .vb-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    line-height: 1.3;
+  }
+  .vb-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0;
+  }
+  .vb-desc strong { color: var(--ink); font-weight: 600; }
+  .vb-desc a {
+    color: var(--brown);
+    border-bottom: 1px solid rgba(140,115,85,0.35);
+    padding-bottom: 1px;
+    transition: border-color 0.2s var(--ease);
+  }
+  .vb-desc a:hover { border-bottom-color: var(--brown); }
+
+  /* ---------------- modal tier bullet lists ---------------- */
+  .tier-desc .tier-intro {
+    margin: 0 0 10px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-2);
+  }
+  .tier-desc ul.tier-bullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tier-desc ul.tier-bullets li {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    padding: 4px 0 4px 18px;
+    position: relative;
+  }
+  .tier-desc ul.tier-bullets li::before {
+    content: "✦";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: var(--brown);
+    font-size: 10px;
+  }
+  .tier-desc ul.tier-bullets li strong { color: var(--ink); font-weight: 600; }
+  .tier-desc .tier-plus {
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brown);
+    margin: 12px 0 6px;
+  }
+
   /* ---------------- form section ---------------- */
   .form-section {
     padding: 120px 0 100px;
@@ -2052,12 +2214,6 @@
         <p class="serv-body">
           The full thing — conceived, designed, and delivered as one coherent world. Name, mark, palette, typography, voice, story, and the system that holds it together. Four tiers from a <span class="price">$500</span> Proof concept up to an <span class="price">$8,000</span> full Brand Book. Most projects land at <strong>System</strong> — <span class="price">$4,500</span> for a finished identity ready to ship.
         </p>
-        <ul class="includes-list">
-          <div class="label">Included in every Imprint origination</div>
-          <li><strong>Name &amp; domain research</strong> — I research business name availability in your state, plus domain options, and present available choices so you can decide with confidence before we move forward.</li>
-          <li><strong>Concept &amp; story</strong> — the why, the voice, the world the brand lives in.</li>
-          <li><strong>Visual identity</strong> — mark, palette, typography, system rules.</li>
-        </ul>
         <div class="serv-ctas">
           <a href="#start" class="serv-cta">
             Start an origination
@@ -2070,10 +2226,39 @@
   </div>
 </section>
 
-<!-- 2. Brand Website -->
+<!-- 2. Brand Book Callout (reframed — showcase of Book tier deliverable) -->
 <section class="serv-section alt">
   <div class="wrap">
     <div class="serv-row reverse reveal">
+      <div class="serv-visual">
+        <div class="sv-guide" aria-hidden="true">
+          <div class="book">
+            <img class="mono-mark" src="/art/imprint-mark.svg" alt="" />
+            <div class="title">Brand Book</div>
+            <div class="divider"></div>
+            <div class="sub">By Imprint</div>
+          </div>
+        </div>
+      </div>
+      <div class="serv-content">
+        <span class="eyebrow">The Brand Book &middot; Inside the Book tier</span>
+        <h2 class="serv-h2">What <em>Book</em> clients walk away with.</h2>
+        <p class="serv-body">
+          A printable, presentable 15–20 page guidebook that holds the whole identity — brand story, voice and tone, mark usage, color rules, typography hierarchy, do's and don'ts, real-world application mockups. The reference your team (or future collaborators) opens when they need to make something on-brand.
+        </p>
+        <div class="bb-reveal">
+          <div class="label">Crown jewel of the Book tier</div>
+          The Brand Book isn't an add-on or a separate purchase. It's what's waiting for you when you choose the full identity treatment — the bound, finished artifact of everything we built together.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Brand Website -->
+<section class="serv-section">
+  <div class="wrap">
+    <div class="serv-row reveal">
       <div class="serv-visual">
         <div class="sv-website" aria-hidden="true">
           <div class="dotrow"><span></span><span></span><span></span></div>
@@ -2086,10 +2271,16 @@
       </div>
       <div class="serv-content">
         <span class="eyebrow">Brand Website &middot; Added value</span>
-        <h2 class="serv-h2">A site that <em>tells your story</em>.</h2>
+        <h2 class="serv-h2">Built by the same hands that <em>built the brand</em>.</h2>
         <p class="serv-body">
-          Hand-coded, in your brand's voice, deployed and yours to keep. A <span class="price">$2,500</span> landing page when one stretch of canvas is all you need. <strong>Foundation</strong> at <span class="price">$5,000</span> for 3–5 pages. <strong>Platform</strong> at <span class="price">$8,500</span> scales to 5–10. <strong>Custom</strong> from <span class="price">$12,000</span> — multilingual, catalogues, backend, scoped together. Bundle with origination and save.
+          Most identities die at handoff. You finish the brand, then a developer who's never met your voice rebuilds it from a Figma file — and the site lands looking like someone else's. Imprint websites avoid that hand-off entirely. The look, the voice, and the code all come from the same place, so the site reads as a continuation of the brand, not a copy of it.
         </p>
+        <p class="serv-body">
+          From a single landing page to a multi-page platform with custom backend — scoped to what your launch actually needs.
+        </p>
+        <div class="pwa-callout">
+          <strong>PWA included</strong> for System and Book clients when bundled with a website build. Home-screen icon, offline mode, splash screen, push-ready. Core clients can add it for <span class="price">+$1,500</span>.
+        </div>
         <div class="serv-ctas">
           <a href="#start" class="serv-cta">
             Start a brand website
@@ -2102,110 +2293,88 @@
   </div>
 </section>
 
-<!-- 3. Asset Kit -->
-<section class="serv-section">
+<!-- 4. Value Bundle (replaces Asset Kit + Launch Support) -->
+<section class="vb-section">
   <div class="wrap">
-    <div class="serv-row reveal">
-      <div class="serv-visual">
-        <div class="sv-kit" aria-hidden="true">
-          <div class="sheet s1">
-            <div class="h"></div>
-            <div class="l"></div>
-            <div class="l s"></div>
-            <div class="l"></div>
-          </div>
-          <div class="palette-strip">
-            <span style="background:#F5F1EB"></span>
-            <span style="background:#1A1714"></span>
-            <span style="background:#8C7355"></span>
-            <span style="background:#D6CFC6"></span>
-          </div>
-          <div class="sheet s2">
-            <div class="h"></div>
-            <div class="l"></div>
-            <div class="l s"></div>
-            <div class="l"></div>
-          </div>
-        </div>
-      </div>
-      <div class="serv-content">
-        <span class="eyebrow">Asset Kit &middot; Added value</span>
-        <h2 class="serv-h2">Every file you'll <em>actually use</em>.</h2>
-        <p class="serv-body">
-          Logo suite (primary + alternates + favicon set), color tokens with codes, typography stack, social templates, signature block, business card mockups. Delivered as SVG + PNG + editable source. Built into <strong>System</strong> and <strong>Book</strong> tiers; available as a stand-alone deliverable for existing brands at <span class="price">$1,500</span>.
-        </p>
-        <div class="serv-ctas">
-          <a href="#start" class="serv-cta">
-            Request an asset kit
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-          </a>
-        </div>
-      </div>
+    <div class="vb-header reveal">
+      <span class="eyebrow">Built into every engagement</span>
+      <h2>Before you even <em>ask</em>.</h2>
+      <p class="lede">Regardless of which service you choose, here's what every Imprint origination client receives — a second layer of value waiting on top of the brand itself.</p>
     </div>
-  </div>
-</section>
+    <div class="vb-grid">
 
-<!-- 4. Brand Guide -->
-<section class="serv-section alt">
-  <div class="wrap">
-    <div class="serv-row reverse reveal">
-      <div class="serv-visual">
-        <div class="sv-guide" aria-hidden="true">
-          <div class="book">
-            <img class="mono-mark" src="/art/imprint-mark.svg" alt="" />
-            <div class="title">Brand Guide</div>
-            <div class="divider"></div>
-            <div class="sub">By Imprint</div>
-          </div>
-        </div>
-      </div>
-      <div class="serv-content">
-        <span class="eyebrow">Brand Guide &middot; Added value</span>
-        <h2 class="serv-h2">The book that keeps the <em>brand consistent</em> forever.</h2>
-        <p class="serv-body">
-          A printable, presentable PDF guidebook that holds the whole identity — story, voice, mark usage, color rules, typography hierarchy, do's and don'ts, real-world application mockups. The reference your team (or future collaborators) opens when they need to make something on-brand. Included with the <strong>Book</strong> tier; add-on to <strong>System</strong> at <span class="price">$1,800</span>.
-        </p>
-        <div class="serv-ctas">
-          <a href="#start" class="serv-cta">
-            Add a Brand Guide
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      <article class="vb-card reveal">
+        <span class="vb-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        </span>
+        <div class="vb-title">Name &amp; Domain Research</div>
+        <p class="vb-desc">Alan researches business name availability (by your state) and domain options before you commit. You choose, then we build.</p>
+      </article>
 
-<!-- 5. Launch Support -->
-<section class="serv-section">
-  <div class="wrap">
-    <div class="serv-row reveal">
-      <div class="serv-visual">
-        <div class="sv-launch" aria-hidden="true">
-          <div class="screen">
-            <div class="top-h"></div>
-            <div class="top-l"></div>
-            <div class="icon"></div>
-            <div class="pill"></div>
-            <div class="line"></div>
-            <div class="line s"></div>
-          </div>
-        </div>
-      </div>
-      <div class="serv-content">
-        <span class="eyebrow">Launch Support &middot; Added value</span>
-        <h2 class="serv-h2">Get to the world with <em>nothing left undone</em>.</h2>
-        <p class="serv-body">
-          The handholding from "finished" to "launched." Installable PWA wrapper (home-screen icon, offline mode, splash, push-ready) at <span class="price">$2,500</span> standalone or <span class="price">+$1,500</span> bundled. Plus launch checklist, analytics setup, social profile build-out, and the first round of go-live announcements written in your brand voice.
-        </p>
-        <div class="serv-ctas">
-          <a href="#start" class="serv-cta">
-            Plan a launch
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-          </a>
-          <button type="button" class="serv-cta-secondary" data-modal-open="modal-launch">View full breakdown</button>
-        </div>
-      </div>
+      <article class="vb-card reveal">
+        <span class="vb-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </span>
+        <div class="vb-title">Brand Asset Kit</div>
+        <p class="vb-desc">Every file you'll actually use. Logo suite (SVG + PNG, all sizes), social profile pictures pre-sized for IG, FB, X, LinkedIn, YouTube, TikTok, banner templates, favicons, apple-touch-icon, OG share image. Zipped and delivered.</p>
+      </article>
+
+      <article class="vb-card reveal">
+        <span class="vb-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </span>
+        <div class="vb-title">Brand Sheet, Guide or Book</div>
+        <p class="vb-desc">Your tier's canonical brand document. <strong>Core</strong> gets the Brand Sheet (1 page). <strong>System</strong> gets the Brand Guide (6–10 pages). <strong>Book</strong> gets the Brand Book (15–20 pages).</p>
+      </article>
+
+      <article class="vb-card reveal">
+        <span class="vb-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+        </span>
+        <div class="vb-title">Business Registration Guide</div>
+        <p class="vb-desc">A step-by-step PDF for registering your business, so the legal side doesn't slow down the launch.</p>
+      </article>
+
+      <article class="vb-card reveal">
+        <span class="vb-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </span>
+        <div class="vb-title">Your New Brand Checklist</div>
+        <p class="vb-desc">Everything to do in the first week with your new identity — so nothing important gets forgotten.</p>
+      </article>
+
+      <article class="vb-card reveal">
+        <span class="vb-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/></svg>
+        </span>
+        <div class="vb-title">Domain &amp; Email Setup</div>
+        <p class="vb-desc">How to connect your domain and set up a professional email — without paying someone to do the obvious.</p>
+      </article>
+
+      <article class="vb-card reveal">
+        <span class="vb-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+        </span>
+        <div class="vb-title">Launch Day Checklist</div>
+        <p class="vb-desc">What to do the day you go live. Nothing left undone, nothing forgotten.</p>
+      </article>
+
+      <article class="vb-card reveal">
+        <span class="vb-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </span>
+        <div class="vb-title">SEO Fundamentals Guide</div>
+        <p class="vb-desc">The basics every founder needs to know to be found — clear, plain-language, no consultant required.</p>
+      </article>
+
+      <article class="vb-card reveal">
+        <span class="vb-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </span>
+        <div class="vb-title">First 2 Weeks Social Schedule</div>
+        <p class="vb-desc">When to post, where to post, and what to say. Day-by-day guidance to build momentum without burning out. Keep your brand voice consistent across every platform with <a href="https://postvomit.com" target="_blank" rel="noopener">PostVomit</a>.</p>
+      </article>
+
     </div>
   </div>
 </section>
@@ -2331,19 +2500,63 @@
     <ul class="tier-list">
       <li>
         <h4 class="tier-name">Proof — $500</h4>
-        <p class="tier-desc">1 wordmark concept, 1 color direction, 1 look-and-feel comp. Offsets any upgrade — pay the remaining balance if you proceed.</p>
+        <div class="tier-desc">
+          <p class="tier-intro">A concept pass before you commit to the full identity.</p>
+          <ul class="tier-bullets">
+            <li>1 wordmark concept</li>
+            <li>1 color direction</li>
+            <li>1 look-and-feel comp</li>
+            <li>Offsets any upgrade — pay the remaining balance if you proceed</li>
+          </ul>
+        </div>
       </li>
       <li>
         <h4 class="tier-name">Core — $2,500</h4>
-        <p class="tier-desc">Logo (primary lockup), color palette with codes, typography stack, 1-page brand sheet, SVG + PNG file delivery.</p>
+        <div class="tier-desc">
+          <p class="tier-intro">A finished, usable identity for founders who need to ship.</p>
+          <ul class="tier-bullets">
+            <li><strong>Naming</strong> — business name research + recommendation</li>
+            <li><strong>Wordmark / logo</strong> (primary lockup)</li>
+            <li><strong>Color palette</strong> (HEX/RGB/CMYK codes)</li>
+            <li><strong>Typography stack</strong> (headline + body fonts, hierarchy + download links)</li>
+            <li><strong>Favicon + social avatar set</strong> (all major platforms pre-sized)</li>
+            <li><strong>Brand color + type reference card</strong> (1-page PDF — swatches, font names, download links)</li>
+            <li><strong>Brand Sheet</strong> (1 polished page: logo, palette, fonts, tagline)</li>
+            <li><strong>File delivery</strong> — SVG + PNG suite</li>
+          </ul>
+        </div>
       </li>
       <li>
         <h4 class="tier-name">System — $4,500 <span class="tier-tag">Most projects land here</span></h4>
-        <p class="tier-desc">Full logo suite (primary + alternates), extended color system, typography hierarchy, usage guidelines, complete asset kit.</p>
+        <div class="tier-desc">
+          <p class="tier-intro">A complete brand system — usable, scalable, ready for a team.</p>
+          <p class="tier-plus">Everything in Core, plus:</p>
+          <ul class="tier-bullets">
+            <li><strong>Full logo suite</strong> (primary, alternate, horizontal, stacked, icon-only lockups)</li>
+            <li><strong>Extended color system</strong> (primary + secondary + neutrals)</li>
+            <li><strong>Typography hierarchy</strong> with real examples</li>
+            <li><strong>Competitor positioning snapshot</strong> (1-page: 2–3 competitor visual audits + how you stand apart)</li>
+            <li><strong>Email signature template</strong> (branded HTML)</li>
+            <li><strong>Business card mockup</strong> (1 rendered scene)</li>
+            <li><strong>PWA included</strong> when bundled with a website build</li>
+            <li><strong>Brand Guide</strong> (6–10 pages: full logo suite, colors, typography, positioning, usage do's/don'ts)</li>
+          </ul>
+        </div>
       </li>
       <li>
         <h4 class="tier-name">Book — $8,000</h4>
-        <p class="tier-desc">Everything in System + naming, brand voice/tone, application mockups (4–8 real-world scenes), full Brand Guide PDF.</p>
+        <div class="tier-desc">
+          <p class="tier-intro">The full identity treatment — voice, story, application, and a bound brand book.</p>
+          <p class="tier-plus">Everything in System, plus:</p>
+          <ul class="tier-bullets">
+            <li><strong>Brand voice + tone guidelines</strong> (written personality, tone, what the brand never says)</li>
+            <li><strong>Application mockups</strong> (4–8 real-world scenes: business card, phone, social header, website, merch, etc.)</li>
+            <li><strong>Animated logo</strong> (delivered as .svg, .gif, .mp4 — lives in asset kit, not the PDF)</li>
+            <li><strong>Custom icon set</strong> (5–8 brand-specific icons in the brand's visual language, SVG + PNG)</li>
+            <li><strong>PWA included</strong> when bundled with a website build</li>
+            <li><strong>Brand Book</strong> (15–20 pages: brand story, voice/tone, mockup scenes, full usage system)</li>
+          </ul>
+        </div>
       </li>
     </ul>
     <p class="tier-note">Every tier includes name &amp; domain research — availability check by state plus domain options, presented for you to decide.</p>
@@ -2376,29 +2589,7 @@
         <p class="tier-desc">Multilingual, complex catalogues, e-commerce (custom only), backend/database layer. Scoped together.</p>
       </li>
     </ul>
-    <p class="tier-note">2 rounds of refinements included. Refinement Pass ($500) available thereafter.</p>
-  </div>
-</div>
-
-<div class="tier-modal" id="modal-launch" role="dialog" aria-modal="true" aria-labelledby="modal-launch-title" aria-hidden="true">
-  <div class="tier-modal-overlay" data-modal-close></div>
-  <div class="tier-modal-card">
-    <button type="button" class="tier-modal-close" data-modal-close aria-label="Close">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>
-    </button>
-    <span class="tier-modal-eyebrow">Launch Support</span>
-    <h3 class="tier-modal-title" id="modal-launch-title">Full tier breakdown</h3>
-    <ul class="tier-list">
-      <li>
-        <h4 class="tier-name">PWA Conversion — $2,500</h4>
-        <p class="tier-desc">Web app manifest, service worker, app icons (all sizes), splash screen, push notification infrastructure, install prompt, cross-browser testing. <span class="tier-tag">+$1,500</span> when bundled with a website build.</p>
-      </li>
-      <li>
-        <h4 class="tier-name">Launch Kit — Included</h4>
-        <p class="tier-desc">Pre-launch checklist, analytics setup (GA4 + privacy-friendly alt), social profile build-out, go-live announcement copy in your brand voice. Bundled into every Imprint origination.</p>
-      </li>
-    </ul>
-    <p class="tier-note">PWA requires an existing custom-built site — cannot retrofit onto Shopify, Squarespace, etc.</p>
+    <p class="tier-note">2 rounds of refinements included. Refinement Pass ($500) available thereafter. <strong>PWA included</strong> for System and Book clients when bundled — home-screen icon, offline mode, splash, push-ready. Core clients can add it for +$1,500.</p>
   </div>
 </div>
 
