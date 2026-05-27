@@ -1040,9 +1040,10 @@
   }
 
   /* ---------------- Imprint — brand identity studio ----------------
-     Cream "magazine page" insert that interrupts the dark canvas to
-     signal a different mode: editorial, identity-focused, premium.
-     Tokens are scoped to .proj-im so global tokens stay untouched. */
+     Ink-backed section that blends with the homepage canvas. The
+     spiral mark glows in warm brown, with cream brand-deliverable
+     cards floating in the dark. Tokens scoped to .proj-im so global
+     tokens stay untouched. */
   .proj-im {
     --im-cream: #F5F1EB;
     --im-cream-2: #EDE7DD;
@@ -1055,29 +1056,13 @@
     --im-rule: rgba(26,23,20,0.10);
     --im-rule-2: rgba(26,23,20,0.18);
 
-    background:
-      radial-gradient(900px 600px at 12% 0%, rgba(140,115,85,0.18), transparent 60%),
-      radial-gradient(700px 500px at 92% 100%, rgba(140,115,85,0.10), transparent 60%),
-      var(--im-cream);
-    color: var(--im-ink);
+    background: var(--im-ink);
+    color: var(--im-cream);
     border-top: 0;
     padding: 130px 0;
     position: relative;
     overflow: hidden;
   }
-  /* Soft dark fades at the cream block's top/bottom edges so it lands on
-     the page like a printed insert rather than a hard color change. */
-  .proj-im::before,
-  .proj-im::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0;
-    height: 48px;
-    pointer-events: none;
-    z-index: 2;
-  }
-  .proj-im::before { top: 0;    background: linear-gradient(180deg, rgba(13,13,24,0.55), transparent); }
-  .proj-im::after  { bottom: 0; background: linear-gradient(0deg,   rgba(13,13,24,0.55), transparent); }
   .proj-im .wrap { position: relative; z-index: 1; }
 
   .proj-im .eyebrow { color: var(--im-brown); }
@@ -1085,7 +1070,7 @@
 
   .proj-im .proj-name {
     text-align: left;
-    color: var(--im-ink);
+    color: var(--im-cream);
     font-style: italic;
     font-weight: 400;
     font-variation-settings: "SOFT" 80;
@@ -1101,17 +1086,17 @@
     font-size: clamp(12px, 1vw, 14px);
     letter-spacing: 0.20em;
     text-transform: uppercase;
-    color: var(--im-ink-3);
+    color: var(--im-brown);
     margin-top: 18px;
   }
   .proj-im .proj-tagline {
-    color: var(--im-ink);
+    color: var(--im-cream);
     font-style: italic;
     font-weight: 400;
     font-variation-settings: "SOFT" 50;
   }
   .proj-im .proj-tagline em { color: var(--im-brown); font-style: italic; }
-  .proj-im .proj-sub { color: var(--im-ink-2); }
+  .proj-im .proj-sub { color: rgba(245, 241, 235, 0.78); }
 
   .im-ctas {
     display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
@@ -1119,9 +1104,9 @@
   }
   .im-cta {
     display: inline-flex; align-items: center; gap: 10px;
-    background: var(--im-ink);
-    color: var(--im-cream);
-    border: 1px solid var(--im-ink);
+    background: var(--im-cream);
+    color: var(--im-ink);
+    border: 1px solid var(--im-cream);
     padding: 14px 26px;
     border-radius: 999px;
     font-family: var(--sans);
@@ -1133,8 +1118,9 @@
   .im-cta:hover {
     background: var(--im-brown);
     border-color: var(--im-brown);
+    color: var(--im-cream);
     transform: translateY(-1px);
-    box-shadow: 0 16px 32px -12px rgba(140,115,85,0.5);
+    box-shadow: 0 16px 32px -12px rgba(140,115,85,0.55);
   }
   .im-secondary {
     font-family: var(--sans);
@@ -1146,7 +1132,7 @@
     padding-bottom: 2px;
     transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
   }
-  .im-secondary:hover { color: var(--im-ink); border-color: var(--im-ink); }
+  .im-secondary:hover { color: var(--im-cream); border-color: var(--im-cream); }
 
   /* ---- Imprint visual stage: spiral mark + floating brand cards ----
      Same 3D-stack pattern as work.html's Peevy hero, but the focal
@@ -1169,34 +1155,37 @@
     transform-style: preserve-3d;
   }
 
-  /* Central spiral mark — focal point with warm brown halo */
+  /* Central spiral mark — focal point with warm brown halo.
+     Lives as a 2D sibling OUTSIDE .imp-stack so it isn't subject to the
+     3D-space stacking of the frames (which use translateZ). z-index
+     reliably keeps it in front of every floating card. */
   .imp-mark {
     position: absolute;
     top: 50%; left: 50%;
     width: 44%; aspect-ratio: 1;
-    z-index: 10;
+    z-index: 20;
     pointer-events: none;
     transform: translate(-50%, -50%);
   }
   .imp-mark-inner {
     position: absolute; inset: 0;
     filter:
-      drop-shadow(0 22px 48px rgba(140,115,85,0.45))
-      drop-shadow(0 8px 18px rgba(140,115,85,0.32))
-      drop-shadow(0 0 1px rgba(26,23,20,0.18));
+      drop-shadow(0 24px 56px rgba(140,115,85,0.65))
+      drop-shadow(0 12px 28px rgba(140,115,85,0.50))
+      drop-shadow(0 0 14px rgba(163,138,107,0.35));
     opacity: 0;
     animation:
       impMarkIn 1.1s var(--ease) 0.6s both,
       impMarkBreath 6s ease-in-out 1.7s infinite;
   }
   .imp-mark img { width: 100%; height: 100%; display: block; }
-  /* radial warm halo behind the mark (under the SVG, above background) */
+  /* radial warm halo behind the mark — lights it from behind */
   .imp-mark::before {
     content: "";
     position: absolute;
-    inset: -20%;
+    inset: -24%;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(140,115,85,0.22) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(140,115,85,0.32) 0%, rgba(140,115,85,0.10) 35%, transparent 65%);
     pointer-events: none;
     z-index: 0;
   }
@@ -1209,16 +1198,19 @@
     50%      { transform: scale(1.025); }
   }
 
-  /* Floating brand-deliverable cards (cream surfaces in 3D space) */
+  /* Floating brand-deliverable cards (cream surfaces over the ink section).
+     Shadow uses pure black + a subtle warm-brown rim so the cards read as
+     lit-from-behind paper against the dark canvas. */
   .imp-frame {
     position: absolute;
     background: var(--im-cream);
     border-radius: 6px;
     overflow: hidden;
-    border: 1px solid var(--im-rule);
+    border: 1px solid rgba(245,241,235,0.10);
     box-shadow:
-      0 26px 52px -18px rgba(26,23,20,0.40),
-      0 10px 18px -6px rgba(26,23,20,0.22),
+      0 32px 64px -20px rgba(0,0,0,0.85),
+      0 14px 24px -8px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(140,115,85,0.18),
       inset 0 1px 0 rgba(255,255,255,0.6);
     transform-origin: center center;
     opacity: 0;
@@ -1227,7 +1219,7 @@
     transition: border-color 0.25s var(--ease), filter 0.25s var(--ease);
   }
   .imp-frame:hover {
-    border-color: var(--im-brown);
+    border-color: rgba(140,115,85,0.55);
     filter: brightness(1.04);
   }
   @keyframes impFrameIn {
@@ -1241,36 +1233,36 @@
     }
   }
 
-  /* Per-frame placement — anchored inward so all 4 cluster around the
-     spiral's glow radius rather than the outer container edges. */
+  /* Per-frame placement — anchored inward so all 4 cluster tightly
+     around the spiral's halo rather than drifting toward the corners. */
   .imp-f-spread {
     /* editorial spread, upper-left, mid-back */
-    top: 4%; left: 0%;
-    width: 38%;
+    top: 10%; left: 8%;
+    width: 34%;
     aspect-ratio: 1.3;
     --tz: -50px; --rotx: 6deg; --roty: 22deg; --rotz: -7deg;
     animation-delay: 0.10s;
   }
   .imp-f-palette {
     /* palette card, upper-right, closest to viewer */
-    top: 6%; right: 2%;
-    width: 30%;
+    top: 12%; right: 8%;
+    width: 26%;
     aspect-ratio: 0.85;
     --tz: 40px; --rotx: 4deg; --roty: -18deg; --rotz: 6deg;
     animation-delay: 0.34s;
   }
   .imp-f-logo {
     /* logo lockup, lower-left, mid-depth */
-    bottom: 6%; left: 4%;
-    width: 30%;
+    bottom: 12%; left: 10%;
+    width: 26%;
     aspect-ratio: 1.45;
     --tz: -10px; --rotx: -5deg; --roty: 14deg; --rotz: 8deg;
     animation-delay: 0.22s;
   }
   .imp-f-card {
     /* business card / wordmark, lower-right */
-    bottom: 4%; right: 0%;
-    width: 36%;
+    bottom: 10%; right: 8%;
+    width: 32%;
     aspect-ratio: 1.55;
     --tz: -30px; --rotx: -6deg; --roty: -14deg; --rotz: -6deg;
     animation-delay: 0.46s;
@@ -1423,10 +1415,10 @@
 
   @media (max-width: 900px) {
     .proj-im { padding: 90px 0; }
-    .imp-f-spread  { top: 2%;    left: -4%;  width: 44%; }
-    .imp-f-palette { top: 4%;    right: -2%; width: 34%; }
-    .imp-f-logo    { bottom: 6%; left: -2%;  width: 34%; }
-    .imp-f-card    { bottom: 4%; right: -4%; width: 40%; }
+    .imp-f-spread  { top: 6%;    left: 2%;  width: 40%; }
+    .imp-f-palette { top: 8%;    right: 2%; width: 30%; }
+    .imp-f-logo    { bottom: 10%; left: 2%; width: 30%; }
+    .imp-f-card    { bottom: 8%; right: 2%; width: 36%; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1780,7 +1772,7 @@
       <div class="proj-visual">
         <div class="imprint-stage" aria-label="Imprint — brand identity studio">
           <div class="imp-stack">
-            <!-- floating brand-deliverable cards -->
+            <!-- floating brand-deliverable cards (3D-transformed) -->
             <div class="imp-frame imp-f-spread" aria-hidden="true">
               <div class="imp-spread">
                 <div class="l">
@@ -1819,12 +1811,13 @@
                 <div class="ftr">est. <em>2026</em></div>
               </div>
             </div>
+          </div>
 
-            <!-- central spiral mark -->
-            <div class="imp-mark" aria-hidden="true">
-              <div class="imp-mark-inner">
-                <img src="/art/imprint-mark.svg" alt="" />
-              </div>
+          <!-- central spiral mark — 2D sibling outside the 3D stack so its
+               z-index reliably sits above every floating card. -->
+          <div class="imp-mark" aria-hidden="true">
+            <div class="imp-mark-inner">
+              <img src="/art/imprint-mark.svg" alt="" />
             </div>
           </div>
         </div>
