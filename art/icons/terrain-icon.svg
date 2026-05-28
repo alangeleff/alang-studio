@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Terrain mountain mark — layered ridgelines in gold">
+  <!-- Outer ridge -->
+  <path d="M 12 78 L 38 38 L 50 56 L 66 30 L 88 78 Z" fill="none" stroke="#C4A97A" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Inner ridge -->
+  <path d="M 26 78 L 42 52 L 52 66 L 64 46 L 78 78 Z" fill="none" stroke="#C4A97A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+</svg>
