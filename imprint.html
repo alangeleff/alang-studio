@@ -1027,6 +1027,21 @@
     0%, 100% { box-shadow: 0 0 0 0   rgba(110,93,143,0.50); }
     50%      { box-shadow: 0 0 0 5px rgba(110,93,143,0);    }
   }
+  /* Terrain launching-soon status pill — mirrors Hana Olu, gold halo. */
+  .tile-terrain .status-cta { gap: 6px; }
+  .tile-terrain .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(196,169,122,0.55);
+    animation: terrainCtaPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes terrainCtaPulse {
+    0%, 100% { box-shadow: 0 0 0 0   rgba(196,169,122,0.50); }
+    50%      { box-shadow: 0 0 0 5px rgba(196,169,122,0);    }
+  }
   .tile-ho .tile-meta .cta,
   .tile-pa .tile-meta .cta {
     text-decoration: underline;
@@ -2131,7 +2146,7 @@
           <img src="/art/phantoms/terrain.svg" alt="Terrain wordmark with concentric topographic mark in ivory and gold on Colorado-flag navy"/>
         </div>
         <div class="tile-meta">
-          <div class="kicker">Brand identity · Colorado · Live</div>
+          <div class="kicker">Brand identity</div>
           <span class="brand-badge" style="background:rgba(255,255,255,0.12)"><img src="/art/icons/terrain-icon.svg" alt="Terrain topographic mark" loading="lazy"></span>
           <div class="name">Terrain</div>
           <div class="desc">Colorado lawn care and snow removal. Built the full system — mark, palette, typography, and voice.</div>
@@ -2143,7 +2158,7 @@
               <span style="background:#BF0A30"></span>
               <span style="background:#F5ECD4"></span>
             </div>
-            <span class="cta">See the system <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            <span class="cta status-cta"><span class="status-dot" aria-hidden="true"></span>Launching Soon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
           </div>
         </div>
       </a>
