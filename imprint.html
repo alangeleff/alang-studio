@@ -979,6 +979,24 @@
   .tile-pa .tile-meta .kicker { color: #B86E4B; }
   .tile-pa .tile-meta .name { color: #1F3D26; }
   .tile-pa .tile-meta .desc { color: #4A6B52; }
+  /* Terrain Colorado — outdoor/adventure identity. Deep Colorado-flag
+     navy meta with warm gold accents, against the same navy phantom. */
+  .tile-terrain {
+    --brand-bg: #002868;
+    --brand-ink: #E8D9B6;
+    --brand-rule: rgba(196,169,122,0.24);
+  }
+  .tile-terrain .tile-meta .kicker { color: #C4A97A; opacity: 1; }
+  .tile-terrain .tile-meta .name { color: #F5ECD4; font-weight: 500; letter-spacing: 0.04em; }
+  .tile-terrain .tile-meta .desc { color: #C9D3E4; opacity: 0.86; }
+  .tile-terrain .tile-meta .tagline { color: #C4A97A; opacity: 0.92; }
+  .tile-terrain .tile-meta .cta { color: #C4A97A; }
+  .tile-terrain:hover .tile-meta .cta { color: #F5ECD4; }
+  .tile-terrain .tile-meta .palette span {
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.22),
+      0 0 0 1px rgba(196,169,122,0.45);
+  }
   .tile-ho .tile-meta .tagline { color: #6E5D8F; opacity: 0.78; }
   .tile-ho .tile-meta .cta { color: #6E5D8F; }
   .tile-ho .tile-meta .kicker { color: #6E5D8F; opacity: 0.62; }
@@ -1008,6 +1026,21 @@
   @keyframes hoCtaPulse {
     0%, 100% { box-shadow: 0 0 0 0   rgba(110,93,143,0.50); }
     50%      { box-shadow: 0 0 0 5px rgba(110,93,143,0);    }
+  }
+  /* Terrain launching-soon status pill — mirrors Hana Olu, gold halo. */
+  .tile-terrain .status-cta { gap: 6px; }
+  .tile-terrain .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(196,169,122,0.55);
+    animation: terrainCtaPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes terrainCtaPulse {
+    0%, 100% { box-shadow: 0 0 0 0   rgba(196,169,122,0.50); }
+    50%      { box-shadow: 0 0 0 5px rgba(196,169,122,0);    }
   }
   .tile-ho .tile-meta .cta,
   .tile-pa .tile-meta .cta {
@@ -2107,6 +2140,29 @@
         </div>
       </a>
 
+      <!-- Terrain -->
+      <a class="tile tile-concept tile-terrain" href="#start" aria-label="Terrain — Colorado lawn and snow services brand identity by Alan Geleff">
+        <div class="concept-art">
+          <img src="/art/phantoms/terrain.svg" alt="Terrain wordmark with concentric topographic mark in ivory and gold on Colorado-flag navy"/>
+        </div>
+        <div class="tile-meta">
+          <div class="kicker">Brand identity</div>
+          <span class="brand-badge" style="background:rgba(255,255,255,0.12)"><img src="/art/icons/terrain-icon.svg" alt="Terrain topographic mark" loading="lazy"></span>
+          <div class="name">Terrain</div>
+          <div class="desc">Colorado lawn care and snow removal. Built the full system — mark, palette, typography, and voice.</div>
+          <p class="tagline">Year-round, on the ground.</p>
+          <div class="palette-cta">
+            <div class="palette" aria-hidden="true">
+              <span style="background:#002868"></span>
+              <span style="background:#C4A97A"></span>
+              <span style="background:#BF0A30"></span>
+              <span style="background:#F5ECD4"></span>
+            </div>
+            <span class="cta status-cta"><span class="status-dot" aria-hidden="true"></span>Launching Soon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+          </div>
+        </div>
+      </a>
+
       <!-- Hana Olu -->
       <a class="tile tile-concept tile-ho" href="https://hanaolu.com" target="_blank" rel="noopener noreferrer" aria-label="Hana Olu — Hawaiian and Japanese natural body care, launching soon (opens in new tab)">
         <div class="concept-art">
@@ -2227,7 +2283,7 @@
         </div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration</div>
-          <span class="brand-badge" style="background:#1A1816"><img src="/art/icons/carbide-icon.svg" alt="Carbide C glyph" loading="lazy"></span>
+          <span class="brand-badge" style="background:rgba(255,255,255,0.12)"><img src="/art/icons/carbide-icon.svg" alt="Carbide C glyph" loading="lazy"></span>
           <div class="name">Carbide Coffee</div>
           <div class="desc">Single-origin coffee brand. Editorial dressing with a gold serif wordmark.</div>
           <p class="tagline">Small batch. Honest darkness.</p>
@@ -2342,7 +2398,7 @@
         </div>
         <div class="tile-meta">
           <div class="kicker">Brand exploration</div>
-          <span class="brand-badge" style="background:#0A1628"><img src="/art/icons/iterate-icon.svg" alt="Iterate concentric orbit" loading="lazy"></span>
+          <span class="brand-badge" style="background:rgba(255,255,255,0.12)"><img src="/art/icons/iterate-icon.svg" alt="Iterate concentric orbit" loading="lazy"></span>
           <div class="name">Iterate</div>
           <div class="desc">Product engineering brand. Concentric loop mark, italic wordmark on navy.</div>
           <p class="tagline">Every loop, sharper.</p>
