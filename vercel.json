@@ -1,18 +1,18 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/imprint", "destination": "/imprint.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/terms", "destination": "/terms.html" }
   ],
   "redirects": [
-    { "source": "/work", "destination": "/imprint", "permanent": true },
-    { "source": "/work.html", "destination": "/imprint", "permanent": true },
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "imprint.alang.studio" }],
-      "destination": "https://alang.studio/imprint",
-      "permanent": false
-    }
+      "destination": "https://byimprint.studio",
+      "permanent": true
+    },
+    { "source": "/imprint", "destination": "https://byimprint.studio", "permanent": true },
+    { "source": "/work", "destination": "https://byimprint.studio", "permanent": true },
+    { "source": "/work.html", "destination": "https://byimprint.studio", "permanent": true }
   ]
 }
