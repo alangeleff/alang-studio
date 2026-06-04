@@ -10,8 +10,12 @@
       "destination": "/terms.html"
     },
     {
-      "source": "/games/creapz/:path*",
-      "destination": "https://creapz.vercel.app/:path*"
+      "source": "/games/creapz/",
+      "destination": "https://creapz.vercel.app/"
+    },
+    {
+      "source": "/games/creapz/:path+",
+      "destination": "https://creapz.vercel.app/:path+"
     }
   ],
   "redirects": [
