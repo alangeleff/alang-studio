@@ -1,18 +1,50 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/terms", "destination": "/terms.html" }
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
+      "source": "/games/creapz/:path*",
+      "destination": "https://creapz.vercel.app/:path*"
+    }
   ],
   "redirects": [
     {
+      "source": "/games/creapz",
+      "destination": "/games/creapz/",
+      "permanent": false
+    },
+    {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "imprint.alang.studio" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "imprint.alang.studio"
+        }
+      ],
       "destination": "https://byimprint.studio",
       "permanent": true
     },
-    { "source": "/imprint", "destination": "https://byimprint.studio", "permanent": true },
-    { "source": "/work", "destination": "https://byimprint.studio", "permanent": true },
-    { "source": "/work.html", "destination": "https://byimprint.studio", "permanent": true }
+    {
+      "source": "/imprint",
+      "destination": "https://byimprint.studio",
+      "permanent": true
+    },
+    {
+      "source": "/work",
+      "destination": "https://byimprint.studio",
+      "permanent": true
+    },
+    {
+      "source": "/work.html",
+      "destination": "https://byimprint.studio",
+      "permanent": true
+    }
   ]
 }
