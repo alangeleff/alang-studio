@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Hana Olu · Sugar Scrub Cost Calculator</title>
+<style>
+:root{
+  --bg:#faf6f0; --card:#ffffff; --ink:#3a342e; --muted:#9a8f80; --soft:#f2ebe1;
+  --line:#ebe2d5; --sage:#7f9d78; --sage-d:#5f7e58; --peach:#e2a68c; --rose:#d98a8a;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.4;padding:0 0 60px}
+.wrap{max-width:760px;margin:0 auto;padding:18px 16px}
+header{text-align:center;padding:10px 0 6px}
+.brand{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--sage-d);font-weight:700}
+h1{font-size:21px;margin:4px 0 2px;font-weight:700}
+.sub{color:var(--muted);font-size:12.5px}
+.result{background:linear-gradient(135deg,#fff,#fbf5ee);border:1px solid var(--line);border-radius:16px;padding:18px;margin:16px 0;box-shadow:0 6px 22px #e7ddcd55;text-align:center}
+.result .big{font-size:40px;font-weight:800;color:var(--sage-d);letter-spacing:-1px}
+.result .biglbl{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:2px}
+.result .mini{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:12px}
+.result .mini div{min-width:90px}
+.result .mini .v{font-size:18px;font-weight:700}
+.result .mini .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 14px 10px;margin:14px 0}
+.sec h2{font-size:14px;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.sec .hint{font-size:11.5px;color:var(--muted);margin:0 0 12px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;padding:11px 0;border-top:1px solid var(--soft)}
+.row:first-of-type{border-top:none}
+.f{display:flex;flex-direction:column;gap:3px}
+.f label{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+.f.name{flex:1 1 100%;min-width:130px}
+.f.sm{flex:0 0 72px}
+.f.md{flex:0 0 96px}
+input,select{background:#fcfaf6;border:1px solid var(--line);color:var(--ink);font-size:14px;padding:8px 9px;border-radius:8px;width:100%;font-variant-numeric:tabular-nums}
+input:focus,select:focus{outline:none;border-color:var(--sage)}
+.cost{margin-left:auto;text-align:right;align-self:center;padding-bottom:2px}
+.cost .v{font-size:16px;font-weight:700;color:var(--sage-d)}
+.cost .l{font-size:9.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+.del{background:none;border:none;color:var(--rose);font-size:20px;cursor:pointer;align-self:center;padding:0 2px;opacity:.7}
+.del:hover{opacity:1}
+.add{background:var(--soft);border:1px dashed var(--line);color:var(--sage-d);border-radius:9px;padding:9px;width:100%;font-size:13px;font-weight:600;cursor:pointer;margin-top:8px}
+.add:hover{border-color:var(--sage)}
+.batch-row{display:flex;align-items:center;gap:8px;font-size:14px;flex-wrap:wrap}
+.batch-row input{width:70px;text-align:center;font-weight:700}
+.totline{display:flex;justify-content:space-between;padding:6px 2px;font-size:14px}
+.totline.grand{border-top:2px solid var(--line);margin-top:6px;padding-top:10px;font-size:16px;font-weight:800}
+.totline .num{font-variant-numeric:tabular-nums;font-weight:700}
+.pricegrid{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 14px}
+.pricecard{flex:1;min-width:90px;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.pricecard .mult{font-size:11px;color:var(--muted)}
+.pricecard .p{font-size:19px;font-weight:800;color:var(--peach)}
+.profitbox{display:flex;gap:14px;flex-wrap:wrap;align-items:center;background:var(--soft);border-radius:10px;padding:12px}
+.profitbox .res{font-size:13px}
+.profitbox .res b{font-size:17px}
+.foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:11.5px;color:var(--muted)}
+.reset{background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer}
+.pos{color:var(--sage-d)} .neg{color:var(--rose)}
+.note{font-size:10.5px;color:var(--muted);margin-top:8px;line-height:1.45}
+</style></head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">Hana Olu</div>
+    <h1>Sugar Scrub Cost Calculator</h1>
+    <div class="sub">Update any price or size — the cost recalculates instantly. Your numbers save automatically.</div>
+  </header>
+
+  <div class="result">
+    <div class="biglbl">Cost per jar</div>
+    <div class="big" id="r-perjar">$0.00</div>
+    <div class="mini">
+      <div><div class="v" id="r-batch">$0.00</div><div class="l">Whole batch</div></div>
+      <div><div class="v" id="r-ingjar">$0.00</div><div class="l">Ingredients / jar</div></div>
+      <div><div class="v" id="r-packjar">$0.00</div><div class="l">Packaging / jar</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>🫙 Batch</h2>
+    <div class="batch-row">One batch of this recipe fills <input id="batchJars" type="number" min="1" step="1" inputmode="numeric"> jar(s).</div>
+    <div class="note">The recipe below makes one full batch (~11.4 oz). If that fills more than one jar, set the number above and the per-jar cost divides automatically.</div>
+  </div>
+
+  <div class="sec">
+    <h2>🌿 Ingredients</h2>
+    <p class="hint">Amount = how much the recipe uses (in oz). Then enter what you pay and the size you buy — cost per oz is figured for you.</p>
+    <div id="ings"></div>
+    <button class="add" onclick="addIng()">+ Add ingredient</button>
+    <div class="note">Tip: enter the purchase size in whatever unit you buy (oz, lb, g, ml, fl oz). For oils sold by fluid-oz/ml, the cost is a close approximation — fine for pricing.</div>
+  </div>
+
+  <div class="sec">
+    <h2>📦 Packaging &amp; supplies</h2>
+    <p class="hint">Jar, lid, label, etc. Enter what you pay and how many come in the pack — per-unit cost is figured for you. (Often the biggest cost!)</p>
+    <div id="packs"></div>
+    <button class="add" onclick="addPack()">+ Add packaging item</button>
+  </div>
+
+  <div class="sec">
+    <h2>💰 Totals</h2>
+    <div class="totline"><span>Ingredients · whole batch</span><span class="num" id="t-ingbatch">$0.00</span></div>
+    <div class="totline"><span>Ingredients · per jar</span><span class="num" id="t-ingjar">$0.00</span></div>
+    <div class="totline"><span>Packaging · per jar</span><span class="num" id="t-packjar">$0.00</span></div>
+    <div class="totline grand"><span>Total cost per jar</span><span class="num" id="t-perjar">$0.00</span></div>
+  </div>
+
+  <div class="sec">
+    <h2>🏷️ Pricing</h2>
+    <p class="hint">Common handmade markups, based on your total cost per jar:</p>
+    <div class="pricegrid">
+      <div class="pricecard"><div class="mult">2× cost</div><div class="p" id="p-2">$0</div></div>
+      <div class="pricecard"><div class="mult">2.5× cost</div><div class="p" id="p-25">$0</div></div>
+      <div class="pricecard"><div class="mult">3× cost</div><div class="p" id="p-3">$0</div></div>
+    </div>
+    <div class="profitbox">
+      <div class="f sm" style="flex:0 0 120px"><label>If you sell each jar for</label><input id="sellPrice" type="number" min="0" step="0.5" inputmode="decimal" placeholder="$"></div>
+      <div class="res">Profit per jar: <b id="r-profit" class="pos">$0.00</b><br>Profit margin: <b id="r-margin">0%</b></div>
+    </div>
+    <div class="note">Markup ranges are just starting points — also weigh your time, market, and shipping. A 2.5–3× cost markup is a common floor for handmade goods sold direct.</div>
+  </div>
+
+  <div class="foot">
+    <span>Saved on this device automatically.</span>
+    <button class="reset" onclick="resetAll()">Reset to recipe</button>
+  </div>
+</div>
+
+<script>
+const KEY='hanaolu_scrub_calc_v2';
+const U={'oz':1,'fl oz':1,'lb':16,'kg':35.27396,'g':0.0352740,'ml':0.0338140};
+const UNITS=['oz','fl oz','lb','g','ml','kg'];
+function defaults(){return{
+  batchJars:1,
+  ings:[
+    {name:'Sugar (fine / extra-fine)',amt:5.7,price:5,size:4,unit:'lb'},
+    {name:'Kukui nut oil',amt:2.5,price:17,size:16,unit:'fl oz'},
+    {name:'Mango butter',amt:1.25,price:15,size:16,unit:'oz'},
+    {name:'Vegetable glycerin',amt:1,price:14,size:16,unit:'fl oz'},
+    {name:'Emulsifying wax (NF)',amt:0.6,price:9,size:16,unit:'oz'},
+    {name:'Fragrance oil',amt:0.2,price:7,size:1,unit:'fl oz'},
+    {name:'Mica powder',amt:0.13,price:8,size:1,unit:'oz'}
+  ],
+  packs:[
+    {name:'Jar (4 oz, lid incl.)',price:18,qty:12},
+    {name:'Label',price:9,qty:30}
+  ],
+  sellPrice:''
+};}
+let S;
+try{ S=JSON.parse(localStorage.getItem(KEY)); }catch(e){}
+if(!S||!S.ings) S=defaults();
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
+const $=id=>document.getElementById(id);
+const num=v=>{ const n=parseFloat(v); return isNaN(n)?0:n; };
+const money=v=>'$'+(v||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const esc=s=>String(s==null?'':s).replace(/"/g,'&quot;').replace(/</g,'&lt;');
+
+function ingCostOz(g){ const sz=num(g.size)*(U[g.unit]||1); return sz>0?num(g.price)/sz:0; }
+function ingCost(g){ return num(g.amt)*ingCostOz(g); }
+function packUnit(p){ const q=num(p.qty)||1; return num(p.price)/q; }
+
+function render(){
+  $('batchJars').value=S.batchJars||1;
+  $('sellPrice').value=S.sellPrice;
+  const ui=UNITS.map(u=>'<option>'+u+'</option>').join('');
+  $('ings').innerHTML=S.ings.map((g,i)=>(
+    '<div class="row">'+
+      '<div class="f name"><label>Ingredient</label><input value="'+esc(g.name)+'" oninput="set(\'ings\','+i+',\'name\',this.value)"></div>'+
+      '<div class="f sm"><label>Amount (oz)</label><input type="number" step="0.01" inputmode="decimal" value="'+esc(g.amt)+'" oninput="set(\'ings\','+i+',\'amt\',this.value)"></div>'+
+      '<div class="f sm"><label>You pay</label><input type="number" step="0.01" inputmode="decimal" placeholder="$" value="'+esc(g.price)+'" oninput="set(\'ings\','+i+',\'price\',this.value)"></div>'+
+      '<div class="f sm"><label>For size</label><input type="number" step="0.01" inputmode="decimal" placeholder="0" value="'+esc(g.size)+'" oninput="set(\'ings\','+i+',\'size\',this.value)"></div>'+
+      '<div class="f sm"><label>Unit</label><select onchange="set(\'ings\','+i+',\'unit\',this.value)">'+ui.replace('<option>'+g.unit+'</option>','<option selected>'+g.unit+'</option>')+'</select></div>'+
+      '<div class="cost"><div class="v" id="ic'+i+'">$0.00</div><div class="l">in recipe</div></div>'+
+      '<button class="del" title="Remove" onclick="del(\'ings\','+i+')">&times;</button>'+
+    '</div>'
+  )).join('');
+  $('packs').innerHTML=S.packs.map((p,i)=>(
+    '<div class="row">'+
+      '<div class="f name"><label>Item</label><input value="'+esc(p.name)+'" oninput="set(\'packs\','+i+',\'name\',this.value)"></div>'+
+      '<div class="f sm"><label>You pay</label><input type="number" step="0.01" inputmode="decimal" placeholder="$" value="'+esc(p.price)+'" oninput="set(\'packs\','+i+',\'price\',this.value)"></div>'+
+      '<div class="f sm"><label># in pack</label><input type="number" step="1" min="1" inputmode="numeric" value="'+esc(p.qty)+'" oninput="set(\'packs\','+i+',\'qty\',this.value)"></div>'+
+      '<div class="cost"><div class="v" id="pc'+i+'">$0.00</div><div class="l">per unit</div></div>'+
+      '<button class="del" title="Remove" onclick="del(\'packs\','+i+')">&times;</button>'+
+    '</div>'
+  )).join('');
+  recompute();
+}
+function recompute(){
+  const jars=Math.max(1,num(S.batchJars)||1);
+  let ingBatch=0;
+  S.ings.forEach((g,i)=>{ const c=ingCost(g); ingBatch+=c; const el=$('ic'+i); if(el) el.textContent=money(c); });
+  let packJar=0;
+  S.packs.forEach((p,i)=>{ const u=packUnit(p); packJar+=u; const el=$('pc'+i); if(el) el.textContent=money(u); });
+  const ingJar=ingBatch/jars;
+  const perJar=ingJar+packJar;
+  $('t-ingbatch').textContent=money(ingBatch);
+  $('t-ingjar').textContent=money(ingJar);
+  $('t-packjar').textContent=money(packJar);
+  $('t-perjar').textContent=money(perJar);
+  $('r-perjar').textContent=money(perJar);
+  $('r-batch').textContent=money(ingBatch+packJar*jars);
+  $('r-ingjar').textContent=money(ingJar);
+  $('r-packjar').textContent=money(packJar);
+  $('p-2').textContent='$'+(perJar*2).toFixed(2);
+  $('p-25').textContent='$'+(perJar*2.5).toFixed(2);
+  $('p-3').textContent='$'+(perJar*3).toFixed(2);
+  const sp=num(S.sellPrice);
+  const profit=sp-perJar; const margin=sp>0?(profit/sp*100):0;
+  const pe=$('r-profit'); pe.textContent=money(profit); pe.className=profit>=0?'pos':'neg';
+  $('r-margin').textContent=(sp>0?margin.toFixed(0):'0')+'%';
+}
+function set(grp,i,field,val){ S[grp][i][field]=val; save(); recompute(); }
+function del(grp,i){ S[grp].splice(i,1); save(); render(); }
+function addIng(){ S.ings.push({name:'',amt:'',price:'',size:'',unit:'oz'}); save(); render(); }
+function addPack(){ S.packs.push({name:'',price:'',qty:1}); save(); render(); }
+$('batchJars').addEventListener('input',e=>{ S.batchJars=e.target.value; save(); recompute(); });
+$('sellPrice').addEventListener('input',e=>{ S.sellPrice=e.target.value; save(); recompute(); });
+function resetAll(){ if(confirm('Reset everything back to the original recipe? Your entered prices will be cleared.')){ S=defaults(); save(); render(); } }
+render();
+</script>
+</body></html>
+            
