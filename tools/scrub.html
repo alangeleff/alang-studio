@@ -32,7 +32,6 @@ h1{font-size:21px;margin:4px 0 2px;font-weight:700}
 .f label{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
 .f.name{flex:1 1 100%;min-width:130px}
 .f.sm{flex:0 0 78px}
-.f.md{flex:0 0 96px}
 input,select{background:#fcfaf6;border:1px solid var(--line);color:var(--ink);font-size:14px;padding:8px 9px;border-radius:8px;width:100%;font-variant-numeric:tabular-nums}
 input:focus,select:focus{outline:none;border-color:var(--sage)}
 .cost{margin-left:auto;text-align:right;align-self:center;padding-bottom:2px}
@@ -64,7 +63,6 @@ input:focus,select:focus{outline:none;border-color:var(--sage)}
 .reset{background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer}
 .pos{color:var(--sage-d)} .neg{color:var(--rose)}
 .note{font-size:10.5px;color:var(--muted);margin-top:8px;line-height:1.45}
-/* modal */
 .ov{position:fixed;inset:0;background:rgba(58,52,46,.55);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:24px 12px;overflow:auto}
 .ov.open{display:flex}
 .modal{background:var(--card);border:1px solid var(--line);border-radius:16px;width:100%;max-width:640px;padding:16px 18px;box-shadow:0 18px 50px #0004}
@@ -79,7 +77,6 @@ input:focus,select:focus{outline:none;border-color:var(--sage)}
     <h1>Sugar Scrub Cost Calculator</h1>
     <div class="sub">Update any price, size, or amount — the cost recalculates instantly. Saves automatically.</div>
   </header>
-
   <div class="result">
     <div class="biglbl">Cost per jar</div>
     <div class="big" id="r-perjar">$0.00</div>
@@ -89,13 +86,11 @@ input:focus,select:focus{outline:none;border-color:var(--sage)}
       <div><div class="v" id="r-shipjar">$0.00</div><div class="l">Shipping</div></div>
     </div>
   </div>
-
   <div class="sec">
     <h2>🫙 Batch</h2>
     <div class="batch-row">One batch of this recipe fills <input id="batchJars" type="number" min="1" step="1" inputmode="numeric"> jar(s).</div>
     <div class="note">The recipe makes one full batch (~11.4 oz). Set how many jars that fills and the per-jar cost divides automatically.</div>
   </div>
-
   <div class="sec">
     <div class="sec-hd">
       <h2>🌿 Recipe</h2>
@@ -105,14 +100,12 @@ input:focus,select:focus{outline:none;border-color:var(--sage)}
     <div id="ings"></div>
     <button class="add" onclick="addIng()">+ Add ingredient</button>
   </div>
-
   <div class="sec">
     <h2>📦 Packaging</h2>
     <p class="hint">Jar, lid, label, etc. Enter the price and how many come in the pack — per-unit cost is figured for you. (Often the biggest cost!)</p>
     <div id="packs"></div>
     <button class="add" onclick="addPack()">+ Add packaging item</button>
   </div>
-
   <div class="sec">
     <h2>💰 Totals</h2>
     <div class="totline"><span>Ingredients · per jar</span><span class="num" id="t-ingjar">$0.00</span></div>
@@ -120,7 +113,6 @@ input:focus,select:focus{outline:none;border-color:var(--sage)}
     <div class="totline" id="t-shiprow"><span>Shipping · per jar <span class="tag" id="t-shiptag"></span></span><span class="num" id="t-shipjar">$0.00</span></div>
     <div class="totline grand"><span>Total cost per jar</span><span class="num" id="t-perjar">$0.00</span></div>
   </div>
-
   <div class="sec">
     <h2>🏷️ Pricing</h2>
     <p class="hint">Common handmade markups, based on your total cost per jar:</p>
@@ -135,23 +127,19 @@ input:focus,select:focus{outline:none;border-color:var(--sage)}
     </div>
     <div class="note">Markups are starting points — also weigh your time, market, and (if not folded in below) shipping. 2.5–3× cost is a common floor for handmade goods sold direct.</div>
   </div>
-
   <div class="sec">
     <h2>🚚 Shipping &amp; fulfillment</h2>
     <label class="chk"><input type="checkbox" id="shipIncl"> Include shipping in the per-jar cost &amp; pricing above</label>
-    <p class="hint">Postage + mailer + padding, per shipped jar. Leave the box unchecked to track it here without affecting the cost/price (e.g. if the customer pays shipping).</p>
+    <p class="hint">Postage + mailer + padding, per shipped jar. Leave unchecked to track it here without affecting the cost/price (e.g. if the customer pays shipping).</p>
     <div id="ships"></div>
     <button class="add" onclick="addShip()">+ Add shipping item</button>
     <div class="totline grand" style="font-size:15px"><span>Shipping total · per jar</span><span class="num" id="t-shiptotal">$0.00</span></div>
   </div>
-
   <div class="foot">
     <span>Saved on this device automatically.</span>
     <button class="reset" onclick="resetAll()">Reset to recipe</button>
   </div>
 </div>
-
-<!-- Bulk supply costs popup -->
 <div class="ov" id="supplies" onclick="if(event.target.id==='supplies')closeSupplies()">
   <div class="modal">
     <div class="modal-hd"><h2>💲 Bulk supply costs</h2><button onclick="closeSupplies()" title="Close">&times;</button></div>
@@ -160,11 +148,10 @@ input:focus,select:focus{outline:none;border-color:var(--sage)}
     <button class="add" onclick="closeSupplies()" style="margin-top:12px;background:var(--sage);color:#fff;border-style:solid;border-color:var(--sage)">Done</button>
   </div>
 </div>
-
 <script>
-const KEY='hanaolu_scrub_calc_v2';
-const U={'oz':1,'fl oz':1,'lb':16,'kg':35.27396,'g':0.0352740,'ml':0.0338140};
-const UNITS=['oz','fl oz','lb','g','ml','kg'];
+var KEY='hanaolu_scrub_calc_v2';
+var U={'oz':1,'fl oz':1,'lb':16,'kg':35.27396,'g':0.0352740,'ml':0.0338140};
+var UNITS=['oz','fl oz','lb','g','ml','kg'];
 function defaults(){return{
   batchJars:1,
   ings:[
@@ -188,37 +175,94 @@ function defaults(){return{
   shipIncl:false,
   sellPrice:''
 };}
-let S;
+var S;
 try{ S=JSON.parse(localStorage.getItem(KEY)); }catch(e){}
 if(!S||!S.ings) S=defaults();
-if(!Array.isArray(S.ships)) S.ships=defaults().ships;       // backfill for older saves
+if(!Array.isArray(S.ships)) S.ships=defaults().ships;
 if(typeof S.shipIncl!=='boolean') S.shipIncl=false;
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
-const $=id=>document.getElementById(id);
-const num=v=>{ const n=parseFloat(v); return isNaN(n)?0:n; };
-const money=v=>'$'+(v||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-const esc=s=>String(s==null?'':s).replace(/"/g,'&quot;').replace(/</g,'&lt;');
-
-function ingCostOz(g){ const sz=num(g.size)*(U[g.unit]||1); return sz>0?num(g.price)/sz:0; }
+function $(id){ return document.getElementById(id); }
+function num(v){ var n=parseFloat(v); return isNaN(n)?0:n; }
+function money(v){ return '$'+(v||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function esc(s){ return String(s==null?'':s).replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+function ingCostOz(g){ var sz=num(g.size)*(U[g.unit]||1); return sz>0?num(g.price)/sz:0; }
 function ingCost(g){ return num(g.amt)*ingCostOz(g); }
-function packUnit(p){ const q=num(p.qty)||1; return num(p.price)/q; }
-
+function packUnit(p){ var q=num(p.qty)||1; return num(p.price)/q; }
 function render(){
   $('batchJars').value=S.batchJars||1;
   $('sellPrice').value=S.sellPrice;
   $('shipIncl').checked=!!S.shipIncl;
-  // recipe (clean: name + amount + cost)
-  $('ings').innerHTML=S.ings.map((g,i)=>(
-    '<div class="row">'+
+  $('ings').innerHTML=S.ings.map(function(g,i){return '<div class="row">'+
       '<div class="f name"><label>Ingredient</label><input value="'+esc(g.name)+'" oninput="set(\'ings\','+i+',\'name\',this.value)"></div>'+
       '<div class="f sm"><label>Amount (oz)</label><input type="number" step="0.01" inputmode="decimal" value="'+esc(g.amt)+'" oninput="set(\'ings\','+i+',\'amt\',this.value)"></div>'+
       '<div class="cost"><div class="v" id="ic'+i+'">$0.00</div><div class="l">per batch</div></div>'+
       '<button class="del" title="Remove" onclick="del(\'ings\','+i+')">&times;</button>'+
-    '</div>'
-  )).join('');
-  // packaging
-  $('packs').innerHTML=S.packs.map((p,i)=>(
-    '<div class="row">'+
+    '</div>';}).join('');
+  $('packs').innerHTML=S.packs.map(function(p,i){return '<div class="row">'+
       '<div class="f name"><label>Item</label><input value="'+esc(p.name)+'" oninput="set(\'packs\','+i+',\'name\',this.value)"></div>'+
       '<div class="f sm"><label>You pay</label><input type="number" step="0.01" inputmode="decimal" placeholder="$" value="'+esc(p.price)+'" oninput="set(\'packs\','+i+',\'price\',this.value)"></div>'+
-      '<div class="f sm"><label># in pack</label><input type="number" step="1" min="1" inputmode="numeric" value="'+esc(p.qty)+'" oninput="set(\'packs\','+i+',\'
+      '<div class="f sm"><label># in pack</label><input type="number" step="1" min="1" inputmode="numeric" value="'+esc(p.qty)+'" oninput="set(\'packs\','+i+',\'qty\',this.value)"></div>'+
+      '<div class="cost"><div class="v" id="pc'+i+'">$0.00</div><div class="l">per unit</div></div>'+
+      '<button class="del" title="Remove" onclick="del(\'packs\','+i+')">&times;</button>'+
+    '</div>';}).join('');
+  $('ships').innerHTML=S.ships.map(function(s,i){return '<div class="row">'+
+      '<div class="f name"><label>Item</label><input value="'+esc(s.name)+'" oninput="set(\'ships\','+i+',\'name\',this.value)"></div>'+
+      '<div class="f sm"><label>Cost</label><input type="number" step="0.01" inputmode="decimal" placeholder="$" value="'+esc(s.cost)+'" oninput="set(\'ships\','+i+',\'cost\',this.value)"></div>'+
+      '<button class="del" title="Remove" onclick="del(\'ships\','+i+')">&times;</button>'+
+    '</div>';}).join('');
+  renderSupplies();
+  recompute();
+}
+function renderSupplies(){
+  var ui=UNITS.map(function(u){return '<option>'+u+'</option>';}).join('');
+  $('supplyList').innerHTML=S.ings.map(function(g,i){return '<div class="row">'+
+      '<div class="f name"><label>Ingredient</label><input value="'+esc(g.name)+'" oninput="set(\'ings\','+i+',\'name\',this.value)"></div>'+
+      '<div class="f sm"><label>You pay</label><input type="number" step="0.01" inputmode="decimal" placeholder="$" value="'+esc(g.price)+'" oninput="set(\'ings\','+i+',\'price\',this.value)"></div>'+
+      '<div class="f sm"><label>For size</label><input type="number" step="0.01" inputmode="decimal" placeholder="0" value="'+esc(g.size)+'" oninput="set(\'ings\','+i+',\'size\',this.value)"></div>'+
+      '<div class="f sm"><label>Unit</label><select onchange="set(\'ings\','+i+',\'unit\',this.value)">'+ui.replace('<option>'+g.unit+'</option>','<option selected>'+g.unit+'</option>')+'</select></div>'+
+      '<div class="cost"><div class="v" id="mc'+i+'">$0.00</div><div class="l">per oz</div></div>'+
+    '</div>';}).join('');
+}
+function recompute(){
+  var jars=Math.max(1,num(S.batchJars)||1);
+  var ingBatch=0;
+  S.ings.forEach(function(g,i){ var c=ingCost(g); ingBatch+=c; var el=$('ic'+i); if(el) el.textContent=money(c); var m=$('mc'+i); if(m) m.textContent=money(ingCostOz(g)); });
+  var packJar=0;
+  S.packs.forEach(function(p,i){ var u=packUnit(p); packJar+=u; var el=$('pc'+i); if(el) el.textContent=money(u); });
+  var shipJar=0; S.ships.forEach(function(s){ shipJar+=num(s.cost); });
+  var ingJar=ingBatch/jars;
+  var shipIn=!!S.shipIncl;
+  var perJar=ingJar+packJar+(shipIn?shipJar:0);
+  $('t-ingjar').textContent=money(ingJar);
+  $('t-packjar').textContent=money(packJar);
+  $('t-shipjar').textContent=money(shipJar);
+  $('t-shiptotal').textContent=money(shipJar);
+  $('t-shiprow').className='totline'+(shipIn?'':' off');
+  $('t-shiptag').textContent=shipIn?'':'(not in total)';
+  $('t-perjar').textContent=money(perJar);
+  $('r-perjar').textContent=money(perJar);
+  $('r-ingjar').textContent=money(ingJar);
+  $('r-packjar').textContent=money(packJar);
+  $('r-shipjar').textContent=money(shipIn?shipJar:0);
+  $('p-2').textContent='$'+(perJar*2).toFixed(2);
+  $('p-25').textContent='$'+(perJar*2.5).toFixed(2);
+  $('p-3').textContent='$'+(perJar*3).toFixed(2);
+  var sp=num(S.sellPrice);
+  var profit=sp-perJar; var margin=sp>0?(profit/sp*100):0;
+  var pe=$('r-profit'); pe.textContent=money(profit); pe.className=profit>=0?'pos':'neg';
+  $('r-margin').textContent=(sp>0?margin.toFixed(0):'0')+'%';
+}
+function set(grp,i,field,val){ S[grp][i][field]=val; save(); recompute(); }
+function del(grp,i){ S[grp].splice(i,1); save(); render(); }
+function addIng(){ S.ings.push({name:'',amt:'',price:'',size:'',unit:'oz'}); save(); render(); }
+function addPack(){ S.packs.push({name:'',price:'',qty:1}); save(); render(); }
+function addShip(){ S.ships.push({name:'',cost:''}); save(); render(); }
+function openSupplies(){ renderSupplies(); recompute(); $('supplies').classList.add('open'); }
+function closeSupplies(){ $('supplies').classList.remove('open'); }
+$('batchJars').addEventListener('input',function(e){ S.batchJars=e.target.value; save(); recompute(); });
+$('sellPrice').addEventListener('input',function(e){ S.sellPrice=e.target.value; save(); recompute(); });
+$('shipIncl').addEventListener('change',function(e){ S.shipIncl=e.target.checked; save(); recompute(); });
+function resetAll(){ if(confirm('Reset everything back to the original recipe? Your entered prices will be cleared.')){ S=defaults(); save(); render(); } }
+render();
+</script>
+</body></html>
